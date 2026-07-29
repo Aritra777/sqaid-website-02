@@ -109,6 +109,14 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-07-30** — Bento Capabilities felt off-language vs the rest of the page;
+  preserved on branch **`capabilities-bento`**. Building alternatives on
+  **`capabilities-parallax`** that keep the big pinned section heading + overlap
+  + parallax: **Option A** (overlap bento + parallax columns) and **Option B**
+  (pinned focus rail with a huge parallax numeral). Compare at
+  `/preview/capabilities`; the chosen one gets wired into the landing.
+  Hero H1 enlarged and reworded to two balanced lines ("Turn alert overload
+  into / decisions you can defend.").
 - **2026-07-30** — Capabilities redesigned again → **asymmetric bento grid**
   (the constellation read as gimmicky/unprofessional). Three columns of glass
   tiles (a lead tile with big count + corner arcs, four domain tiles listing

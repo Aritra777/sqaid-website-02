@@ -37,7 +37,9 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1 className={styles.title} variants={fadeUp}>
-            From alert overload to <em>actionable intelligence.</em>
+            Turn alert overload into
+            <br />
+            <em>decisions you can defend.</em>
           </motion.h1>
 
           <motion.p className={styles.sub} variants={fadeUp}>

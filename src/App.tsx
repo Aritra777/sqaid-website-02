@@ -8,6 +8,7 @@ const ProductPage = lazy(() => import("@/pages/ProductPage"));
 const SolutionPage = lazy(() => import("@/pages/SolutionPage"));
 const IndustryPage = lazy(() => import("@/pages/IndustryPage"));
 const Company = lazy(() => import("@/pages/Company"));
+const CapabilitiesPreview = lazy(() => import("@/pages/CapabilitiesPreview"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 function RouteFallback() {
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/solutions/:slug" element={<SolutionPage />} />
           <Route path="/industries/:slug" element={<IndustryPage />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/preview/capabilities" element={<CapabilitiesPreview />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>
