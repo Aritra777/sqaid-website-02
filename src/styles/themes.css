@@ -1,0 +1,50 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   PRODUCT ACCENTS (AXIS 2)
+   ───────────────────────────────────────────────────────────────────────
+   Only three accent hues exist (see .claude/design.md):
+     Faro = blue · Argus = green · Case Manager = violet.
+   Abacus is unlaunched → NEUTRAL (white/opacity), no fourth color.
+
+   Each wrapper sets ONLY solid color + opacity tints. No glow, no gradient.
+   Apply by wrapping a page/section root: <div className="theme-argus"> … </div>
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── FARO · blue ── */
+.theme-faro {
+  --accent: var(--blue);
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(47, 107, 255, 0.1);
+  --accent-softer: rgba(47, 107, 255, 0.05);
+  --accent-border: rgba(47, 107, 255, 0.4);
+  --accent-line: rgba(47, 107, 255, 0.16);
+}
+
+/* ── ARGUS · green ── */
+.theme-argus {
+  --accent: var(--green);
+  --accent-contrast: #04140d; /* dark text on bright green */
+  --accent-soft: rgba(24, 226, 154, 0.1);
+  --accent-softer: rgba(24, 226, 154, 0.05);
+  --accent-border: rgba(24, 226, 154, 0.42);
+  --accent-line: rgba(24, 226, 154, 0.16);
+}
+
+/* ── CASE MANAGER · violet ── */
+.theme-case-manager {
+  --accent: var(--violet);
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(124, 92, 255, 0.1);
+  --accent-softer: rgba(124, 92, 255, 0.05);
+  --accent-border: rgba(124, 92, 255, 0.42);
+  --accent-line: rgba(124, 92, 255, 0.16);
+}
+
+/* ── ABACUS · yellow ── */
+.theme-abacus {
+  --accent: var(--yellow);
+  --accent-contrast: #1a1400; /* dark text on bright yellow */
+  --accent-soft: rgba(255, 194, 51, 0.12);
+  --accent-softer: rgba(255, 194, 51, 0.06);
+  --accent-border: rgba(255, 194, 51, 0.42);
+  --accent-line: rgba(255, 194, 51, 0.18);
+}

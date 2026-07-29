@@ -1,0 +1,63 @@
+.btn {
+  --btn-h: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: var(--btn-h);
+  padding-inline: var(--space-6);
+  border-radius: var(--r-pill);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform var(--t-fast), background var(--t-base),
+    border-color var(--t-base), opacity var(--t-base), color var(--t-base);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.md {
+  --btn-h: 46px;
+}
+.lg {
+  --btn-h: 54px;
+  padding-inline: var(--space-7);
+  font-size: var(--fs-body);
+}
+
+/* ── primary: solid accent ── */
+.primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: 1px solid transparent;
+}
+.primary:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* ── outline: accent border, fills on hover ── */
+.outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line-2);
+}
+.outline:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+/* ── ghost: minimal ── */
+.ghost {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.ghost:hover {
+  background: var(--surface-3);
+  transform: translateY(-1px);
+}

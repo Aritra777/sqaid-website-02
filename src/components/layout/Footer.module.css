@@ -1,0 +1,80 @@
+.footer {
+  position: relative;
+  margin-top: var(--space-11);
+  padding-block: var(--space-9) var(--space-6);
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: var(--space-8);
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+  }
+}
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 300px;
+}
+.tagline {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+.email {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+}
+.email:hover {
+  text-decoration: underline;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.colTitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: var(--space-1);
+}
+.link {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  transition: color var(--t-base);
+}
+.link:hover {
+  color: var(--text);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line);
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}
+.mono {
+  font-family: var(--font-mono);
+}

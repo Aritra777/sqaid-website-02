@@ -1,0 +1,29 @@
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 720px;
+}
+.center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+.left {
+  align-items: flex-start;
+}
+
+.title {
+  font-size: var(--fs-h2);
+}
+.title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.lede {
+  color: var(--text-2);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+  max-width: 60ch;
+}

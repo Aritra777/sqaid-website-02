@@ -1,0 +1,70 @@
+.carousel {
+  --slide-w: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.label {
+  color: var(--text-2);
+}
+
+.controls {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-pill);
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  transition: color var(--t-base), background var(--t-base),
+    border-color var(--t-base), opacity var(--t-base);
+}
+.arrow:hover:not(:disabled) {
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── the scroll track ── */
+.track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 0;
+  padding-bottom: var(--space-2);
+  /* hide scrollbar; drag/arrows/wheel drive it */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 var(--slide-w);
+  max-width: 85vw;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 560px) {
+  .carousel {
+    --slide-w: 300px;
+  }
+}

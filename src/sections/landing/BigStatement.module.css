@@ -1,0 +1,63 @@
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  overflow: hidden;
+}
+
+/* ── marquee rows of big keywords ── */
+.marquee {
+  --line: transparent;
+}
+.marqueeItem,
+.marqueeItemOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding-inline: clamp(1.5rem, 1rem + 2vw, 3rem);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 1.2rem + 6vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.marqueeItem {
+  color: var(--text);
+}
+/* outlined text for the second row — the modern "big & bold" hollow look */
+.marqueeItemOutline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--line-strong);
+}
+.sep {
+  color: var(--accent);
+  -webkit-text-stroke: 0;
+  font-size: 0.4em;
+}
+
+/* ── centered headline between the marquees ── */
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+.headline {
+  font-size: clamp(2.5rem, 1.2rem + 6vw, 6rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+.headline em {
+  font-style: normal;
+  color: var(--accent);
+}
+.note {
+  max-width: 56ch;
+  color: var(--text-2);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+}

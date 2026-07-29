@@ -1,0 +1,216 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   SqAId · DESIGN TOKENS
+   ───────────────────────────────────────────────────────────────────────
+   HARD RULES (see .claude/design.md):
+     • Palette = Black + White + 4 product accents:
+       Faro Blue, Argus Green, Case Violet, Abacus Yellow — ONLY.
+       Vary with OPACITY, never new hues.
+     • NO box-shadows. NO color gradients. Depth comes from translucent
+       surfaces + hairline borders (white/black over the base).
+     • Transparency IS the effect: rgba surfaces, borders, and mask fades.
+
+   Two-axis theming:
+     AXIS 1 · MODE (dark / light) — surfaces, text, borders. Default = dark.
+     AXIS 2 · ACCENT (per product) — see themes.css (.theme-*).
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─────────────────────────────────────────────────────────────
+     RAW PALETTE — the only five colors on the site.
+     ───────────────────────────────────────────────────────────── */
+  --black: #0a0b0d;
+  --white: #ffffff;
+  --blue: #2f6bff; /* Faro */
+  --green: #18e29a; /* Argus */
+  --violet: #7c5cff; /* Case Manager */
+  --yellow: #ffc233; /* Abacus */
+
+  /* ─────────────────────────────────────────────────────────────
+     SURFACES — dark (default). Built from WHITE over black w/ opacity.
+     ───────────────────────────────────────────────────────────── */
+  --bg: var(--black);
+  --bg-1: #0d0e11; /* alt section base */
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-2: rgba(255, 255, 255, 0.055);
+  --surface-3: rgba(255, 255, 255, 0.09);
+  --surface-glass: rgba(10, 11, 13, 0.55); /* nav / glass over content */
+
+  /* ── borders / dividers / hairlines (white w/ opacity) ── */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.24);
+
+  /* ─────────────────────────────────────────────────────────────
+     TEXT — white w/ opacity (dark mode)
+     ───────────────────────────────────────────────────────────── */
+  --text: rgba(255, 255, 255, 0.96);
+  --text-2: rgba(255, 255, 255, 0.62);
+  --text-3: rgba(255, 255, 255, 0.40);
+  --text-4: rgba(255, 255, 255, 0.26);
+
+  /* ── chrome ── */
+  --nav-bg: rgba(10, 11, 13, 0.62);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --scrim: rgba(10, 11, 13, 0.7);
+
+  /* status — reuse palette (no new hues) */
+  --success: var(--green);
+  --info: var(--blue);
+
+  /* ─────────────────────────────────────────────────────────────
+     SEMANTIC ACCENT — default = Faro blue. Products override in themes.css.
+     Only solid color + opacity tints. No glow, no gradient.
+     ───────────────────────────────────────────────────────────── */
+  --accent: var(--blue);
+  --accent-contrast: #ffffff; /* text/icon on solid accent */
+  --accent-soft: rgba(47, 107, 255, 0.1); /* translucent fill */
+  --accent-softer: rgba(47, 107, 255, 0.05);
+  --accent-border: rgba(47, 107, 255, 0.4);
+  --accent-line: rgba(47, 107, 255, 0.16); /* faint lines / grids */
+
+  /* ─────────────────────────────────────────────────────────────
+     TYPOGRAPHY — Sora (display) · Inter (body) · JetBrains Mono (data)
+     ───────────────────────────────────────────────────────────── */
+  --font-display: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", ui-monospace, monospace;
+
+  /* fluid type scale — clamp(min, preferred, max) */
+  --fs-display: clamp(3rem, 1.2rem + 8vw, 8rem); /* hero H1 */
+  --fs-h1: clamp(2.25rem, 1.5rem + 3.75vw, 4rem);
+  --fs-h2: clamp(1.75rem, 1.2rem + 2.75vw, 3rem);
+  --fs-h3: clamp(1.375rem, 1.05rem + 1.6vw, 2rem);
+  --fs-h4: clamp(1.125rem, 0.98rem + 0.75vw, 1.5rem);
+  --fs-lead: clamp(1.0625rem, 0.98rem + 0.5vw, 1.375rem);
+  --fs-body: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.75rem;
+  --fs-eyebrow: 0.75rem;
+
+  --lh-tight: 0.98;
+  --lh-snug: 1.2;
+  --lh-normal: 1.55;
+  --lh-relaxed: 1.7;
+
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-eyebrow: 0.22em;
+
+  /* ── weights ── */
+  --fw-body: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ─────────────────────────────────────────────────────────────
+     SPACING — 4px base scale
+     ───────────────────────────────────────────────────────────── */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 160px;
+  --space-12: 200px;
+
+  --section-y: clamp(4rem, 2.5rem + 7vw, 9rem);
+
+  /* ─────────────────────────────────────────────────────────────
+     LAYOUT
+     ───────────────────────────────────────────────────────────── */
+  --container: 1280px;
+  --container-wide: 1600px;
+  --container-narrow: 780px;
+  --gutter: 40px;
+  --gutter-mobile: 20px;
+  --nav-h: 68px;
+
+  /* ─────────────────────────────────────────────────────────────
+     RADIUS
+     ───────────────────────────────────────────────────────────── */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-2xl: 32px;
+  --r-pill: 999px;
+  --r-full: 9999px;
+
+  /* backdrop blur (glass — transparency effect, not a shadow) */
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 40px;
+
+  /* ─────────────────────────────────────────────────────────────
+     MOTION — easings + durations
+     ───────────────────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --dur-fast: 0.15s;
+  --dur-base: 0.25s;
+  --dur-slow: 0.45s;
+  --dur-slower: 0.7s;
+
+  --t-fast: var(--dur-fast) var(--ease-out);
+  --t-base: var(--dur-base) var(--ease-out);
+  --t-slow: var(--dur-slow) var(--ease-out);
+
+  /* ── z-index scale ── */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-nav: 1000;
+  --z-overlay: 2000;
+  --z-modal: 3000;
+  --z-toast: 4000;
+}
+
+/* wider gutters / container on large displays */
+@media (min-width: 1440px) {
+  :root {
+    --container: 1360px;
+    --container-wide: 1720px;
+    --gutter: 64px;
+  }
+}
+@media (min-width: 1920px) {
+  :root {
+    --container: 1440px;
+    --container-wide: 1880px;
+    --gutter: 88px;
+  }
+}
+
+/* ═══════════════════════════════ LIGHT MODE ═══════════════════════════════
+   Surfaces built from BLACK over white w/ opacity. Same five colors. */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-1: #f5f6f8;
+  --surface: rgba(10, 11, 13, 0.025);
+  --surface-2: rgba(10, 11, 13, 0.05);
+  --surface-3: rgba(10, 11, 13, 0.08);
+  --surface-glass: rgba(255, 255, 255, 0.6);
+
+  --line: rgba(10, 11, 13, 0.1);
+  --line-2: rgba(10, 11, 13, 0.16);
+  --line-strong: rgba(10, 11, 13, 0.28);
+
+  --text: rgba(10, 11, 13, 0.96);
+  --text-2: rgba(10, 11, 13, 0.62);
+  --text-3: rgba(10, 11, 13, 0.42);
+  --text-4: rgba(10, 11, 13, 0.28);
+
+  --nav-bg: rgba(255, 255, 255, 0.7);
+  --nav-border: rgba(10, 11, 13, 0.1);
+  --scrim: rgba(10, 11, 13, 0.4);
+}
