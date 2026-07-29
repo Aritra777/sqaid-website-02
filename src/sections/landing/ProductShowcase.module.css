@@ -178,8 +178,8 @@
   z-index: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.28;
-  filter: grayscale(0.15) brightness(0.8);
+  opacity: 0.16;
+  filter: grayscale(0.25) brightness(0.55);
   pointer-events: none;
 }
 .features::before {
