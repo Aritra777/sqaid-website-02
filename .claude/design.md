@@ -109,6 +109,13 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-07-30** — Chose **Option B (pinned focus rail)** for Capabilities and
+  wired it into the landing; deleted the preview page + Option A. The right-side
+  numeral was replaced with a **bespoke line-art SVG set** (one per domain:
+  Fraud=shield/scan, AML=node graph, Compliance=document/check, AI=processor)
+  in `CapabilityGraphics.tsx` — stroke `currentColor` so each takes the domain
+  accent, cohesive faint outer ring, no gradients. Graphics parallax + swap on
+  scroll. (Note: hand-built SVGs, not AI raster art, to stay on-system.)
 - **2026-07-30** — Bento Capabilities felt off-language vs the rest of the page;
   preserved on branch **`capabilities-bento`**. Building alternatives on
   **`capabilities-parallax`** that keep the big pinned section heading + overlap
