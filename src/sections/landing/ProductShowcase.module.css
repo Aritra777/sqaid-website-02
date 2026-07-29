@@ -163,12 +163,24 @@
 /* ── RIGHT · features ── */
 .features {
   position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: var(--space-5);
   padding: clamp(2rem, 1rem + 5vw, 6rem);
   background: var(--bg);
+}
+/* product screenshot — uniformly darkened & faded behind the feature cards */
+.featBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.28;
+  filter: grayscale(0.15) brightness(0.8);
+  pointer-events: none;
 }
 .features::before {
   content: "";

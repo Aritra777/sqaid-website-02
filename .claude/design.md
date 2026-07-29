@@ -109,6 +109,10 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-07-30** — Product screenshots (Faro/Argus/Case Manager) added under
+  `public/assets/products/` and shown as a **uniformly darkened, faded**
+  background behind each card's Key-features grid (`opacity .28` + `brightness`
+  filter on solid black — NO gradient/vignette mask; kept symmetric).
 - **2026-07-30** — Chose **Option B (pinned focus rail)** for Capabilities and
   wired it into the landing; deleted the preview page + Option A. The right-side
   numeral was replaced with a **bespoke line-art SVG set** (one per domain:

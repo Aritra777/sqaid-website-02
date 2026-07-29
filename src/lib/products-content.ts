@@ -8,6 +8,8 @@ export type ProductContent = {
   description: string;
   /** use cases / features revealed on the right as the panel scrolls */
   features: string[];
+  /** product screenshot, shown darkened behind the Key features grid */
+  image?: string;
 };
 
 export const PRODUCT_CONTENT: Record<string, ProductContent> = {
@@ -21,6 +23,7 @@ export const PRODUCT_CONTENT: Record<string, ProductContent> = {
       "Sub-5ms per-event rule evaluation at scale",
       "AI copilot that drafts investigation narratives in seconds",
     ],
+    image: "/assets/products/faro.png",
   },
   argus: {
     category: "Investigation",
@@ -32,6 +35,7 @@ export const PRODUCT_CONTENT: Record<string, ProductContent> = {
       "SAR-ready narratives — no hedging, clickable entity links",
       "Recommended disposition with a complete evidence trail",
     ],
+    image: "/assets/products/argus.png",
   },
   "case-manager": {
     category: "Case Management",
@@ -43,6 +47,7 @@ export const PRODUCT_CONTENT: Record<string, ProductContent> = {
       "End-to-end audit lineage on every case and decision",
       "Role-based queues, SLAs, and four-eyes review",
     ],
+    image: "/assets/products/case-manager.png",
   },
   abacus: {
     category: "Analytics",

@@ -102,6 +102,13 @@ function ProductCard({ slug, index }: { slug: string; index: number }) {
 
         {/* ── RIGHT · features ── */}
         <div className={styles.features}>
+          {content.image && (
+            <div
+              className={styles.featBg}
+              style={{ backgroundImage: `url(${content.image})` }}
+              aria-hidden="true"
+            />
+          )}
           <span className={styles.featLabel}>Key features</span>
           <motion.div
             className={styles.featGrid}
