@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
 import GridBackdrop from "@/components/graphics/GridBackdrop";
-import SolutionsRoller from "./SolutionsRoller";
+import IsometricCubes from "@/components/graphics/IsometricCubes";
 import { staggerParent, fadeUp } from "@/lib/motion";
 import styles from "./Hero.module.css";
 
@@ -64,7 +64,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <SolutionsRoller />
+          <IsometricCubes />
         </motion.div>
       </div>
 

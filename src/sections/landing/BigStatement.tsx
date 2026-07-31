@@ -21,15 +21,6 @@ const KEYWORDS = [
 export default function BigStatement() {
   return (
     <section className={styles.section}>
-      <Marquee className={styles.marquee} duration={30}>
-        {KEYWORDS.map((k) => (
-          <span key={k} className={styles.marqueeItem}>
-            {k}
-            <span className={styles.sep}>✳</span>
-          </span>
-        ))}
-      </Marquee>
-
       <Container size="wide">
         <motion.div
           className={styles.inner}
@@ -53,7 +44,7 @@ export default function BigStatement() {
 
       <Marquee className={styles.marquee} duration={34} reverse>
         {KEYWORDS.map((k) => (
-          <span key={k} className={styles.marqueeItemOutline}>
+          <span key={k} className={styles.marqueeItem}>
             {k}
             <span className={styles.sep}>✳</span>
           </span>

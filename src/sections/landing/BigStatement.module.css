@@ -27,15 +27,14 @@
 .marqueeItem {
   color: var(--text);
 }
-/* outlined text for the second row — the modern "big & bold" hollow look */
 .marqueeItemOutline {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--line-strong);
 }
 .sep {
   color: var(--accent);
-  -webkit-text-stroke: 0;
   font-size: 0.4em;
+  align-self: center;
 }
 
 /* ── centered headline between the marquees ── */
