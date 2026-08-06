@@ -109,6 +109,40 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-08-06** — **Bespoke product pages** for Faro, Case Manager, and Abacus
+  (Argus keeps the data-driven `ProductPage` template). Each page has a **unique
+  structural signature** but shares the palette, type, parallax, and
+  no-shadow/no-gradient rules:
+  - **`.invert` primitive** (in `global.css`): a class that always renders the
+    OPPOSITE of the current mode (light panel in dark mode, dark panel in light
+    mode, and it flips when the theme flips). It re-declares only the mode
+    tokens (bg/surface/line/text/scrim); **accent tokens are untouched** so the
+    product accent carries across both halves. This is the shared mechanism
+    behind every "half light / half dark" split — no new hues, no gradients.
+  - **Faro** (`pages/products/FaroPage.tsx`) — signature = full-bleed **vertical
+    split-screen** hero (left = current mode, right = `.invert`), a live
+    "risk-score" verdict card + radar over the light half. Capabilities bento
+    with parallax columns; a **light `.invert` "pipeline" band** whose accent
+    rail fills on scroll (`useScroll`); verdict section with the faro.png frame
+    (parallax); accent CTA with concentric-circle geometry.
+  - **Case Manager** (`pages/products/CaseManagerPage.tsx`) — signature =
+    **stacked alternating bands** (each section flips `.invert` ↔ current mode,
+    so the page reads as horizontal light/dark halves that swap with the theme).
+    Hero "configuration canvas" (floating glass chips + connectors, CSS float,
+    NOT Parallax — a transformed Parallax wrapper becomes a zero-height
+    containing block and collapses `%` offsets); 6-feature bento; designer band
+    with case-manager.png; **workflow node-graph** with a scroll-independent
+    SMIL dot (gated off under reduced-motion); RBAC IAM-policy code card;
+    legacy-vs-SqAId comparison; CTA.
+  - **Abacus** (`pages/products/AbacusPage.tsx`) — signature = **diagonal
+    clip-path split** hero (one wedge is `.invert`) + a **checkerboard** of
+    metric tiles where every other tile is `.invert` (literal light/dark
+    checker). Coming-soon forward: bar/line data-viz (parallax), capability
+    cards, illustrative preview tiles with mini sparklines, status meta, CTA.
+  - Routing: explicit `/products/faro|case-manager|abacus` lazy routes added
+    BEFORE the dynamic `/products/:slug` in `App.tsx`.
+  - Bespoke-page icons are imported directly from `lucide-react` (not via the
+    `icons.ts` registry, which is only for `nav-data` string names).
 - **2026-07-30** — Product screenshots (Faro/Argus/Case Manager) added under
   `public/assets/products/` and shown as a **uniformly darkened, faded**
   background behind each card's Key-features grid (`opacity .28` + `brightness`

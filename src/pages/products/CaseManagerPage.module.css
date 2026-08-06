@@ -1,0 +1,554 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CASE MANAGER — signature device: STACKED ALTERNATING BANDS. Each section
+   flips between the current mode and `.invert` (the opposite mode), so the
+   page reads as horizontal light/dark halves that swap when the theme flips.
+   Accent = Case violet. No shadows, no gradients.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.page {
+  overflow-x: clip;
+}
+
+/* alternating full-bleed band divider */
+.band {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ───────────────────────────────── HERO ──────────────────────────────── */
+.hero {
+  position: relative;
+  padding-top: calc(var(--nav-h) + var(--space-8));
+  padding-bottom: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-9);
+}
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 1.3rem + 3.7vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+.h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.sub {
+  max-width: 52ch;
+  color: var(--text-2);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+}
+.sub b {
+  color: var(--text);
+  font-weight: 600;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* ── hero config canvas ── */
+.heroViz {
+  position: relative;
+  height: min(72svh, 560px);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 26px 26px;
+  overflow: hidden;
+}
+.vizTag {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-5);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+.canvasLines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.canvasLines path {
+  stroke: var(--accent-line);
+  stroke-width: 0.4;
+  fill: none;
+}
+.chip {
+  position: absolute;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  background: var(--surface-glass);
+  border: 1px solid var(--line-2);
+  backdrop-filter: blur(var(--blur-sm));
+  -webkit-backdrop-filter: blur(var(--blur-sm));
+  animation: float-slow 8s ease-in-out infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    animation: none;
+  }
+}
+.chipDot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.chipLabel {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--text);
+  padding-right: var(--space-4);
+}
+.chipMeta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ── stats ── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--line);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.statVal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  line-height: 1;
+  color: var(--accent);
+}
+.statLabel {
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+
+/* ─────────────────────── section heads (shared) ─────────────────────── */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 60ch;
+  margin-bottom: var(--space-8);
+}
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-h2);
+  letter-spacing: var(--tracking-tight);
+}
+.h2 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.lede {
+  color: var(--text-2);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+}
+
+/* ─────────────────────────── FEATURES bento ─────────────────────────── */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.feat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  transition: border-color var(--t-base), background var(--t-base);
+}
+.feat:hover {
+  border-color: var(--accent-border);
+  background: var(--surface-2);
+}
+.featIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-md);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+}
+.featTag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.featTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+}
+.featBody {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--text-2);
+}
+
+/* ─────────────────────────── two-column blocks ──────────────────────── */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--space-7), 4vw, var(--space-10));
+  align-items: center;
+}
+.copyCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.mediaCol {
+  position: relative;
+  min-width: 0;
+}
+.frame {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
+}
+.frameChrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.frameChrome i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text-4);
+}
+.frameChrome em {
+  margin-left: 8px;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* checklist (shared) */
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--fs-body);
+  line-height: var(--lh-snug);
+  color: var(--text-2);
+}
+.checklist b {
+  color: var(--text);
+  font-weight: 600;
+}
+.checkMark {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 50%;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+}
+
+/* ─────────────────────────── workflow graph ─────────────────────────── */
+.graphCol {
+  min-width: 0;
+}
+.graph {
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+}
+.graphSvg {
+  width: 100%;
+  height: auto;
+  color: var(--accent);
+}
+.graphPath {
+  stroke: var(--accent-line);
+  stroke-width: 2;
+  stroke-dasharray: 4 6;
+}
+.graphNode {
+  fill: var(--bg);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+.graphDot {
+  fill: var(--accent);
+}
+.graphLabels {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.graphLabels li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--text);
+}
+.graphNum {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+/* ───────────────────────────── RBAC policy ──────────────────────────── */
+.policyCol {
+  min-width: 0;
+}
+.policyCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+}
+.policyLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.policyCode {
+  margin: 0;
+  padding: var(--space-5);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+  overflow-x: auto;
+}
+.policyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.policyList li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  color: var(--text-2);
+}
+.policyList b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ───────────────────────────── comparison ───────────────────────────── */
+.cmp {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.cmpRow {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr 1.4fr;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--line);
+}
+.cmpRow:first-child {
+  border-top: none;
+}
+.cmpHead {
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.cmpCap {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  color: var(--text);
+}
+.cmpBad,
+.cmpGood {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+}
+.cmpBad {
+  color: var(--text-3);
+}
+.cmpBad svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--text-4);
+}
+.cmpGood {
+  color: var(--text);
+}
+.cmpGood svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--accent);
+}
+
+/* ─────────────────────────────── CTA ────────────────────────────────── */
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  padding: clamp(var(--space-8), 6vw, var(--space-10)) var(--gutter);
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--accent-border);
+  background: var(--accent-softer);
+}
+.ctaTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-h2);
+  letter-spacing: var(--tracking-tight);
+}
+.ctaTitle em {
+  font-style: normal;
+  color: var(--accent);
+}
+.ctaLede {
+  max-width: 52ch;
+  color: var(--text-2);
+  font-size: var(--fs-lead);
+}
+.cta .actions {
+  justify-content: center;
+}
+
+/* ───────────────────────────── responsive ───────────────────────────── */
+@media (max-width: 1000px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+  .heroViz {
+    height: 60svh;
+  }
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .twoCol {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+  /* keep media/graph after copy on stack, except workflow where graph leads */
+  .graphCol {
+    order: 2;
+  }
+  .cmpRow {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+  .cmpHead {
+    display: none;
+  }
+  .cmpCap {
+    margin-bottom: var(--space-1);
+  }
+}
+@media (max-width: 640px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+  .bento {
+    grid-template-columns: 1fr;
+  }
+  .graphLabels {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+}

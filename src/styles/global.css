@@ -132,6 +132,49 @@ h4 {
   top: var(--space-4);
 }
 
+/* ───────────────────────── INVERTED SURFACE ───────────────────────────
+   `.invert` always renders the OPPOSITE of the current mode: a light panel
+   in dark mode, a dark panel in light mode (and vice-versa when the user
+   flips the theme). It re-declares the mode tokens locally, so any child that
+   references --bg/--surface/--text/etc. adapts automatically. Used to build
+   "half light / half dark" split layouts on the product pages.
+   Accent tokens are intentionally NOT touched — the product accent carries
+   across both halves. No new hues, no gradients, no shadows. */
+.invert {
+  --bg: #ffffff;
+  --bg-1: #f5f6f8;
+  --surface: rgba(10, 11, 13, 0.025);
+  --surface-2: rgba(10, 11, 13, 0.05);
+  --surface-3: rgba(10, 11, 13, 0.08);
+  --surface-glass: rgba(255, 255, 255, 0.6);
+  --line: rgba(10, 11, 13, 0.1);
+  --line-2: rgba(10, 11, 13, 0.16);
+  --line-strong: rgba(10, 11, 13, 0.28);
+  --text: rgba(10, 11, 13, 0.96);
+  --text-2: rgba(10, 11, 13, 0.62);
+  --text-3: rgba(10, 11, 13, 0.42);
+  --text-4: rgba(10, 11, 13, 0.28);
+  --scrim: rgba(10, 11, 13, 0.4);
+  background: var(--bg);
+  color: var(--text);
+}
+[data-theme="light"] .invert {
+  --bg: var(--black);
+  --bg-1: #0d0e11;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-2: rgba(255, 255, 255, 0.055);
+  --surface-3: rgba(255, 255, 255, 0.09);
+  --surface-glass: rgba(10, 11, 13, 0.55);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.24);
+  --text: rgba(255, 255, 255, 0.96);
+  --text-2: rgba(255, 255, 255, 0.62);
+  --text-3: rgba(255, 255, 255, 0.4);
+  --text-4: rgba(255, 255, 255, 0.26);
+  --scrim: rgba(10, 11, 13, 0.7);
+}
+
 /* ─────────────────── GLOBAL KEYFRAMES (shared) ─────────────────────── */
 @keyframes float-slow {
   0%,
