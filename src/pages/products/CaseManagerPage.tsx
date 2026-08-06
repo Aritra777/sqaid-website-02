@@ -13,6 +13,9 @@ import {
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
+import Carousel from "@/components/ui/Carousel";
+import Marquee from "@/components/motion/Marquee";
+import Magnetic from "@/components/motion/Magnetic";
 import Parallax from "@/components/motion/Parallax";
 import { fadeUp, inViewOnce, staggerParent } from "@/lib/motion";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
@@ -84,6 +87,20 @@ const RBAC_POINTS = [
 ];
 
 const WORKFLOW_NODES = ["Intake", "Assign", "Investigate", "SAR", "Close"];
+
+const ALERT_TYPES = [
+  { tag: "AML", name: "Transaction monitoring", body: "Structuring, layering, and cross-border alerts with their own fields, view, and workflow." },
+  { tag: "Fraud", name: "Payment fraud", body: "Card, wire, and ACH fraud cases routed to the right queue with fraud-specific evidence." },
+  { tag: "Sanctions", name: "Screening hits", body: "Watchlist matches with adjudication steps, four-eyes review, and audit lineage baked in." },
+  { tag: "Surveillance", name: "Trade surveillance", body: "Market-abuse alerts with trades, positions, and FA context composed onto the case view." },
+  { tag: "KYC", name: "Periodic review", body: "Refresh cycles with document capture, risk re-rating, and escalation to EDD when needed." },
+  { tag: "Adverse media", name: "Negative news", body: "Media-hit triage with source links, relevance scoring, and disposition notes on record." },
+];
+
+const MARQUEE_TAGS = [
+  "AML", "Fraud", "Sanctions", "Trade surveillance", "KYC", "SAR", "CTR",
+  "RBAC", "Audit trail", "Workflows", "Designer", "No XML",
+];
 
 const COMPARISON = [
   {
@@ -218,12 +235,14 @@ export default function CaseManagerPage() {
               then used forever by advisors and investigators.
             </motion.p>
             <motion.div className={styles.actions} variants={fadeUp}>
-              <Button
-                href={`mailto:${SITE.email}?subject=Case%20Manager%20demo`}
-                size="lg"
-              >
-                Request a Demo <ArrowRight size={18} />
-              </Button>
+              <Magnetic>
+                <Button
+                  href={`mailto:${SITE.email}?subject=Case%20Manager%20demo`}
+                  size="lg"
+                >
+                  Request a Demo <ArrowRight size={18} />
+                </Button>
+              </Magnetic>
               <Button href="#features" variant="outline" size="lg">
                 See the features
               </Button>
@@ -256,6 +275,45 @@ export default function CaseManagerPage() {
               </motion.li>
             ))}
           </motion.ul>
+        </Container>
+      </section>
+
+      {/* ══ MARQUEE ══ */}
+      <div className={styles.marqueeWrap}>
+        <Marquee duration={30}>
+          {MARQUEE_TAGS.map((t) => (
+            <span key={t} className={styles.marqueeItem}>
+              {t}
+              <span className={styles.marqueeDot} />
+            </span>
+          ))}
+        </Marquee>
+      </div>
+
+      {/* ══ ALERT TYPES · interactive carousel ══ */}
+      <section className="section">
+        <Container size="wide">
+          <div className={styles.head}>
+            <Eyebrow>Ship any alert type</Eyebrow>
+            <h2 className={styles.h2}>
+              One platform. <em>Every case type.</em>
+            </h2>
+            <p className={styles.lede}>
+              Each alert type carries its own fields, view, and workflow — all
+              configured in the UI. Drag through a few of the types teams ship on
+              day one.
+            </p>
+          </div>
+
+          <Carousel className={styles.alerts} label="Drag or use the arrows →">
+            {ALERT_TYPES.map((a) => (
+              <article key={a.name} className={styles.alertCard}>
+                <span className={styles.alertTag}>{a.tag}</span>
+                <h3 className={styles.alertName}>{a.name}</h3>
+                <p className={styles.alertBody}>{a.body}</p>
+              </article>
+            ))}
+          </Carousel>
         </Container>
       </section>
 
@@ -514,12 +572,14 @@ export default function CaseManagerPage() {
               and your permission model — in twenty minutes.
             </p>
             <div className={styles.actions}>
-              <Button
-                href={`mailto:${SITE.email}?subject=Case%20Manager%20demo`}
-                size="lg"
-              >
-                Request a Demo <ArrowRight size={18} />
-              </Button>
+              <Magnetic>
+                <Button
+                  href={`mailto:${SITE.email}?subject=Case%20Manager%20demo`}
+                  size="lg"
+                >
+                  Request a Demo <ArrowRight size={18} />
+                </Button>
+              </Magnetic>
               <Button to="/#products" variant="outline" size="lg">
                 See the Platform
               </Button>

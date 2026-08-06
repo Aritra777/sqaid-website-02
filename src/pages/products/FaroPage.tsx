@@ -3,19 +3,28 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Antenna,
   ArrowRight,
+  Bitcoin,
   Check,
+  CreditCard,
   FileText,
   Gavel,
+  Landmark,
   ListFilter,
+  Radio,
+  ScanLine,
   ScanSearch,
   Scale,
   ShieldCheck,
+  Smartphone,
   Sparkles,
   Waypoints,
 } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
+import Carousel from "@/components/ui/Carousel";
+import Marquee from "@/components/motion/Marquee";
+import Magnetic from "@/components/motion/Magnetic";
 import Parallax from "@/components/motion/Parallax";
 import { fadeUp, inViewOnce, staggerParent } from "@/lib/motion";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
@@ -75,28 +84,42 @@ const VERDICT_POINTS = [
   { b: "Built for change", t: "new detection logic deploys without disrupting the rest" },
 ];
 
+const CHANNELS = [
+  { icon: CreditCard, name: "Card payments", body: "Authorization-time scoring on debit and credit rails, before the transaction settles." },
+  { icon: Landmark, name: "Wires & RTGS", body: "High-value wire and SWIFT flows screened for structuring and sanctions exposure in-flight." },
+  { icon: Radio, name: "ACH & SEPA", body: "Batch and instant credit transfers monitored for mule activity and velocity anomalies." },
+  { icon: Smartphone, name: "UPI & instant", body: "Sub-second decisioning for real-time rails where money moves the moment it's approved." },
+  { icon: Bitcoin, name: "Crypto & wallets", body: "On-chain and off-ramp activity tied back to the customer graph for end-to-end tracing." },
+  { icon: ScanLine, name: "Sanctions screening", body: "Every counterparty screened against global watchlists with zero-miss fuzzy matching." },
+];
+
+const MARQUEE_TAGS = [
+  "Cards", "Wires", "ACH", "SEPA", "UPI", "Crypto", "SWIFT", "RTP",
+  "Sanctions", "Structuring", "Layering", "Device risk",
+];
+
 /* ───────────────────────── hero right-half visual ─────────────────────── */
 
 function HeroViz() {
   const reduced = usePrefersReducedMotion();
   return (
     <div className={styles.viz} aria-hidden="true">
-      {/* radar rings */}
-      <Parallax speed={reduced ? 0 : 40} className={styles.vizRadarWrap}>
-        <svg className={styles.radar} viewBox="0 0 320 320">
-          {[40, 80, 120, 156].map((r) => (
-            <circle key={r} cx="160" cy="160" r={r} />
-          ))}
-          <line x1="160" y1="4" x2="160" y2="316" />
-          <line x1="4" y1="160" x2="316" y2="160" />
-          <g className={styles.sweep}>
-            <path d="M160 160 L160 4 A156 156 0 0 1 300 108 Z" />
-          </g>
-        </svg>
+      {/* dot-grid backdrop (no radar) */}
+      <div className={styles.vizGrid} />
+
+      {/* screenshot panel */}
+      <Parallax speed={reduced ? 0 : 22} className={styles.vizShotWrap}>
+        <figure className={styles.shotChip}>
+          <span className={styles.shotChrome}>
+            <i /> <i /> <i />
+            <em>app.sqaid.ai / faro</em>
+          </span>
+          <img src="/assets/products/faro.png" alt="" loading="lazy" />
+        </figure>
       </Parallax>
 
       {/* floating verdict card */}
-      <Parallax speed={reduced ? 0 : -28} className={styles.vizCardWrap}>
+      <Parallax speed={reduced ? 0 : -30} className={styles.vizCardWrap}>
         <div className={styles.verdictCard}>
           <div className={styles.vcTop}>
             <span className={styles.vcLabel}>Live risk score</span>
@@ -120,17 +143,6 @@ function HeroViz() {
             ))}
           </ul>
         </div>
-      </Parallax>
-
-      {/* small screenshot chip */}
-      <Parallax speed={reduced ? 0 : 18} className={styles.vizShotWrap}>
-        <figure className={styles.shotChip}>
-          <span className={styles.shotChrome}>
-            <i /> <i /> <i />
-            <em>app.sqaid.ai / faro</em>
-          </span>
-          <img src="/assets/products/faro.png" alt="" loading="lazy" />
-        </figure>
       </Parallax>
     </div>
   );
@@ -214,9 +226,11 @@ export default function FaroPage() {
                 your systems with full evidence and lineage.
               </motion.p>
               <motion.div className={styles.actions} variants={fadeUp}>
-                <Button href={`mailto:${SITE.email}?subject=Faro%20demo`} size="lg">
-                  Request a Demo <ArrowRight size={18} />
-                </Button>
+                <Magnetic>
+                  <Button href={`mailto:${SITE.email}?subject=Faro%20demo`} size="lg">
+                    Request a Demo <ArrowRight size={18} />
+                  </Button>
+                </Magnetic>
                 <Button href="#capabilities" variant="outline" size="lg">
                   What it does
                 </Button>
@@ -250,6 +264,18 @@ export default function FaroPage() {
             ))}
           </motion.ul>
         </Container>
+      </div>
+
+      {/* ══ MARQUEE · coverage keywords ══ */}
+      <div className={styles.marqueeWrap}>
+        <Marquee duration={32}>
+          {MARQUEE_TAGS.map((t) => (
+            <span key={t} className={styles.marqueeItem}>
+              {t}
+              <span className={styles.marqueeDot} />
+            </span>
+          ))}
+        </Marquee>
       </div>
 
       {/* ══ CAPABILITIES · bento with parallax columns ══ */}
@@ -294,6 +320,37 @@ export default function FaroPage() {
               );
             })}
           </div>
+        </Container>
+      </section>
+
+      {/* ══ CHANNELS · interactive carousel ══ */}
+      <section className="section">
+        <Container size="wide">
+          <div className={styles.head}>
+            <Eyebrow>Every rail, one score</Eyebrow>
+            <h2 className={styles.h2}>
+              Wherever money moves, <em>Faro is there.</em>
+            </h2>
+            <p className={styles.lede}>
+              One scoring engine across every channel — so cross-rail structuring
+              that hides between systems has nowhere left to hide.
+            </p>
+          </div>
+
+          <Carousel className={styles.channels} label="Drag or use the arrows →">
+            {CHANNELS.map((c) => {
+              const Icon = c.icon;
+              return (
+                <article key={c.name} className={styles.channel}>
+                  <span className={styles.channelIcon}>
+                    <Icon size={22} strokeWidth={1.75} />
+                  </span>
+                  <h3 className={styles.channelName}>{c.name}</h3>
+                  <p className={styles.channelBody}>{c.body}</p>
+                </article>
+              );
+            })}
+          </Carousel>
         </Container>
       </section>
 
@@ -404,9 +461,11 @@ export default function FaroPage() {
               profile that looks like yours.
             </p>
             <div className={styles.actions}>
-              <Button href={`mailto:${SITE.email}?subject=Faro%20demo`} size="lg">
-                Request a Demo <ArrowRight size={18} />
-              </Button>
+              <Magnetic>
+                <Button href={`mailto:${SITE.email}?subject=Faro%20demo`} size="lg">
+                  Request a Demo <ArrowRight size={18} />
+                </Button>
+              </Magnetic>
               <Button to="/#products" variant="outline" size="lg">
                 See the Platform
               </Button>

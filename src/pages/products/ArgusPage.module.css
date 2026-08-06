@@ -1,0 +1,381 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   ARGUS — signature device: the AGENT FLEET. A scrolling marquee of agents,
+   an interactive drag Carousel of the crew (in a light `.invert` band), and a
+   swipeable screenshot gallery. Accent = Argus green. No shadows, no gradients.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.page {
+  overflow-x: clip;
+}
+
+/* ───────────────────────────────── HERO ──────────────────────────────── */
+.hero {
+  position: relative;
+  padding-top: calc(var(--nav-h) + var(--space-8));
+  padding-bottom: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-9);
+}
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 1.3rem + 3.7vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+.h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.sub {
+  max-width: 52ch;
+  color: var(--text-2);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+}
+.sub b {
+  color: var(--text);
+  font-weight: 600;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  align-items: center;
+}
+
+/* hero media */
+.heroMedia {
+  position: relative;
+  min-width: 0;
+}
+.frame {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
+}
+.frameChrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.frameChrome i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text-4);
+}
+.frameChrome em {
+  margin-left: 8px;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.frameChrome b {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--accent);
+}
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--line);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.statVal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  line-height: 1;
+  color: var(--accent);
+}
+.statLabel {
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+
+/* ─────────────────────────────── MARQUEE ─────────────────────────────── */
+.marqueeWrap {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding-block: var(--space-5);
+  background: var(--surface);
+}
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin-right: var(--space-5);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 0.9rem + 1.4vw, 2rem);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-3);
+}
+.marqueeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ─────────────────────── section heads (shared) ─────────────────────── */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 62ch;
+  margin-bottom: var(--space-8);
+}
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-h2);
+  letter-spacing: var(--tracking-tight);
+}
+.h2 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.lede {
+  color: var(--text-2);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+}
+
+/* ───────────────────────── CAPABILITIES bento ────────────────────────── */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+.bentoCol {
+  position: relative;
+  grid-column: span 1;
+}
+.cap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-6);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  transition: border-color var(--t-base), background var(--t-base);
+}
+.cap:hover {
+  border-color: var(--accent-border);
+  background: var(--surface-2);
+}
+.capIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-md);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+}
+.capTag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.capTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+}
+.capBody {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--text-2);
+}
+
+/* ───────────────────────── THE CREW · carousel ───────────────────────── */
+.crewBand {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.crewCarousel {
+  --slide-w: 340px;
+}
+.agent {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  min-height: 240px;
+  padding: var(--space-6);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  transition: border-color var(--t-base);
+}
+.agent:hover {
+  border-color: var(--accent-border);
+}
+.agentType {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.agentName {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-h4);
+  letter-spacing: var(--tracking-tight);
+}
+.agentDesc {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--text-2);
+}
+.agentGlyph {
+  position: absolute;
+  right: -6px;
+  bottom: -18px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* ───────────────────── FEATURE GALLERY · carousel ────────────────────── */
+.shotCarousel {
+  --slide-w: 560px;
+}
+.shotCard {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
+}
+.shotCard img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--line);
+}
+.shotCaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-5);
+}
+.shotEyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.shotTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  color: var(--text);
+}
+
+/* ─────────────────────────────── CTA ─────────────────────────────────── */
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  padding: clamp(var(--space-8), 6vw, var(--space-10)) var(--gutter);
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--accent-border);
+  background: var(--accent-softer);
+}
+.ctaTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-h2);
+  letter-spacing: var(--tracking-tight);
+}
+.ctaTitle em {
+  font-style: normal;
+  color: var(--accent);
+}
+.ctaLede {
+  max-width: 52ch;
+  color: var(--text-2);
+  font-size: var(--fs-lead);
+}
+.cta .actions {
+  justify-content: center;
+}
+
+/* ───────────────────────────── responsive ───────────────────────────── */
+@media (max-width: 1000px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .shotCarousel {
+    --slide-w: 440px;
+  }
+}
+@media (max-width: 640px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+  .bento {
+    grid-template-columns: 1fr;
+  }
+}

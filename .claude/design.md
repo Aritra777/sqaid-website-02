@@ -109,8 +109,31 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-08-06** — **Argus bespoke page + dynamic elements on all product pages.**
+  - **Argus** (`pages/products/ArgusPage.tsx`, green) now exists as a bespoke
+    page (was falling through to the bare `ProductPage` placeholder). Signature =
+    the **agent fleet**: a `Marquee` of agent names, an interactive drag
+    **`Carousel` of the 12-agent "crew"** in a light `.invert` band, and a
+    swipeable **screenshot gallery `Carousel`** (dashboard/ingestion/signals/
+    agents/flows/graph-explorer/mcp copied into `public/assets/products/argus/`).
+    Route added before the dynamic template.
+  - **Dynamic elements added to every product page** (reusing existing
+    primitives): a **`Marquee`** keyword strip, an interactive **`Carousel`** of
+    product-specific cards (Faro = payment channels, Case Manager = alert types,
+    Abacus = boards-you'll-build with mini sparklines, Argus = agent crew +
+    screenshot gallery), and the primary hero/CTA buttons wrapped in
+    **`Magnetic`** (cursor-follow, reduced-motion safe).
+  - **Faro radar removed.** The hero right/light half no longer has the rotating
+    radar; it now uses a masked **dot-grid backdrop** (single accent color +
+    mask fade — allowed) behind the enlarged screenshot panel + floating verdict
+    card (both parallaxed).
+  - Carousel/Marquee/Magnetic all degrade under `prefers-reduced-motion`
+    (Marquee stops, Magnetic no-ops) and stay within the palette / no-gradient /
+    no-shadow rules.
 - **2026-08-06** — **Bespoke product pages** for Faro, Case Manager, and Abacus
-  (Argus keeps the data-driven `ProductPage` template). Each page has a **unique
+  (Argus got its own bespoke page the same day — see the entry above; the
+  data-driven `ProductPage` template now only serves fallback/unknown slugs).
+  Each page has a **unique
   structural signature** but shares the palette, type, parallax, and
   no-shadow/no-gradient rules:
   - **`.invert` primitive** (in `global.css`): a class that always renders the

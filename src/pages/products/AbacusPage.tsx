@@ -11,6 +11,9 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Badge from "@/components/ui/Badge";
+import Carousel from "@/components/ui/Carousel";
+import Marquee from "@/components/motion/Marquee";
+import Magnetic from "@/components/motion/Magnetic";
 import Parallax from "@/components/motion/Parallax";
 import { fadeUp, inViewOnce, staggerParent } from "@/lib/motion";
 import { useDocumentTitle } from "@/lib/use-document-title";
@@ -57,6 +60,21 @@ const META = [
   { label: "Status", value: "In active development" },
   { label: "Availability", value: "Public details soon" },
   { label: "Updates", value: `Email ${SITE.email} to be notified` },
+];
+
+/** Boards teams will assemble in Abacus — illustrative previews. */
+const BOARDS = [
+  { tag: "Fraud", name: "Fraud overview", body: "Approve/hold rates, loss avoided, and channel mix across every Faro decision.", spark: [10, 14, 12, 18, 16, 22, 26] },
+  { tag: "AML", name: "AML risk board", body: "Alert volumes, SAR conversion, and typology breakdowns from Argus investigations.", spark: [8, 12, 16, 14, 20, 24, 28] },
+  { tag: "Ops", name: "Case throughput", body: "Queue depth, cycle time, and SLA adherence across the Case Manager lifecycle.", spark: [26, 22, 20, 18, 15, 13, 11] },
+  { tag: "Models", name: "Model performance", body: "Drift, precision/recall, and false-positive suppression per model and rule.", spark: [14, 15, 13, 16, 14, 15, 14] },
+  { tag: "Reporting", name: "Regulatory pack", body: "Scheduled, audit-ready exports formatted the way your examiners expect.", spark: [6, 10, 15, 19, 24, 30, 36] },
+  { tag: "Exec", name: "Executive summary", body: "One board that rolls the whole platform up for leadership and the board.", spark: [12, 16, 14, 20, 22, 26, 30] },
+];
+
+const MARQUEE_TAGS = [
+  "Dashboards", "Trends", "Benchmarks", "Velocity", "Drift", "Exports",
+  "SAR cycle time", "False positives", "Coverage", "Scheduled reports",
 ];
 
 /* ───────────────────────────── sparkline ─────────────────────────────── */
@@ -155,12 +173,14 @@ export default function AbacusPage() {
               the details; here&apos;s where it&apos;s headed.
             </motion.p>
             <motion.div className={styles.actions} variants={fadeUp}>
-              <Button
-                href={`mailto:${SITE.email}?subject=Abacus%20early%20access`}
-                size="lg"
-              >
-                Notify me <BellRing size={17} />
-              </Button>
+              <Magnetic>
+                <Button
+                  href={`mailto:${SITE.email}?subject=Abacus%20early%20access`}
+                  size="lg"
+                >
+                  Notify me <BellRing size={17} />
+                </Button>
+              </Magnetic>
               <Button href="#preview" variant="outline" size="lg">
                 See the preview
               </Button>
@@ -177,6 +197,18 @@ export default function AbacusPage() {
           </motion.div>
         </Container>
       </section>
+
+      {/* ══ MARQUEE ══ */}
+      <div className={styles.marqueeWrap}>
+        <Marquee duration={30}>
+          {MARQUEE_TAGS.map((t) => (
+            <span key={t} className={styles.marqueeItem}>
+              {t}
+              <span className={styles.marqueeDot} />
+            </span>
+          ))}
+        </Marquee>
+      </div>
 
       {/* ══ WHAT IT WILL DO ══ */}
       <section className="section">
@@ -214,6 +246,34 @@ export default function AbacusPage() {
               );
             })}
           </div>
+        </Container>
+      </section>
+
+      {/* ══ BOARDS · interactive carousel ══ */}
+      <section className="section">
+        <Container size="wide">
+          <div className={styles.head}>
+            <Eyebrow>Boards you&apos;ll build</Eyebrow>
+            <h2 className={styles.h2}>
+              Assemble the view <em>your team runs on.</em>
+            </h2>
+            <p className={styles.lede}>
+              Drag through a few of the boards Abacus will ship — each one drawn
+              live from the platform. Figures are illustrative while it&apos;s in
+              development.
+            </p>
+          </div>
+
+          <Carousel className={styles.boards} label="Drag or use the arrows →">
+            {BOARDS.map((b) => (
+              <article key={b.name} className={styles.board}>
+                <span className={styles.boardTag}>{b.tag}</span>
+                <h3 className={styles.boardName}>{b.name}</h3>
+                <p className={styles.boardBody}>{b.body}</p>
+                <Sparkline points={b.spark} />
+              </article>
+            ))}
+          </Carousel>
         </Container>
       </section>
 
@@ -299,12 +359,14 @@ export default function AbacusPage() {
               for a walkthrough.
             </p>
             <div className={styles.actions}>
-              <Button
-                href={`mailto:${SITE.email}?subject=Abacus%20early%20access`}
-                size="lg"
-              >
-                Notify me <ArrowRight size={18} />
-              </Button>
+              <Magnetic>
+                <Button
+                  href={`mailto:${SITE.email}?subject=Abacus%20early%20access`}
+                  size="lg"
+                >
+                  Notify me <ArrowRight size={18} />
+                </Button>
+              </Magnetic>
               <Button to="/#products" variant="outline" size="lg">
                 See the Platform
               </Button>
