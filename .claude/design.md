@@ -109,6 +109,37 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-08-14** — **Faro page rebuilt from the reference design** (supersedes the
+  2026-08-06 Faro split-screen layout). Ported the bespoke Faro page from the
+  external reference build (`sqaid-website-reference/`, `faro` branch — CRA +
+  Tailwind + shadcn) onto our stack via the same faithful **token translation**
+  established for Argus (Tailwind → CSS Modules; `#2f6bff`/`rgb(var(--fg-rgb)/α)`/
+  `.hair`/`.glass`/`.noise` → `var(--accent)`/`--text*`/`--line*`/`--surface*`/
+  glass/omit). New structure lives in `pages/products/faro/` (one `.tsx` +
+  `.module.css` per section) composed by `FaroPage.tsx`, plus shared `data.ts`
+  (scrubbed content) and `primitives.tsx` (same `MonoLabel`/`GhostNumeral`/
+  `MaskLines`/`FrameChrome` set as Argus). Sections, in order: **Hero** (masked
+  headline + live **ConvergenceCanvas** — fraud-lane + AML-lane signal chips
+  converging via animated connectors onto one center verdict card, replay/step +
+  pips), **ConvergenceDeepCut** ("one pipeline, two lenses" taxonomy → one scoring
+  function), **CrossRail** (300vh scroll-driven cross-rail money trace down vertical
+  rail columns — a clean structured zig-zag, not random), **PipelineRail** (rAF
+  traveling-txn rail; rendered in a global `.invert` band = half-light/half-dark),
+  editorial **Marquee** strip, **Copilot** (analyst-rationale ↔ raw-evidence split
+  with center stitch), **VerdictEvidence** (parallax verdict mock + one-number
+  checklist), **LineageStrip**, ambient decision-tape + solid-accent **DecisionTapeCTA**.
+  - **Reused the Argus learnings verbatim:** the Hero SVG foreground uses the local
+    **space-separated** `--gfg` channel (`255 255 255` dark / `10 11 13` light) so
+    `rgb(var(--gfg)/α)` stays valid (comma-separated → black/invisible); traveling
+    dots use SMIL `<animateMotion>` (never Framer-animated SVG geometry attrs);
+    pulse rings are DOM `<motion.span>` scale/opacity; useScroll targets are
+    `position: relative`. Verified visible in **both dark and light** modes.
+  - **Build:** two stray `*/` inside header comments (a token list `--text*/…` in
+    JSX and a CSS comment) prematurely closed comments and broke tsc/postcss —
+    fixed by rewording the comments. `npm run build` green.
+  - Delivered via a Sonnet dev-agent fan-out (foundation `data.ts`/`primitives`
+    hand-authored for a stable contract, then one agent per section, then integration).
+
 - **2026-08-13** — **Argus page rebuilt from the reference design** (supersedes the
   2026-08-06 Argus "agent fleet" layout below — the `Marquee` + crew `Carousel` +
   screenshot gallery are **replaced**). Ported the bespoke Argus page from the

@@ -1,0 +1,179 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   FARO · CONVERGENCE DEEP-CUT — "One pipeline, two lenses."
+   Palette = black/white/blue via opacity only. No shadows. No gradients.
+   Depth = hairline borders + translucent surfaces (--surface / --line-*).
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Section shell ──────────────────────────────────────────────────── */
+.section {
+  position: relative;
+  background: var(--bg);
+  padding: var(--section-y) 0;
+}
+
+/* ── Inner grid (max-width + gutters, two-column on lg) ─────────────── */
+.inner {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+}
+@media (max-width: 640px) {
+  .inner {
+    padding-inline: var(--gutter-mobile);
+  }
+}
+@media (min-width: 1024px) {
+  .inner {
+    /* right column is 15 % wider to balance diagram vs copy */
+    grid-template-columns: 1fr 1.15fr;
+    gap: var(--space-8);
+  }
+}
+
+/* ─────────────────────────────── LEFT · copy ───────────────────────── */
+.copy {
+  position: relative;
+}
+
+/* GhostNumeral — overflows behind the copy block */
+.numeral {
+  position: absolute;
+  top: -4rem;
+  left: -0.5rem;
+  font-size: clamp(8rem, 6rem + 6vw, 12rem);
+  line-height: 1;
+}
+
+.copyInner {
+  position: relative; /* sits above the ghost numeral */
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.25rem);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  margin-top: var(--space-3);
+}
+
+.para {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+  color: var(--text-2);
+  max-width: 28rem;
+  margin-top: var(--space-4);
+  line-height: var(--lh-relaxed);
+}
+
+/* ─────────────────────────────── RIGHT · card ──────────────────────── */
+.card {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  padding: clamp(1.25rem, 1rem + 2vw, 1.75rem);
+}
+
+/* ── Taxonomy columns grid ──────────────────────────────────────────── */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+/* Individual taxonomy column */
+.column {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  padding: clamp(1rem, 0.8rem + 1vw, 1.25rem);
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+/* Accent dot — blue when data-accent, muted otherwise */
+.dot {
+  flex-shrink: 0;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: var(--r-full);
+  background: var(--text-3); /* muted default */
+}
+.dot[data-accent="true"] {
+  background: var(--accent);
+}
+
+.itemText {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: var(--lh-normal);
+}
+
+/* ── Converge arrows SVG ─────────────────────────────────────────────── */
+.arrowsWrap {
+  position: relative;
+  height: 4rem;    /* ~h-16 */
+  margin: 0.25rem 0; /* ~my-1 */
+}
+
+.arrowsSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* SVG path color — accent, no fill */
+.convergePath {
+  stroke: var(--accent);
+}
+
+/* ── Verdict / scoring card ──────────────────────────────────────────── */
+.verdict {
+  border: 1px solid var(--accent-border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.score {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.125rem, 0.9rem + 1vw, 1.5rem);
+  color: var(--text);
+  margin-top: var(--space-2);
+  line-height: var(--lh-snug);
+}
+
+.verdictSub {
+  display: block;
+  margin-top: var(--space-1);
+}
+
+/* ── Reduced motion: paths already at full pathLength (handled in TSX) ── */
+@media (prefers-reduced-motion: reduce) {
+  .convergePath {
+    /* SVG motion handled by Framer with initial: {pathLength:1} — nothing extra needed */
+  }
+}

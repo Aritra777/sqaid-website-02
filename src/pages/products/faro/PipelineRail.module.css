@@ -1,0 +1,261 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   FARO — PipelineRail.
+
+   The section carries `.invert` (set in the TSX), so the whole band renders
+   as the OPPOSITE of the active mode (light in dark mode, dark in light mode).
+   All colors come from semantic tokens (bg, text, line, accent). No hex,
+   no shadows, no gradients. Accent is untouched by .invert → always Faro Blue.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Section wrapper (background & color set by the global .invert utility) ── */
+.section {
+  background: var(--bg);
+  color: var(--text);
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+/* ── Inner container ── */
+.inner {
+  margin-inline: auto;
+  max-width: 1400px;
+  padding-inline: var(--gutter);
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-inline: var(--gutter-mobile);
+  }
+}
+
+/* ─────────────────────────── Heading block ──────────────────────────── */
+
+.header {
+  max-width: 42rem;
+  margin-bottom: 3.5rem;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.875rem, 1.2rem + 3.5vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  margin-top: var(--space-4);
+}
+
+.lead {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9375rem, 0.875rem + 0.35vw, 1.125rem);
+  line-height: var(--lh-relaxed);
+  color: var(--text-2);
+  margin-top: var(--space-5);
+  max-width: 32rem;
+}
+
+/* Inline txn-ID in the lead text */
+.txnId {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ─────────────────────────── Rail card ──────────────────────────────── */
+
+.card {
+  position: relative;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-xl);
+  padding: 5rem clamp(1.5rem, 4vw, 2.5rem) 3.5rem;
+  overflow: visible;
+  background: var(--surface);
+}
+
+/* ── Rail track area ── */
+.railWrap {
+  position: relative;
+  height: 3px;
+  /* Extra vertical breathing room so above/below markers don't clip */
+  margin-block: 3rem;
+}
+
+/* Rail base (translucent) */
+.railBase {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-pill);
+  background: var(--line-2);
+}
+
+/* Progress fill (accent) */
+.railFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  /* width is set inline and updated via React state */
+}
+
+/* ── Traveling dot ── */
+.dotWrap {
+  position: absolute;
+  top: 50%;
+  /* left is set inline */
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* allow the pill and pulse ring to be visible outside the rail strip */
+  overflow: visible;
+  z-index: 10;
+}
+
+/* TXN ID pill above the dot */
+.txnPill {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--r-sm);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  line-height: 1.4;
+}
+
+/* Main dot */
+.dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--r-full);
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  flex: none;
+  position: relative;
+  z-index: 2;
+}
+
+/* Pulse ring (animated via Framer Motion; hidden under reduced-motion) */
+.pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--accent);
+  pointer-events: none;
+}
+
+/* ── Stage markers ── */
+.markerWrap {
+  position: absolute;
+  top: 50%;
+  /* left is set inline */
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  z-index: 5;
+}
+
+/* Stage name label, positioned above the rail */
+.markerLabel {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% + 10px);
+  white-space: nowrap;
+}
+
+.markerKey {
+  font-size: 10px;
+  letter-spacing: var(--tracking-eyebrow);
+  transition: color 0.3s var(--ease-out);
+}
+
+/* Marker dot (color set inline via passed state) */
+.markerDot {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--r-full);
+  border: 2px solid var(--bg);
+  flex: none;
+  transition: background 0.3s var(--ease-out);
+}
+
+/* Stat block, positioned below the rail */
+.markerStat {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 10px);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.statValue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: color 0.3s var(--ease-out);
+  line-height: 1.3;
+}
+
+.statSub {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* ── Card footer ── */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: 4rem;
+}
+
+.footerDot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-full);
+  background: var(--accent);
+  flex: none;
+}
+
+.footerLabel {
+  opacity: 0.45;
+  font-size: 10px;
+  letter-spacing: var(--tracking-eyebrow);
+}
+
+/* ─────────────────── Reduced-motion guard ──────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .railFill,
+  .markerDot,
+  .statValue {
+    transition: none;
+  }
+}

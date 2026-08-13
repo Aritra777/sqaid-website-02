@@ -1,0 +1,445 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   FARO — Hero styles. Tokens only; no shadows, no gradients.
+
+   The canvas needs a MODE-AWARE foreground channel so `rgb(var(--gfg)/α)`
+   resolves correctly in both dark and light mode. We declare a local
+   space-separated channel var on .stage and flip it under
+   [data-theme="light"] — matching the argus/Hero.module.css pattern exactly.
+   Accent (`var(--accent)`) is always Faro Blue regardless of mode.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────── section ──────────────────────── */
+.section {
+  position: relative;
+  padding-top: calc(var(--nav-h) + var(--space-8));
+  padding-bottom: 0;
+}
+
+/* ───────────────────────────── two-column grid ──────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+/* ───────────────────────────── left column ──────────────────── */
+.left {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+.eyebrowDot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 1.2rem + 4.2vw, 3.8rem);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+}
+/* accent em for "Stop the laundering." */
+.h1 em {
+  font-style: italic;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.sub {
+  max-width: 30rem;
+  margin-top: var(--space-6);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+.watchBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ───────────────────────────── right column ─────────────────── */
+.right {
+  min-width: 0;
+}
+
+/* ═══════════════════════ ConvergenceCanvas ══════════════════════ */
+.canvasWrap {
+  position: relative;
+  width: 100%;
+}
+
+/* stage: the bordered box that contains chips, SVG layers, cards */
+.stage {
+  /* space-separated channels — rgb(var(--gfg) / α) is valid CSS */
+  --gfg: 255 255 255;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 7 / 6;
+  min-height: 440px;
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+}
+:global([data-theme="light"]) .stage {
+  --gfg: 10 11 13;
+}
+
+/* ── dot grid ── */
+.dots {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.dot {
+  fill: rgb(var(--gfg) / 0.12);
+}
+
+/* ── connectors SVG ── */
+.connectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.connector {
+  stroke: rgb(var(--gfg) / 0.14);
+}
+.connectorActive {
+  stroke: var(--accent);
+}
+.travelDot {
+  fill: var(--accent);
+}
+
+/* ── chip lanes ── */
+.laneLeft,
+.laneRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-7);
+}
+.laneLeft {
+  left: 2.5%;
+  width: 24%;
+}
+.laneRight {
+  right: 2.5%;
+  width: 24%;
+}
+
+/* ── chip ── */
+.chip {
+  padding: var(--space-2) var(--space-3);
+  border-radius: 10px;
+  border: 1px solid rgb(var(--gfg) / 0.16);
+  background: rgb(var(--gfg) / 0.03);
+  cursor: pointer;
+  user-select: none;
+}
+.chipHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.chipDot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgb(var(--gfg) / 0.4);
+  transition: background 0.5s;
+}
+.chip[data-active] .chipDot {
+  background: var(--accent);
+}
+.chipVal {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgb(var(--gfg) / 0.85);
+}
+
+/* ── verdict card wrapper ── */
+.verdictWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  min-width: 130px;
+}
+
+/* ── verdict card ── */
+.verdictCard {
+  position: relative;
+  padding: var(--space-4);
+  border-radius: 12px;
+  border: 1px solid rgb(var(--gfg) / 0.16);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* pulse ring — DOM span so Framer doesn't touch SVG geometry attrs */
+.verdictRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  pointer-events: none;
+}
+
+.verdictScore {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+.verdictNum {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 1rem + 3vw, 2.5rem);
+  line-height: 1;
+  color: var(--text);
+}
+.verdictPill {
+  margin-bottom: 2px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.verdictReasons {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.reasonText {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  color: var(--text-2);
+  line-height: 1.35;
+}
+
+/* ── corner labels ── */
+.cornerLeft,
+.cornerRight,
+.cornerBottom {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.cornerLeft {
+  top: var(--space-3);
+  left: var(--space-3);
+  color: rgb(var(--gfg) / 0.4);
+}
+.cornerRight {
+  top: var(--space-3);
+  right: var(--space-3);
+  color: rgb(var(--gfg) / 0.4);
+}
+.cornerBottom {
+  bottom: var(--space-3);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ── hover metadata card ── */
+.hoverCard {
+  position: absolute;
+  left: 50%;
+  bottom: 36px;
+  transform: translateX(-50%);
+  z-index: 10;
+  min-width: 180px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--surface-glass);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  pointer-events: none;
+}
+.hoverDetail {
+  margin-top: 4px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* ───────────────────────────── controls ─────────────────────── */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.ctrlBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s var(--ease-out);
+}
+.ctrlBtn:hover {
+  opacity: 0.7;
+}
+.spacer {
+  flex: 1;
+}
+.pips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pip,
+.pipOn {
+  height: 4px;
+  border-radius: 999px;
+  transition: all 0.5s var(--ease-out);
+}
+.pip {
+  width: 8px;
+  background: rgb(var(--gfg) / 0.2);
+}
+.pipOn {
+  width: 18px;
+  background: var(--accent);
+}
+:global([data-theme="light"]) .pip {
+  background: rgba(10, 11, 13, 0.2);
+}
+
+/* ───────────────────────────── mono strip ───────────────────── */
+.stripBand {
+  margin-top: var(--space-9);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stripGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stripItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-2);
+  border-left: 1px solid var(--line);
+}
+.stripItem[data-first] {
+  border-left: none;
+}
+.stripDot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.stripLabel {
+  color: var(--text-2);
+}
+
+/* ───────────────────────────── responsive ───────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: calc(var(--nav-h) + var(--space-6));
+  }
+  .stage {
+    aspect-ratio: auto;
+    min-height: 500px;
+  }
+  .laneLeft,
+  .laneRight {
+    width: 38%;
+  }
+  .verdictWrap {
+    width: 46%;
+  }
+  .stripGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stripItem {
+    justify-content: center;
+  }
+  .stripItem:nth-child(odd) {
+    border-left: none;
+  }
+  .stripItem[data-first] {
+    border-left: none;
+  }
+}
+
+/* ───────────────────────────── reduced-motion ───────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .ctrlBtn,
+  .pip,
+  .pipOn {
+    transition: none;
+  }
+}

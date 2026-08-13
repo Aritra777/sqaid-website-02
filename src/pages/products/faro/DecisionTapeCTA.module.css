@@ -1,0 +1,215 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   FARO — DecisionTapeCTA styles.
+   Two stacked blocks: (1) ambient scrolling tape on --bg, (2) solid-accent
+   CTA band. Tokens only — no hex, no shadow, no gradient.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── (1) Tape section ──────────────────────────────────────────────────── */
+
+.tapeSection {
+  position: relative;
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  background: var(--bg);
+}
+
+/* eyebrow row — dot + two MonoLabel spans */
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+/* accent dot */
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* framed panel */
+.panel {
+  height: 260px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg, 12px);
+  overflow: hidden;
+  background: var(--surface);
+  position: relative;
+  /* contain scrolling track */
+  display: flex;
+  flex-direction: column;
+}
+
+/* sticky column-header row */
+.headerRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding: 10px var(--space-5);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+.headerCellRight {
+  text-align: right;
+}
+
+/* scrolling track wrapper — fills remaining height, clips overflow */
+.track {
+  flex: 1;
+  overflow: hidden;
+  /* animate: translate from 0 to -50% (one full copy), then jump back */
+  animation: tapescroll 18s linear infinite;
+  will-change: transform;
+}
+
+/* reduced-motion variant: static, no keyframe */
+.trackStatic {
+  flex: 1;
+  overflow: hidden;
+}
+
+@keyframes tapescroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    /* each copy occupies 50% of the doubled height */
+    transform: translateY(-50%);
+  }
+}
+
+/* individual transaction row */
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding: 12px var(--space-5);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* id cell — slightly less muted */
+.cellId {
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* rail / approve score — muted */
+.cellMuted {
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* hold / escalate act + score — accent */
+.cellHot {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* score column right-aligned */
+.cellRight {
+  text-align: right;
+}
+
+/* ── (2) CTA band ──────────────────────────────────────────────────────── */
+
+.ctaSection {
+  position: relative;
+  overflow: hidden;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  /* local white-channel for translucent rings on solid accent */
+  --on: 255 255 255;
+}
+
+/* concentric rings decorative SVG — top-right corner */
+.rings {
+  position: absolute;
+  top: -96px;
+  right: -96px;
+  /* inherit accent-contrast so it naturally renders white on blue */
+  color: var(--accent-contrast);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* inner layout */
+.ctaInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+}
+
+/* big display headline */
+.ctaTitle {
+  margin-top: var(--space-4);
+  max-width: 24ch;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 1.2rem + 4.6vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+}
+
+/* allow natural line break at the intended phrase boundary */
+.ctaTitleBreak {
+  display: inline;
+}
+
+/* CTA button row */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+
+/* "REQUEST A DEMO" — solid dark chip on the accent band.
+   Uses --black token (not hex) for background, accent color for text
+   so it reads as an inverse-primary against the blue field. */
+.demoBtn.demoBtn {
+  background: var(--black);
+  color: var(--accent);
+  border-color: var(--black);
+}
+.demoBtn.demoBtn:hover {
+  background: var(--black);
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+/* "SEE IT RUN" — transparent outlined on the accent band.
+   Border and text use accent-contrast (white) so it remains legible. */
+.runBtn.runBtn {
+  background: transparent;
+  color: var(--accent-contrast);
+  border-color: var(--accent-contrast);
+}
+.runBtn.runBtn:hover {
+  background: transparent;
+  color: var(--accent-contrast);
+  border-color: var(--accent-contrast);
+  opacity: 0.85;
+}
+
+/* reduced-motion: keep tape visible but disable the scroll animation */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

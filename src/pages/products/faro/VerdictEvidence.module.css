@@ -1,0 +1,241 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   FARO · VERDICT EVIDENCE — two-column: framed mock (left) + checklist (right).
+   Palette = black/white/blue via opacity only. No shadows. No gradients.
+   Depth = hairline borders + translucent surfaces.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Section shell ──────────────────────────────────────────────────── */
+.section {
+  position: relative;
+  background: var(--bg);
+  padding: var(--section-y) 0;
+}
+
+/* ── Inner grid ─────────────────────────────────────────────────────── */
+.inner {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+@media (max-width: 640px) {
+  .inner {
+    padding-inline: var(--gutter-mobile);
+  }
+}
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 2rem + 5vw, 5rem);
+  }
+}
+
+/* ── LEFT · framed panel wrap ───────────────────────────────────────── */
+/* position: relative is required for Framer's useScroll target */
+.panelWrap {
+  position: relative;
+}
+
+.panel {
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+/* aspect-ratio container for the mock body */
+.mockBody {
+  aspect-ratio: 4 / 3;
+}
+
+/* ── VerdictMock internals ──────────────────────────────────────────── */
+.mock {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-5);
+  font-family: var(--font-mono);
+}
+
+/* header row */
+.mockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mockCase {
+  font-size: 9px;
+}
+
+/* "HOLD" pill on solid accent */
+.holdPill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+}
+
+/* score display */
+.scoreRow {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.scoreNum {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 2rem + 4vw, 3.5rem);
+  line-height: 1;
+  color: var(--text);
+}
+
+.scoreLabel {
+  font-size: 9px;
+  margin-bottom: 4px;
+}
+
+/* signal bars */
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.barRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.barMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.barLabel {
+  font-size: 9px;
+  color: var(--text-2);
+}
+
+.barWeight {
+  font-size: 9px;
+}
+
+/* bar track */
+.track {
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: var(--line-2);
+  overflow: hidden;
+}
+
+/* bar fill — accent color */
+.fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+}
+
+/* footer */
+.mockFooter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.footerDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: var(--r-full);
+  background: var(--accent);
+}
+
+.footerText {
+  font-size: 8px;
+}
+
+/* ── RIGHT · copy column ────────────────────────────────────────────── */
+.copy {
+  display: flex;
+  flex-direction: column;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.25rem);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  margin-top: var(--space-4);
+}
+
+/* checklist */
+.list {
+  margin-top: var(--space-7);
+  border-top: 1px solid var(--line-2);
+}
+
+.listRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* circular check icon */
+.checkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  margin-top: 2px;
+}
+
+.listText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.listTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h4);
+  color: var(--text);
+  line-height: var(--lh-snug);
+}
+
+.listDesc {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--text-2);
+  margin: 0;
+}

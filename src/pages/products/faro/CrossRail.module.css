@@ -1,0 +1,369 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CROSS-RAIL TRACE — sticky 300vh scroll section.
+   Color = tokens only (var(--accent) / var(--text*) / var(--line*) /
+   var(--surface) / var(--accent-softer) / var(--accent-border)).
+   No shadows, no gradients.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── section wrapper: position:relative so Framer's useScroll target is valid ── */
+.section {
+  position: relative;
+  background: var(--bg);
+}
+
+/* ── sticky inner ── */
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── header ── */
+.header {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + var(--space-6)) var(--gutter) var(--space-4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  font-size: clamp(1.875rem, 1.2rem + 2.4vw, 3rem);
+}
+
+.subtitle {
+  margin-top: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  max-width: 28rem;
+  color: var(--text-2);
+}
+
+/* counter (hidden on xs) */
+.counter {
+  text-align: right;
+  flex-shrink: 0;
+}
+@media (max-width: 767px) {
+  .counter {
+    display: none;
+  }
+}
+
+.counterNum {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+  font-size: clamp(3rem, 2rem + 3vw, 3.75rem);
+}
+.counterTotal {
+  font-size: 1.5rem;
+  color: var(--text-4);
+}
+.counterLabel {
+  color: var(--text-3);
+}
+
+/* ── grid: viz + side panel ── */
+.grid {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  min-height: 0;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1.9fr 1fr;
+    gap: var(--space-5);
+  }
+}
+
+/* ── trace viz panel ── */
+.vizPanel {
+  position: relative;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--surface);
+  min-height: 320px;
+}
+
+/* column headers */
+.colHeader {
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  transform: translateX(-50%);
+  width: calc(100% / 6); /* 6 rails */
+  text-align: center;
+}
+
+.colLabel {
+  font-size: 8.5px !important;
+  transition: color 0.3s var(--ease-out);
+}
+
+/* full-bleed SVG for guides + trace */
+.traceSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.guide {
+  stroke: var(--line);
+}
+
+.tracePath {
+  stroke: var(--accent);
+  fill: none;
+}
+
+/* ── nodes ── */
+.node {
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+/* label above the dot */
+.nodeLabel {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
+  white-space: nowrap;
+  text-align: center;
+}
+.nodeLabelText {
+  font-size: 8.5px !important;
+  transition: color 0.3s var(--ease-out);
+}
+
+/* dot + pulse */
+.dotWrap {
+  position: relative;
+}
+
+.dot {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  transition: background 0.3s var(--ease-out);
+}
+
+.pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+}
+
+/* amount below the dot */
+.nodeAmount {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 14px;
+  white-space: nowrap;
+  text-align: center;
+}
+.nodeAmountText {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-size: 11px;
+  font-weight: 600;
+  transition: color 0.3s var(--ease-out);
+}
+
+/* ── pattern envelope ── */
+.envelope {
+  position: absolute;
+  border-radius: var(--r-xl, 1rem);
+  pointer-events: none;
+  z-index: 20;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-softer);
+}
+
+.envelopePill {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.verdictPill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--r-pill, 999px);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  white-space: nowrap;
+}
+
+/* corner meta labels */
+.cornerLeft {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--space-3);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-size: 9px;
+  color: var(--text-3);
+}
+
+.cornerRight {
+  position: absolute;
+  bottom: var(--space-3);
+  right: var(--space-3);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-size: 9px;
+  color: var(--accent);
+}
+
+/* ── side panel ── */
+.panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  padding: var(--space-5);
+}
+@media (min-width: 640px) {
+  .panel {
+    padding: var(--space-6);
+  }
+}
+
+.panelLabel {
+  color: var(--text-3);
+}
+
+/* hop meta row */
+.hopMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.railPill {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--r-sm, 4px);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.hopIndex {
+  font-size: 10px !important;
+  color: var(--text-3);
+}
+
+/* hop label */
+.hopLabel {
+  margin-top: var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+  font-size: 1.5rem;
+}
+
+/* amount + entity row */
+.hopAmountRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.hopAmount {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.875rem;
+  color: var(--accent);
+}
+
+.hopEntity {
+  color: var(--text-3);
+}
+
+/* why text */
+.why {
+  margin-top: var(--space-5);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--text-2);
+}
+.whyKey {
+  color: var(--accent);
+}
+
+/* panel footer */
+.panelFooter {
+  margin-top: auto;
+  padding-top: var(--space-6);
+}
+
+.footerText {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: var(--lh-relaxed);
+  color: var(--text-3);
+}
+
+.footerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.footerDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
