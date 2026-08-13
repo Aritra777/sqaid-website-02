@@ -111,3 +111,184 @@
   margin-top: var(--space-4);
   width: 100%;
 }
+
+/* ─────────────────────────── DROPDOWN MENUS ───────────────────────────
+   Solid (non-transparent) panels: a floating card on var(--bg) with a
+   hairline border — no shadow (design rule), depth via border + solid fill. */
+.navItem {
+  position: relative;
+  display: inline-flex;
+}
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.chevron {
+  transition: transform var(--t-base);
+  opacity: 0.7;
+}
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* full-width row under the nav; keeps the hover bridge between trigger + card */
+.dropdownRow {
+  position: absolute;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  padding-top: var(--space-2);
+}
+.dropdownInner {
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  justify-content: center;
+}
+
+.panel {
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  padding: var(--space-4);
+  overflow: hidden;
+}
+.panelProducts {
+  width: min(500px, calc(100vw - 2 * var(--gutter)));
+}
+.panelIndustries {
+  width: min(320px, calc(100vw - 2 * var(--gutter)));
+}
+.panelSolutions {
+  width: min(960px, calc(100vw - 2 * var(--gutter)));
+}
+
+/* ── shared menu item ── */
+.menuItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--r-md);
+  transition: background var(--t-base);
+}
+a.menuItem:hover {
+  background: var(--surface);
+}
+.menuItemDisabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.itemTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.itemDesc {
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  color: var(--text-3);
+}
+.badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-pill);
+  padding: 1px 6px;
+}
+
+/* icon tiles */
+.productIcon,
+.itemIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--text-2);
+  transition: color var(--t-base), border-color var(--t-base);
+}
+.productIcon {
+  width: 40px;
+  height: 40px;
+}
+.itemIcon {
+  width: 32px;
+  height: 32px;
+}
+a.menuItem:hover .productIcon,
+a.menuItem:hover .itemIcon {
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+/* products — 2-column grid */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+
+/* solutions — 4 domain columns */
+.solutionsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+.solutionCol {
+  min-width: 0;
+}
+.colHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-3) var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.colDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: none;
+}
+.colList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* industries — single column */
+.industryList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+@media (max-width: 900px) {
+  .dropdownRow {
+    display: none;
+  }
+}

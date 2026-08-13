@@ -92,12 +92,14 @@
   height: 340px;
 }
 
-/* SVG edge layer fills the full canvas */
+/* SVG edge layer fills the full canvas, sits BELOW node cards */
 .svg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ── Node cards ──────────────────────────────────────────────────────── */
@@ -107,17 +109,18 @@
   min-width: 96px;
   padding: 10px 14px;
   border-radius: var(--r-md);
-  /* glass: translucent bg + blur */
-  background: var(--surface-glass);
-  backdrop-filter: blur(var(--blur-md));
-  -webkit-backdrop-filter: blur(var(--blur-md));
+  /* Opaque background so SVG edges are cleanly occluded behind cards */
+  background: var(--bg);
   border: 1px solid rgb(var(--fg-rgb) / 0.3);
+  /* Sit above the SVG edge layer */
+  z-index: 1;
 }
 
-/* Branch node overrides (escalate) */
+/* Branch node overrides (escalate) — opaque bg + accent border for visual distinction */
 .nodeCard[data-branch="true"] {
-  background: var(--accent-soft);
+  background: var(--bg);
   border-color: var(--accent-border);
+  border-width: 1.5px;
 }
 
 .nodeTag {

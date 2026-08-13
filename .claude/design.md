@@ -109,6 +109,31 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-08-14** — **Nav dropdowns + Case Manager polish.**
+  - **Global nav dropdowns** (`components/layout/Nav.tsx` + `.module.css`):
+    replaced the placeholder link-only nav with real hover/focus dropdown
+    panels — **Products** (2-col grid, icon tiles + taglines, "Soon" badge on
+    the disabled Abacus), **Solutions** (4-column mega-menu grouped by domain
+    with icons + descriptions, domain dots use the raw palette vars), and
+    **Industries** (list with blurbs); **Company** stays a plain link. Content
+    comes from `lib/nav-data.ts`; icons resolve via `lib/icons.ts` `getIcon()`.
+    Panels are **solid** (`background: var(--bg)`, opaque) with a hairline
+    `--line-2` border and **no shadow** (depth = solid fill + border, per the
+    hard rules) — deliberately NOT translucent/glass so page content behind
+    doesn't bleed through. Opens on hover/focus with a ~120ms close-delay bridge
+    (`.dropdownRow` starts at `var(--nav-h)` so there's no hover gap), Escape to
+    close, chevron rotates when open; hidden under 900px (mobile burger lists
+    the top-level links).
+  - **Case Manager fixes:** (1) RBAC AccessGraph node pills made **opaque**
+    (`background: var(--bg)`; state via border/selected-fill only) so connector
+    lines no longer show through the boxes; (2) `LineageStrip` given proper
+    side gutters (`.inner` with `padding-inline: var(--gutter)`); (3) `Workflow`
+    graph rebuilt — the edge SVG now uses a **pixel-accurate viewBox** measured
+    via `ResizeObserver` (no `preserveAspectRatio="none"` stretching), so the
+    main chain is clean straight horizontal connectors, the branch is a smooth
+    cubic-bézier curve, and `<marker>` arrowheads render true-size; node cards
+    are opaque and sit above the edges.
+
 - **2026-08-14** — **Case Manager page rebuilt from the reference design**
   (supersedes the 2026-08-06 bespoke layout). Ported the bespoke Case Manager
   page from the external reference build (`sqaid-website-reference`,

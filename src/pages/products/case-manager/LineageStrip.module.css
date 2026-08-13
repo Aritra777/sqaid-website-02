@@ -9,6 +9,21 @@
 
 .section {
   padding-block: var(--section-y);
+  /* Inner container — max-width centred with side gutters, matching Schema/.inner */
+}
+
+/* ── Inner container — centres content within the Band, matches Schema.inner ── */
+.inner {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding-inline: var(--gutter-mobile);
+  }
 }
 
 /* ── Heading block ── */

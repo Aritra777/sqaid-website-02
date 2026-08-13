@@ -19,6 +19,7 @@ export default function LineageStrip() {
 
   return (
     <div className={styles.section}>
+      <div className={styles.inner}>
       <div className={styles.head}>
         <MonoLabel tone="accent">LINEAGE · REGULATOR-LEGIBLE</MonoLabel>
         <Reveal>
@@ -62,6 +63,7 @@ export default function LineageStrip() {
             )}
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

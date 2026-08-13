@@ -232,15 +232,16 @@
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   line-height: 1;
-  padding: 5px 10px;
+  /* extra 1px horizontal padding so edge lines don't peek past the pill border */
+  padding: 5px 12px;
   border-radius: var(--r-pill);
   white-space: nowrap;
   cursor: default;
   transition: all 0.5s var(--ease-out);
 
-  /* Default — dimmed */
+  /* Default — dimmed; OPAQUE bg so SVG edges are cleanly occluded behind pills */
   border: 1px solid rgb(var(--fg-rgb) / 0.22);
-  background: transparent;
+  background: var(--bg);
   color: var(--text);
   opacity: 0.45;
 }
@@ -250,15 +251,15 @@
   cursor: pointer;
 }
 
-/* Reachable but not selected */
+/* Reachable but not selected — border-only tint, still opaque bg */
 .nodePill[data-hot="true"] {
   border-color: var(--accent-border);
-  background: var(--accent-softer);
+  background: var(--bg);
   color: var(--text);
   opacity: 1;
 }
 
-/* Selected role */
+/* Selected role — solid accent fill (inherently opaque) */
 .nodePill[data-sel="true"] {
   border-color: var(--accent);
   background: var(--accent);
