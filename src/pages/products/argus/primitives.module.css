@@ -1,0 +1,79 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   ARGUS — shared primitive styles. Tokens only; no shadows, no gradients.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── MonoLabel ── */
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+.monoAccent {
+  color: var(--accent);
+}
+.monoMuted {
+  color: var(--text-3);
+}
+
+/* ── GhostNumeral ── outlined, transparent-fill numeral */
+.ghost {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-2);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── MaskLines ── */
+.maskWrap {
+  display: block;
+}
+.maskLine {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.05em;
+}
+.maskInner {
+  display: block;
+}
+.maskInner em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* ── FrameChrome ── */
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.chrome i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text-4);
+}
+.chrome em {
+  margin-left: 8px;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.chrome b {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent);
+}

@@ -1,0 +1,72 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   ARGUS — CTA. Solid accent band, on-accent typography. All decoration is
+   hairline strokes in var(--accent-contrast); no shadow / gradient / glow.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* concentric rings + crosshair, tucked into the top-right corner */
+.rings {
+  position: absolute;
+  top: -96px;
+  right: -96px;
+  color: var(--accent-contrast);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+}
+
+.title {
+  margin-top: var(--space-4);
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 1.2rem + 4.6vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+
+/* on-accent overrides so both buttons stay legible on the green field.
+   .demoBtn: solid dark chip with accent text (inverse of a normal primary).
+   .watchBtn: transparent with an accent-contrast hairline outline. */
+.demoBtn.demoBtn {
+  background: var(--black);
+  color: var(--accent);
+  border-color: var(--black);
+}
+.demoBtn.demoBtn:hover {
+  background: var(--black);
+  color: var(--accent);
+}
+
+.watchBtn.watchBtn {
+  background: transparent;
+  color: var(--accent-contrast);
+  border-color: var(--accent-contrast);
+}
+.watchBtn.watchBtn:hover {
+  background: transparent;
+  color: var(--accent-contrast);
+  border-color: var(--accent-contrast);
+}

@@ -1,0 +1,316 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   ARGUS — Hero styles. Tokens only; no shadows, no gradients.
+
+   The SVG graph needs a MODE-AWARE foreground (white in dark mode, black in
+   light). We expose that as a single local channel `--gfg` on .stage and flip
+   it under [data-theme="light"]; every SVG stroke/fill/text derives from it via
+   alpha so we never introduce a new hue. Accent stays var(--accent).
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.section {
+  position: relative;
+  padding-top: calc(var(--nav-h) + var(--space-8));
+  padding-bottom: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+/* ───────────────────────────── left column ──────────────────────────── */
+.left {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+.eyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 1.4rem + 4.4vw, 4.4rem);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+}
+.h1 em {
+  font-style: italic;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.sub {
+  max-width: 30rem;
+  margin-top: var(--space-6);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+.watchBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ───────────────────────────── graph ────────────────────────────────── */
+.right {
+  min-width: 0;
+}
+.graphWrap {
+  position: relative;
+  width: 100%;
+}
+.stage {
+  /* space-separated channels so `rgb(var(--gfg) / α)` is valid CSS */
+  --gfg: 255 255 255;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+}
+:global([data-theme="light"]) .stage {
+  --gfg: 10 11 13;
+}
+
+.dots,
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.dot {
+  fill: rgb(var(--gfg) / 0.12);
+}
+
+/* edges */
+.edge {
+  stroke: rgb(var(--gfg) / 0.9);
+}
+.edgePrimary {
+  stroke: var(--accent);
+}
+
+/* nodes */
+.node {
+  fill: var(--bg);
+  stroke: rgb(var(--gfg) / 0.78);
+}
+.nodePrimary {
+  fill: var(--bg);
+  stroke: var(--accent);
+}
+.nodeAlert {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+.pulse {
+  stroke: var(--accent);
+}
+.verdictChip {
+  fill: var(--accent);
+  stroke: none;
+}
+
+/* node text */
+.nodeText,
+.verdictText {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.nodeText {
+  fill: rgb(var(--gfg) / 0.92);
+}
+.verdictText {
+  fill: var(--accent-contrast);
+}
+
+/* hover metadata card */
+.card {
+  position: absolute;
+  z-index: 10;
+  min-width: 148px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  pointer-events: none;
+}
+.cardTitle {
+  margin-top: 4px;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text);
+}
+.cardRisk {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.cardDetail {
+  margin-top: 2px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* corner labels */
+.cornerLeft,
+.cornerRight {
+  position: absolute;
+  top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+.cornerLeft {
+  left: var(--space-3);
+  color: var(--text-3);
+}
+.cornerRight {
+  right: var(--space-3);
+  color: var(--accent);
+}
+
+/* controls */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.ctrlBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s var(--ease-out);
+}
+.ctrlBtn:hover {
+  opacity: 0.7;
+}
+.spacer {
+  flex: 1;
+}
+.pips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pip,
+.pipOn {
+  height: 4px;
+  border-radius: 999px;
+  transition: all 0.5s var(--ease-out);
+}
+.pip {
+  width: 8px;
+  background: rgb(var(--gfg) / 0.2);
+}
+.pipOn {
+  width: 18px;
+  background: var(--accent);
+}
+:global([data-theme="light"]) .pip {
+  background: rgba(10, 11, 13, 0.2);
+}
+
+/* ───────────────────────────── stats strip ──────────────────────────── */
+.statsBand {
+  margin-top: var(--space-9);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-2);
+  border-left: 1px solid var(--line);
+}
+.stat[data-first] {
+  border-left: none;
+}
+.statDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.statLabel {
+  color: var(--text-2);
+}
+
+/* ───────────────────────────── responsive ───────────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: calc(var(--nav-h) + var(--space-6));
+  }
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat {
+    justify-content: center;
+  }
+  /* on the 2-col mobile grid, the first cell of each row loses its divider */
+  .stat:nth-child(odd) {
+    border-left: none;
+  }
+  .stat[data-first] {
+    border-left: none;
+  }
+}

@@ -109,6 +109,63 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-08-13** — **Argus page rebuilt from the reference design** (supersedes the
+  2026-08-06 Argus "agent fleet" layout below — the `Marquee` + crew `Carousel` +
+  screenshot gallery are **replaced**). Ported the bespoke Argus page from the
+  external reference build (`sqaid-website-reference/`, a CRA + Tailwind + shadcn
+  design) onto our stack via a faithful **token translation** (Tailwind utility
+  classes → CSS Modules; the reference's `#18e29a`/`rgb(var(--fg-rgb)/α)`/`.hair`/
+  `.glass`/`.noise` → `var(--accent)`/`--text*`/`--line*`/`--surface*`/glass/
+  `<NoiseOverlay>`). New structure lives in `pages/products/argus/` (one `.tsx` +
+  `.module.css` per section) composed by `ArgusPage.tsx`, plus shared `data.ts`
+  (content + graph data) and `primitives.tsx` (`MonoLabel`, `GhostNumeral`,
+  `MaskLines`, `FrameChrome`). Sections, in order: **Hero** (masked headline +
+  auto-playing knowledge-graph with replay/step), **AlertSarSplit** (full-bleed
+  raw-alert-JSON / SAR-narrative split with a scroll-grown center stitch),
+  **RulesDispatch** (sequential dispatch viz), **FleetComposer** (interactive
+  build-your-own-squad), **FundsTrace** (340vh scroll-driven hop-0→12 graph),
+  editorial **Marquee** strip, **SurfacesGallery** (parallax surface mocks),
+  **LineageStrip**, solid-accent **Cta**.
+  - **Half-light/half-dark:** the reference toggled a page-local `data-theme`; we
+    dropped that and use the global `[data-theme]` + the **`.invert`** utility for
+    opposite-mode regions (AlertSarSplit bottom half; SurfacesGallery band). No
+    page-local nav/footer/theme-toggle — the global Layout provides them.
+  - **Scroll graph is a STRUCTURED layered DAG (not spiral, not random):** the
+    reference's funds-trace layout was a radial/spiral (`angle = spread*300 +
+    hop*17°`), rejected. A first pass used a fully random scatter — also rejected
+    (looked messy). Final: `data.ts::buildHopGraph()` builds a **seeded
+    (deterministic) left→right layered DAG** — each hop is a column, nodes spread
+    across a vertical band that widens with node count, so the trace fans out from
+    the seed and converges toward the horizon. Structured/legible, no ring/spiral/
+    grid; seeding removes per-render jitter.
+  - **Rule fix during port:** the reference hop-decay legend used a
+    `linear-gradient` (banned) — replaced with **5 discrete stepped-opacity
+    swatches** of `var(--accent)`. No gradients/shadows introduced anywhere.
+  - **Glitch fixes:** (a) Hero pulse ring used Framer to animate the SVG `r`
+    attribute → emitted `<circle r="undefined">`; swapped to a SMIL `<animate>`
+    (matches FundsTrace). (b) RulesDispatch loop snapped `0→len+1→0` with a
+    visible flash → now a self-scheduling timeout chain that holds the complete
+    state then fades before restart. (c) `SurfacesGallery .row` (a `useScroll`
+    target) made `position: relative`. All motion guards on reduced-motion.
+  - **Review-round refinements (same day):** (1) Hero graph — the VERDICT node
+    chip was too small so "SAR · 92" overflowed; widened the rect + shrank the
+    label to fit, and boosted node-label / node-stroke / secondary-edge contrast
+    for legibility. (2) FundsTrace graph reworked from random → structured layered
+    DAG (see above). (3) FleetComposer — the hover detail expanded the chip
+    in-flow which, with Framer `layout`, reflowed every sibling ("distortion");
+    made `.chipMeta` an **absolute glass popover** (chip size never changes → no
+    reflow; `.canvas` set `overflow: visible`). (4) SurfacesGallery — replaced the
+    bespoke placeholder mocks (which also referenced a non-existent `--fg-rgb`
+    token) with the **real product screenshots** from
+    `public/assets/products/argus/` (ingestion/signals/agents/flows/graph-explorer/
+    mcp).
+  - Build green; verified in browser dark + light (the `.invert` split flips
+    correctly; funds-trace graph confirmed structured; fleet hover popover no
+    longer reflows; surfaces show real screenshots). Two handoff briefs added for
+    the other flagships: `.claude/faro-redesign-handoff.md` and
+    `.claude/case-manager-redesign-handoff.md` (companions to
+    `argus-redesign-handoff.md`).
+
 - **2026-08-06** — **Argus bespoke page + dynamic elements on all product pages.**
   - **Argus** (`pages/products/ArgusPage.tsx`, green) now exists as a bespoke
     page (was falling through to the bare `ProductPage` placeholder). Signature =
