@@ -123,7 +123,10 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
     doesn't bleed through. Opens on hover/focus with a ~120ms close-delay bridge
     (`.dropdownRow` starts at `var(--nav-h)` so there's no hover gap), Escape to
     close, chevron rotates when open; hidden under 900px (mobile burger lists
-    the top-level links).
+    the top-level links). **Closes on navigation:** a `useLocation` effect closes
+    the panel on any route change (trigger clicks, item clicks, same-route clicks,
+    back/forward), plus a ~400ms `open()` block after a programmatic close so a
+    stray post-nav `mouseenter` can't immediately re-open it.
   - **Case Manager fixes:** (1) RBAC AccessGraph node pills made **opaque**
     (`background: var(--bg)`; state via border/selected-fill only) so connector
     lines no longer show through the boxes; (2) `LineageStrip` given proper

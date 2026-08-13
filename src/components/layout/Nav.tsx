@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Brand from "@/components/ui/Brand";
@@ -138,6 +138,8 @@ export default function Nav({ theme, onToggleTheme }: NavProps) {
   const [openMenu, setOpenMenu] = useState<MenuKey | null>(null);
   const reduced = usePrefersReducedMotion();
   const closeTimer = useRef<number | null>(null);
+  const reopenBlockUntil = useRef(0);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -146,8 +148,21 @@ export default function Nav({ theme, onToggleTheme }: NavProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // close any open menu whenever the route changes (covers trigger clicks,
+  // dropdown-item clicks, same-route clicks, and browser back/forward)
+  useEffect(() => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    reopenBlockUntil.current = performance.now() + 400;
+    setOpenMenu(null);
+    setMobileOpen(false);
+  }, [location.pathname, location.hash]);
+
   // small close delay so moving between trigger and panel doesn't flicker
   const open = (key: MenuKey) => {
+    // ignore hover-opens fired right after a programmatic close (e.g. the
+    // synthetic mouseenter that re-fires on the trigger after a nav click) —
+    // without this the panel reopens itself instead of staying closed
+    if (performance.now() < reopenBlockUntil.current) return;
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
     setOpenMenu(key);
   };
@@ -157,6 +172,7 @@ export default function Nav({ theme, onToggleTheme }: NavProps) {
   };
   const closeNow = () => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    reopenBlockUntil.current = performance.now() + 400;
     setOpenMenu(null);
   };
 
@@ -179,6 +195,7 @@ export default function Nav({ theme, onToggleTheme }: NavProps) {
               >
                 <NavLink
                   to={l.to}
+                  onClick={closeNow}
                   className={({ isActive }) =>
                     cn(styles.link, styles.trigger, (isActive || openMenu === l.menu) && styles.active)
                   }
