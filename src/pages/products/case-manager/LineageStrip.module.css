@@ -1,0 +1,115 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CASE MANAGER — LineageStrip styles
+   Direct mirror of faro/LineageStrip.module.css — tokens only, no hex /
+   shadows / gradients. Case Manager accent (violet) flows from the
+   .theme-case-manager wrapper set by CaseManagerPage.
+   Root is a plain <div>; the parent <Band tone="light"> provides .invert
+   + --fg-rgb channel.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.section {
+  padding-block: var(--section-y);
+}
+
+/* ── Heading block ── */
+
+.head {
+  max-width: 36rem;
+  margin-bottom: 3rem;
+}
+
+.title {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tight);
+  font-size: clamp(1.875rem, 4vw, 2.8rem);
+  line-height: 1.05;
+}
+
+/* ── Chain layout ── */
+
+.chain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .chain {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+}
+
+/* Each node = card + optional connector */
+.node {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .node {
+    flex: 1;
+    gap: 0;
+  }
+}
+
+/* ── Card ── */
+
+.card {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line-2);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+}
+
+.tag {
+  display: block;
+}
+
+.val {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text);
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Connector between cards — desktop only ── */
+
+.connector {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .connector {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 40px;
+    padding-inline: 0.5rem;
+  }
+}
+
+.line {
+  display: block;
+  flex: 1;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: left center;
+}
+
+.arrow {
+  color: var(--accent);
+  font-size: 10px;
+  line-height: 1;
+  margin-left: -2px;
+}

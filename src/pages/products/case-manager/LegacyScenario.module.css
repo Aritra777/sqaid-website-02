@@ -1,0 +1,355 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   LegacyScenario — CSS Module
+   Tokens only: var(--accent), var(--text*), var(--line*), var(--font-*)
+   No shadows, no color gradients, no raw hex except inside the two
+   fixed-mode rail scopes (where the mode is hard-coded by design).
+
+   The two rails break the normal theme-following convention:
+     .railLegacy  → always dark  (--black bg, white fg)
+     .railSqaid   → always light (--white bg, black fg)
+   Both use var(--accent) for checks/accents — the accent carries through
+   regardless of mode. Inside each rail, rgb(var(--fg-rgb) / α) resolves to
+   the rail's own per-scope --fg-rgb, not the page's.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ─────────────────────────────────────────────────── */
+.section {
+  padding-block: var(--section-y);
+  padding-inline: var(--space-5);
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding-inline: var(--space-8);
+  }
+}
+
+/* ── Heading block ───────────────────────────────────────────────────── */
+.headingBlock {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.ghost {
+  position: absolute;
+  top: -3.5rem;
+  right: 0;
+  font-size: 8rem;
+}
+
+@media (min-width: 640px) {
+  .ghost {
+    font-size: 11rem;
+  }
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  max-width: 36rem;
+  margin-top: var(--space-4);
+}
+
+/* ── Scenario task pill ──────────────────────────────────────────────── */
+.taskPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--r-pill);
+}
+
+.taskDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.taskText {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* ── Rails frame ─────────────────────────────────────────────────────── */
+.frame {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.railGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .railGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Rail: shared layout ─────────────────────────────────────────────── */
+.rail {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .rail {
+    padding: 2rem;
+  }
+}
+
+/* ── FIXED-MODE RAIL SCOPES ──────────────────────────────────────────── */
+/* These intentionally break theme-following. Do NOT add light/dark
+   overrides here — the whole point is that they stay fixed. */
+
+.railLegacy {
+  background: var(--black);
+  color: var(--white);
+  /* local fg channel for hairlines inside this rail */
+  --fg-rgb: 255 255 255;
+}
+
+.railSqaid {
+  background: var(--white);
+  color: var(--black);
+  /* local fg channel for hairlines inside this rail */
+  --fg-rgb: 10 11 13;
+  border-left: 1px solid rgb(var(--fg-rgb) / 0.14);
+}
+
+/* Mobile: SQAID rail has a top border instead of a left border */
+@media (max-width: 767px) {
+  .railSqaid {
+    border-left: none;
+    border-top: 1px solid rgb(var(--fg-rgb) / 0.14);
+  }
+}
+
+/* ── Rail header ─────────────────────────────────────────────────────── */
+.railHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.railBadge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid rgb(var(--fg-rgb) / 0.2);
+  border-radius: var(--r-pill);
+  /* inherits color from parent rail scope */
+}
+
+.railSpeed {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+/* ── Rail steps ──────────────────────────────────────────────────────── */
+.railSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  flex: 1;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--r-sm);
+  transition: background 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+}
+
+.stepDone {
+  background: rgb(var(--fg-rgb) / 0.06);
+}
+
+.stepPending {
+  background: transparent;
+}
+
+/* ── Check circle ────────────────────────────────────────────────────── */
+.checkCircle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgb(var(--fg-rgb) / 0.27);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.3s var(--ease-out), background 0.3s var(--ease-out);
+}
+
+.checkCircleDone {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+/* ── Step label + time ───────────────────────────────────────────────── */
+.stepLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  flex: 1;
+  /* inherits color from rail scope */
+}
+
+.stepTime {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+/* ── Verdict strip ───────────────────────────────────────────────────── */
+.verdictStrip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line-2);
+}
+
+.verdictHalf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-block: 1rem;
+}
+
+/* Fixed-mode verdict halves — match their respective rails */
+.verdictDark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.verdictLight {
+  background: var(--white);
+  color: var(--black);
+  border-left: 1px solid rgba(10, 11, 13, 0.14);
+}
+
+.verdictLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.verdictValue {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.verdictAccent {
+  color: var(--accent);
+}
+
+/* ── Procurement table ───────────────────────────────────────────────── */
+.procurementWrap {
+  margin-top: 3.5rem;
+  max-width: 48rem;
+}
+
+.procurementEyebrow {
+  display: block;
+  opacity: 0.4;
+  margin-bottom: 1rem;
+}
+
+.table {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+/* ── Table rows ──────────────────────────────────────────────────────── */
+.tableRow {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+}
+
+.tableHead {
+  border-bottom: 1px solid var(--line-2);
+}
+
+.tableData {
+  /* data rows use font-mono */
+}
+
+.rowBorder {
+  border-bottom: 1px solid var(--line);
+}
+
+/* ── Table cells (shared) ────────────────────────────────────────────── */
+.cellTask,
+.cellLegacy,
+.cellSqaid {
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono);
+}
+
+/* Header cells */
+.tableHead .cellTask,
+.tableHead .cellLegacy {
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.tableHead .cellSqaid {
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* Data cells */
+.cellTaskData {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.cellLegacyData {
+  font-size: 12px;
+  opacity: 0.55;
+}
+
+/* Left-border divider cells */
+.cellBorderL {
+  border-left: 1px solid var(--line);
+}
+
+/* SQAID column accent */
+.cellAccent {
+  color: var(--accent);
+}

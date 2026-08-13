@@ -1,0 +1,117 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CASE MANAGER — Cta. Solid-violet closing band.
+   Background = var(--accent) (Case-Manager violet).
+   All text, borders, and SVG strokes → var(--black) — deliberate
+   black-on-violet, matching the reference's inverse-contrast aesthetic.
+
+   Local channel --on (space-separated) lets rgb(var(--on)/α) produce
+   translucent-black hairlines without raw hex in the markup.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.section {
+  /* local channel for translucent-black tints */
+  --on: 10 11 13;
+
+  position: relative;
+  overflow: hidden;
+  background: var(--accent);
+  color: var(--black);
+}
+
+/* ── Decorative ring SVGs ────────────────────────────────────────────── */
+
+/* top-right: large 4-ring set with crosshair */
+.ringsTopRight {
+  position: absolute;
+  top: -96px;
+  right: -96px;
+  color: var(--black);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* bottom-left: smaller 3-ring set */
+.ringsBottomLeft {
+  position: absolute;
+  bottom: -96px;
+  left: -64px;
+  color: var(--black);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* ── Inner layout ────────────────────────────────────────────────────── */
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+}
+
+/* ── Heading ─────────────────────────────────────────────────────────── */
+
+.title {
+  margin-top: var(--space-4);
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.3rem, 1.1rem + 4.6vw, 4.4rem);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+  color: var(--black);
+}
+
+/* ── Lead paragraph ──────────────────────────────────────────────────── */
+
+.lead {
+  margin-top: var(--space-5);
+  max-width: 46ch;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.85rem + 0.4vw, 1.125rem);
+  line-height: 1.6;
+  color: rgb(var(--on) / 0.72);
+}
+
+/* ── Button row ──────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+
+/* Primary: solid-black chip, accent-violet text.
+   Double-class specificity to override Button's own .primary rules. */
+.demoBtn.demoBtn {
+  background: var(--black);
+  color: var(--accent);
+  border-color: var(--black);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.demoBtn.demoBtn:hover {
+  background: var(--black);
+  color: var(--accent);
+  border-color: var(--black);
+}
+
+/* Ghost: transparent, black hairline border and text. */
+.tryBtn.tryBtn {
+  background: transparent;
+  color: var(--black);
+  border-color: var(--black);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.tryBtn.tryBtn:hover {
+  background: transparent;
+  color: var(--black);
+  border-color: var(--black);
+}

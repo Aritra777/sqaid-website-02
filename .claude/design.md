@@ -109,6 +109,46 @@ Because gradients are banned, depth/interest comes from **geometry + glass**:
 
 ## 5. Decision log (append newest at top)
 
+- **2026-08-14** — **Case Manager page rebuilt from the reference design**
+  (supersedes the 2026-08-06 bespoke layout). Ported the bespoke Case Manager
+  page from the external reference build (`sqaid-website-reference`,
+  `case-manager` branch — CRA + Tailwind + shadcn) onto our stack via the same
+  faithful **token translation** as Argus/Faro. New structure in
+  `pages/products/case-manager/` (one `.tsx` + `.module.css` per section)
+  composed by `CaseManagerPage.tsx`, plus shared `data.ts` and `primitives.tsx`.
+  - **Signature device — alternating `Band` rhythm:** the page stacks
+    `<Band tone="dark">` / `<Band tone="light">` sections; a `light`-tone band
+    renders in the OPPOSITE mode via the global `.invert` utility, so the page
+    reads as stacked light/dark halves that all swap when the site theme flips.
+    The `Band` primitive also exposes SPACE-separated neutral channels
+    `--fg-rgb` / `--bg-rgb` (tracking the band's effective mode) that child
+    sections use for arbitrary-alpha hairlines and the dense `DotGrid` backdrop.
+  - **Shared primitives** (`case-manager/primitives.tsx`): `Band`, `MonoLabel`,
+    `GhostNumeral`, `MaskLines`, `Crosshair`, `DotGrid`, `BrowserChrome`,
+    `PlaybackControls` (scripted replay/step/reset + pips). Sections, in order:
+    **Hero** (live case-Designer canvas), **Schema** (configurable field model →
+    live JSON), **DesignerDeepCut** (case-view builder + audit log),
+    **Workflow** (lifecycle graph with a branch reveal), solid-violet **Marquee**
+    divider (black-on-violet), **RBAC** (policy composer + access graph),
+    **LegacyScenario** (legacy-vs-SqAId dual rail race + procurement table),
+    **AuditView** (lifecycle mock + live audit feed, parallax), **LineageStrip**,
+    solid-violet **Cta**.
+  - **RBAC AccessGraph re-laid-out:** the reference graph looked distorted
+    (crammed nodes, crossing straight edges). Rebuilt as a clean padded
+    tripartite grid (roles | policies | scopes, x≈10/50/90, y≈18..84 in
+    `data.ts`) with column headers + guide lines and **smooth horizontal
+    cubic-bézier connectors** instead of straight diagonals.
+  - **One intentional fixed-mode exception** — LegacyScenario's two rails are a
+    deliberate side-by-side dark/light contrast that does NOT flip with the
+    theme: each rail is a self-contained CSS scope pinning `--bg`/`--fg-rgb`
+    (LEGACY always dark, SQAID always light).
+  - **Closing moment:** the Marquee band and the Cta are the deliberate
+    BLACK-on-violet moments (`background: var(--accent); color: var(--black)`;
+    translucent-black hairlines via a local `--on: 10 11 13` channel) — unlike
+    Argus/Faro CTAs which used `--accent-contrast`. Reuses the Argus/Faro
+    learnings (space-separated channels, no Framer-animated SVG geometry, DOM
+    pulse rings, relative scroll targets). Verified in dark + light. Build green.
+
 - **2026-08-14** — **Faro page rebuilt from the reference design** (supersedes the
   2026-08-06 Faro split-screen layout). Ported the bespoke Faro page from the
   external reference build (`sqaid-website-reference/`, `faro` branch — CRA +

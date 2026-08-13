@@ -1,0 +1,365 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CASE MANAGER — Hero styles. Tokens only; no shadows, no gradients.
+
+   The section sits inside a <Band tone="dark"> supplied by the page,
+   so --fg-rgb / --bg-rgb are already in scope from primitives.module.css
+   (.band). We reference them here for dot-fills, hairlines, etc.
+   Accent = var(--accent) which resolves to violet (#7c5cff) via
+   .theme-case-manager in themes.css.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────── section ──────────────────────────── */
+.section {
+  position: relative;
+  padding-top: calc(var(--nav-h) + var(--space-8));
+  padding-bottom: 0;
+}
+
+/* ───────────────────────────── two-column grid ───────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1.02fr 1fr;
+  gap: var(--space-9);
+  align-items: center;
+}
+
+/* ───────────────────────────── left column ───────────────────────── */
+.left {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+.eyebrowDot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 1.2rem + 4.2vw, 3.8rem);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+}
+/* em inside MaskLines renders via primitives.module.css .maskInner em:
+   font-style:italic; color: var(--accent). No override needed here. */
+
+.sub {
+  max-width: 30rem;
+  margin-top: var(--space-6);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-relaxed);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+.tryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ───────────────────────────── right column ──────────────────────── */
+.right {
+  min-width: 0;
+}
+
+/* ═══════════════════════ DesignerCanvas ═══════════════════════════ */
+.canvasWrap {
+  position: relative;
+  width: 100%;
+}
+
+/* The stage is the content area INSIDE BrowserChrome children slot.
+   We use a 6:5 aspect ratio (matching the reference) and set overflow
+   hidden so the hover card clips cleanly. */
+.stage {
+  position: relative;
+  aspect-ratio: 6 / 5;
+  overflow: hidden;
+}
+
+/* flex row: palette rail | case-view */
+.stageInner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+}
+
+/* ── PALETTE rail ── */
+.paletteRail {
+  width: 36%;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+  border-right: 1px solid rgb(var(--fg-rgb) / 0.12);
+  flex-shrink: 0;
+}
+
+.railLabel {
+  opacity: 0.4;
+  margin-bottom: var(--space-1);
+}
+
+.paletteBtn {
+  text-align: left;
+  border-radius: var(--r-sm);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgb(var(--fg-rgb) / 0.14);
+  background: var(--surface);
+  cursor: pointer;
+  color: var(--text);
+}
+.paletteDot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.paletteBtnLabel {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── CASE-VIEW area ── */
+.caseView {
+  flex: 1;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.caseViewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+/* 2-col drop grid */
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  align-content: start;
+  flex: 1;
+}
+
+/* ── DropCard ── */
+.dropCard {
+  border-radius: var(--r-sm);
+  padding: var(--space-3);
+  border: 1px solid var(--accent-border);
+  background: var(--accent-softer);
+}
+
+.dropCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dropCardTitle {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+}
+.dropCardDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--accent);
+}
+
+/* ── Skeleton bars inside DropCard ── */
+.skeletonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: var(--space-2);
+}
+.skeletonBar {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: rgb(var(--fg-rgb) / 0.14);
+}
+
+/* ── DROP HERE placeholder ── */
+.dropPlaceholder {
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--space-4) 0;
+  border: 1px dashed rgb(var(--fg-rgb) / 0.2);
+}
+.dropPlaceholderIcon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.dropPlaceholderLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+/* ── verdict ticker ── */
+.verdictTicker {
+  margin-top: var(--space-2);
+  border-radius: var(--r-sm);
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--accent);
+}
+.verdictDot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-contrast);
+}
+.verdictText {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent-contrast);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── hover metadata glass card ── */
+.hoverCard {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  min-width: 180px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--accent-border);
+  background: var(--surface-glass);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  pointer-events: none;
+  z-index: 10;
+}
+.hoverCardTitle {
+  margin-top: 4px;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+.hoverCardMeta {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  opacity: 0.55;
+}
+
+/* ───────────────────────────── mono strip ─────────────────────── */
+.stripBand {
+  margin-top: var(--space-9);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stripGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stripItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-2);
+  border-left: 1px solid var(--line);
+}
+.stripItem[data-first] {
+  border-left: none;
+}
+.stripDot {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.stripLabel {
+  color: var(--text-2);
+}
+
+/* ───────────────────────────── responsive ─────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: calc(var(--nav-h) + var(--space-6));
+  }
+  .stage {
+    aspect-ratio: auto;
+    min-height: 480px;
+  }
+  .paletteRail {
+    width: 40%;
+  }
+  .stripGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stripItem {
+    justify-content: center;
+  }
+  .stripItem:nth-child(odd) {
+    border-left: none;
+  }
+  .stripItem[data-first] {
+    border-left: none;
+  }
+}
+
+/* ───────────────────────────── reduced-motion ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .paletteBtn,
+  .skeletonBar {
+    transition: none;
+  }
+}

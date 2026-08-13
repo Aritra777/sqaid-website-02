@@ -1,0 +1,141 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CASE MANAGER · WORKFLOW — section styles.
+   Inherits --fg-rgb / --bg-rgb from the Band (see primitives.module.css).
+   No hex, no shadows, no gradients.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Section root ────────────────────────────────────────────────────── */
+.section {
+  position: relative;
+  padding: var(--section-y) var(--gutter);
+  max-width: 1400px;
+  margin-inline: auto;
+}
+@media (max-width: 640px) {
+  .section {
+    padding-inline: var(--gutter-mobile);
+  }
+}
+
+/* ── Heading block ───────────────────────────────────────────────────── */
+.heading {
+  position: relative;
+  margin-bottom: var(--space-7);
+}
+
+/* GhostNumeral — top-right, decorative */
+.ghost {
+  position: absolute;
+  top: -3.5rem;
+  right: 0;
+  font-size: clamp(8rem, 6rem + 6vw, 11rem);
+  /* -webkit-text-stroke inherits from primitives.module.css .ghost rule */
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.4rem);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  margin-top: var(--space-3);
+  max-width: 38rem;
+}
+
+.lead {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lead);
+  color: var(--text-2);
+  max-width: 32rem;
+  margin-top: var(--space-5);
+  line-height: var(--lh-relaxed);
+}
+
+/* ── Framed panel ────────────────────────────────────────────────────── */
+.frame {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+/* ── Bar ────────────────────────────────────────────────────────────── */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding-inline: var(--space-5);
+  border-bottom: 1px solid rgb(var(--fg-rgb) / 0.12);
+}
+
+.barLabel {
+  opacity: 0.4;
+}
+
+/* Verdict pill — violet bg, white text */
+.verdictPill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* ── Canvas ──────────────────────────────────────────────────────────── */
+.canvas {
+  position: relative;
+  height: 340px;
+}
+
+/* SVG edge layer fills the full canvas */
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Node cards ──────────────────────────────────────────────────────── */
+.nodeCard {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  /* glass: translucent bg + blur */
+  background: var(--surface-glass);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  border: 1px solid rgb(var(--fg-rgb) / 0.3);
+}
+
+/* Branch node overrides (escalate) */
+.nodeCard[data-branch="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+
+.nodeTag {
+  display: block;
+  font-size: 8px;
+  opacity: 0.4;
+}
+
+.nodeName {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  margin-top: 2px;
+  color: var(--text);
+}
+
+/* ── Reduced-motion overrides ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  /* Framer handles initial states — nothing extra needed here */
+}
