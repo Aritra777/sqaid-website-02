@@ -1,4 +1,3 @@
-import Marquee from "@/components/motion/Marquee";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import { cn } from "@/lib/cn";
 import { Band } from "./case-manager/primitives";
@@ -11,7 +10,6 @@ import LegacyScenario from "./case-manager/LegacyScenario";
 import AuditView from "./case-manager/AuditView";
 import LineageStrip from "./case-manager/LineageStrip";
 import Cta from "./case-manager/Cta";
-import { marqueePhrases } from "./case-manager/data";
 import styles from "./CaseManagerPage.module.css";
 
 export default function CaseManagerPage() {
@@ -27,16 +25,6 @@ export default function CaseManagerPage() {
 
       {/* solid-violet kinetic marquee divider (black on violet) */}
       <div className={styles.marqueeStrip}>
-        <Marquee duration={40}>
-          {marqueePhrases.map((phrase) => (
-            <span key={phrase} className={styles.marqueeItem}>
-              <span className={styles.marqueePhrase}>{phrase}</span>
-              <span className={styles.marqueeSep} aria-hidden="true">
-                /
-              </span>
-            </span>
-          ))}
-        </Marquee>
       </div>
 
       <Band tone="dark"><RBAC /></Band>

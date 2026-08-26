@@ -1,4 +1,3 @@
-import Marquee from "@/components/motion/Marquee";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import { cn } from "@/lib/cn";
 import Hero from "./faro/Hero";
@@ -9,8 +8,6 @@ import Copilot from "./faro/Copilot";
 import VerdictEvidence from "./faro/VerdictEvidence";
 import LineageStrip from "./faro/LineageStrip";
 import DecisionTapeCTA from "./faro/DecisionTapeCTA";
-import { MonoLabel } from "./faro/primitives";
-import { marqueePhrases } from "./faro/data";
 import styles from "./FaroPage.module.css";
 
 export default function FaroPage() {
@@ -24,16 +21,6 @@ export default function FaroPage() {
       <PipelineRail />
 
       <div className={styles.marqueeStrip}>
-        <Marquee duration={38}>
-          {marqueePhrases.map((phrase) => (
-            <span key={phrase} className={styles.marqueeItem}>
-              <MonoLabel className={styles.marqueePhrase}>{phrase}</MonoLabel>
-              <span className={styles.marqueeSep} aria-hidden="true">
-                /
-              </span>
-            </span>
-          ))}
-        </Marquee>
       </div>
 
       <Copilot />

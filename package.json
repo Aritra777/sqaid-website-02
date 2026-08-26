@@ -3,12 +3,13 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "SqAId — AI-native risk & compliance intelligence. Marketing site.",
+  "description": "SqAId \u2014 AI-native risk & compliance intelligence. Marketing site.",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && node scripts/verify-metrics.mjs && vite build",
     "preview": "vite preview",
-    "lint": "tsc -b"
+    "lint": "tsc -b",
+    "verify:metrics": "node scripts/verify-metrics.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.11.17",

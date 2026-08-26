@@ -52,7 +52,7 @@ export const heroGraph: { nodes: HeroNode[]; edges: HeroEdge[]; maxStep: number 
   maxStep: 4,
 };
 
-export const heroStats = ["50+ RULES", "<5MS EVAL", "UP TO 12-HOP TRACE", "CONFIGURABLE FLEET"];
+export const heroStats = ["REAL-TIME FRAUD", "AML INTELLIGENCE", "ENTITY RESOLUTION", "TRADE SURVEILLANCE"];
 
 /* ═══════════ Alert → SAR ═══════════ */
 export const rawAlert = `{

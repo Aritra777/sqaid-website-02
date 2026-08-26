@@ -8,7 +8,6 @@
    is valid CSS (comma-separated channels → invisible).
    ═══════════════════════════════════════════════════════════════════════ */
 import Button from "@/components/ui/Button";
-import Magnetic from "@/components/motion/Magnetic";
 import Reveal from "@/components/motion/Reveal";
 import Container from "@/components/ui/Container";
 import { SITE } from "@/lib/site";
@@ -83,7 +82,7 @@ export default function Cta() {
 
         <Reveal delay={0.14}>
           <div className={styles.actions}>
-            <Magnetic>
+            
               <Button
                 variant="primary"
                 size="lg"
@@ -92,8 +91,8 @@ export default function Cta() {
               >
                 REQUEST A DEMO
               </Button>
-            </Magnetic>
-            <Magnetic strength={0.25}>
+            
+            
               <Button
                 variant="outline"
                 size="lg"
@@ -102,7 +101,7 @@ export default function Cta() {
               >
                 TRY IN THE PRODUCT
               </Button>
-            </Magnetic>
+            
           </div>
         </Reveal>
       </Container>

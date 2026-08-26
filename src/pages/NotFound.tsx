@@ -1,6 +1,5 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import GridBackdrop from "@/components/graphics/GridBackdrop";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import styles from "./NotFound.module.css";
 
@@ -9,7 +8,6 @@ export default function NotFound() {
   useDocumentTitle("Not Found");
   return (
     <section className={styles.wrap}>
-      <GridBackdrop />
       <Container className={styles.inner}>
         <span className={styles.code}>404</span>
         <h1 className={styles.title}>This page took a different path.</h1>

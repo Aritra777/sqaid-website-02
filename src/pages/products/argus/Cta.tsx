@@ -6,7 +6,6 @@
    outlined "WATCH A RUN".
    ═══════════════════════════════════════════════════════════════════════ */
 import Button from "@/components/ui/Button";
-import Magnetic from "@/components/motion/Magnetic";
 import Reveal from "@/components/motion/Reveal";
 import Container from "@/components/ui/Container";
 import { SITE } from "@/lib/site";
@@ -42,7 +41,7 @@ export default function Cta() {
         </Reveal>
         <Reveal delay={0.1}>
           <div className={styles.actions}>
-            <Magnetic>
+            
               <Button
                 variant="primary"
                 size="lg"
@@ -51,8 +50,8 @@ export default function Cta() {
               >
                 REQUEST A DEMO
               </Button>
-            </Magnetic>
-            <Magnetic strength={0.25}>
+            
+            
               <Button
                 variant="outline"
                 size="lg"
@@ -61,7 +60,7 @@ export default function Cta() {
               >
                 WATCH A RUN
               </Button>
-            </Magnetic>
+            
           </div>
         </Reveal>
       </Container>

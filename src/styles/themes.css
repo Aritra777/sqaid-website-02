@@ -1,50 +1,64 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   PRODUCT ACCENTS (AXIS 2)
-   ───────────────────────────────────────────────────────────────────────
-   Only three accent hues exist (see .claude/design.md):
-     Faro = blue · Argus = green · Case Manager = violet.
-   Abacus is unlaunched → NEUTRAL (white/opacity), no fourth color.
+   PRODUCT IDENTITY (AXIS 2) — rebuilt 2026-08-26.
 
-   Each wrapper sets ONLY solid color + opacity tints. No glow, no gradient.
+   A product theme now sets ONLY `--mark`: the hue used for that product's
+   small non-text identity marks (icon tile, 2px rule, bullet). It does NOT
+   change --accent: links and CTAs stay one blue sitewide, per the Apple-style
+   restraint brief. This is why the page no longer reads as a colour carousel.
+
    Apply by wrapping a page/section root: <div className="theme-argus"> … </div>
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* ── FARO · blue ── */
 .theme-faro {
-  --accent: var(--blue);
-  --accent-contrast: #ffffff;
-  --accent-soft: rgba(47, 107, 255, 0.1);
-  --accent-softer: rgba(47, 107, 255, 0.05);
-  --accent-border: rgba(47, 107, 255, 0.4);
-  --accent-line: rgba(47, 107, 255, 0.16);
+  --mark: var(--faro);
+  --mark-invert: #5b8dff;
+  --mark-soft: rgba(29, 78, 216, 0.08);
+  --mark-border: rgba(29, 78, 216, 0.28);
 }
 
-/* ── ARGUS · green ── */
 .theme-argus {
-  --accent: var(--green);
-  --accent-contrast: #04140d; /* dark text on bright green */
-  --accent-soft: rgba(24, 226, 154, 0.1);
-  --accent-softer: rgba(24, 226, 154, 0.05);
-  --accent-border: rgba(24, 226, 154, 0.42);
-  --accent-line: rgba(24, 226, 154, 0.16);
+  --mark: var(--argus);
+  --mark-invert: #18e29a;
+  --mark-soft: rgba(0, 135, 90, 0.08);
+  --mark-border: rgba(0, 135, 90, 0.28);
 }
 
-/* ── CASE MANAGER · violet ── */
 .theme-case-manager {
-  --accent: var(--violet);
-  --accent-contrast: #ffffff;
-  --accent-soft: rgba(124, 92, 255, 0.1);
-  --accent-softer: rgba(124, 92, 255, 0.05);
-  --accent-border: rgba(124, 92, 255, 0.42);
-  --accent-line: rgba(124, 92, 255, 0.16);
+  --mark: var(--case);
+  --mark-invert: #9d85ff;
+  --mark-soft: rgba(91, 63, 217, 0.08);
+  --mark-border: rgba(91, 63, 217, 0.28);
 }
 
-/* ── ABACUS · yellow ── */
 .theme-abacus {
-  --accent: var(--yellow);
-  --accent-contrast: #1a1400; /* dark text on bright yellow */
-  --accent-soft: rgba(255, 194, 51, 0.12);
-  --accent-softer: rgba(255, 194, 51, 0.06);
-  --accent-border: rgba(255, 194, 51, 0.42);
-  --accent-line: rgba(255, 194, 51, 0.18);
+  --mark: var(--abacus);
+  --mark-invert: #ffc233;
+  --mark-soft: rgba(154, 103, 0, 0.08);
+  --mark-border: rgba(154, 103, 0, 0.28);
+}
+
+/* dark mode: hues brighten, tints open up */
+[data-theme="dark"] .theme-faro {
+  --mark-soft: rgba(91, 141, 255, 0.14);
+  --mark-border: rgba(91, 141, 255, 0.32);
+}
+[data-theme="dark"] .theme-argus {
+  --mark-soft: rgba(24, 226, 154, 0.14);
+  --mark-border: rgba(24, 226, 154, 0.32);
+}
+[data-theme="dark"] .theme-case-manager {
+  --mark-soft: rgba(157, 133, 255, 0.14);
+  --mark-border: rgba(157, 133, 255, 0.32);
+}
+[data-theme="dark"] .theme-abacus {
+  --mark-soft: rgba(255, 194, 51, 0.14);
+  --mark-border: rgba(255, 194, 51, 0.32);
+}
+
+/* default when no product theme is applied — the sitewide accent */
+:root {
+  --mark: var(--accent);
+  --mark-invert: #5b8dff;
+  --mark-soft: var(--accent-soft);
+  --mark-border: var(--accent-border);
 }

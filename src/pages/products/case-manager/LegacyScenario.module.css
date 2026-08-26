@@ -7,8 +7,9 @@
    The two rails break the normal theme-following convention:
      .railLegacy  → always dark  (--black bg, white fg)
      .railSqaid   → always light (--white bg, black fg)
-   Both use var(--accent) for checks/accents — the accent carries through
-   regardless of mode. Inside each rail, rgb(var(--fg-rgb) / α) resolves to
+   Because these rails pin their background, they must also PIN THEIR ACCENT:
+   --accent now flips with mode/.invert, so a fixed-light rail could otherwise
+   inherit the dark-mode accent (#5b8dff on white = 3.13:1, under AA). Inside each rail, rgb(var(--fg-rgb) / α) resolves to
    the rail's own per-scope --fg-rgb, not the page's.
    ═══════════════════════════════════════════════════════════════════════ */
 
@@ -122,6 +123,9 @@
 .railLegacy {
   background: var(--black);
   color: var(--white);
+  /* fixed dark background → pin the dark accent (6.28:1 on #0a0b0d) */
+  --accent: #5b8dff;
+  --mark: #5b8dff;
   /* local fg channel for hairlines inside this rail */
   --fg-rgb: 255 255 255;
 }
@@ -129,6 +133,9 @@
 .railSqaid {
   background: var(--white);
   color: var(--black);
+  /* fixed light background → pin the light accent (6.70:1 on white) */
+  --accent: #1d4ed8;
+  --mark: #1d4ed8;
   /* local fg channel for hairlines inside this rail */
   --fg-rgb: 10 11 13;
   border-left: 1px solid rgb(var(--fg-rgb) / 0.14);
@@ -248,11 +255,15 @@
 .verdictDark {
   background: var(--black);
   color: var(--white);
+  --accent: #5b8dff;
+  --mark: #5b8dff;
 }
 
 .verdictLight {
   background: var(--white);
   color: var(--black);
+  --accent: #1d4ed8;
+  --mark: #1d4ed8;
   border-left: 1px solid rgba(10, 11, 13, 0.14);
 }
 

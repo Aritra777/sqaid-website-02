@@ -16,7 +16,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, Plus } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Magnetic from "@/components/motion/Magnetic";
 import { SITE } from "@/lib/site";
 import { EASE_OUT } from "@/lib/motion";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
@@ -275,16 +274,16 @@ export default function Hero() {
               transition={{ delay: 1.1, duration: 0.7 }}
               className={styles.actions}
             >
-              <Magnetic>
+              
                 <Button href={demoHref} size="lg">
                   REQUEST A DEMO
                 </Button>
-              </Magnetic>
-              <Magnetic strength={0.25}>
+              
+              
                 <Button variant="outline" size="lg" className={styles.tryBtn}>
                   <Play size={12} /> TRY IN THE PRODUCT
                 </Button>
-              </Magnetic>
+              
             </motion.div>
           </div>
 

@@ -183,12 +183,12 @@
    Uses --black token (not hex) for background, accent color for text
    so it reads as an inverse-primary against the blue field. */
 .demoBtn.demoBtn {
-  background: var(--black);
+  background: var(--accent-contrast);
   color: var(--accent);
-  border-color: var(--black);
+  border-color: var(--accent-contrast);
 }
 .demoBtn.demoBtn:hover {
-  background: var(--black);
+  background: var(--accent-contrast);
   color: var(--accent);
   opacity: 0.9;
 }

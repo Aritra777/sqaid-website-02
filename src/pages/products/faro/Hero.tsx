@@ -17,8 +17,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, SkipForward, RotateCcw } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Magnetic from "@/components/motion/Magnetic";
-import NoiseOverlay from "@/components/graphics/NoiseOverlay";
 import { SITE } from "@/lib/site";
 import { EASE_OUT } from "@/lib/motion";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
@@ -334,7 +332,6 @@ export default function Hero() {
 
   return (
     <section className={styles.section} data-testid="hero-section">
-      <NoiseOverlay />
       <Container size="wide">
         <div className={styles.grid}>
           {/* ── left: pitch ── */}
@@ -376,16 +373,16 @@ export default function Hero() {
               transition={{ delay: 1.1, duration: 0.7 }}
               className={styles.actions}
             >
-              <Magnetic>
+              
                 <Button href={demoHref} size="lg">
                   REQUEST A DEMO
                 </Button>
-              </Magnetic>
-              <Magnetic strength={0.25}>
+              
+              
                 <Button variant="outline" size="lg" className={styles.watchBtn}>
                   <Play size={12} /> SEE IT RUN
                 </Button>
-              </Magnetic>
+              
             </motion.div>
           </div>
 

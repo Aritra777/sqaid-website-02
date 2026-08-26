@@ -1,0 +1,62 @@
+/* ═══ Trust — logos + analyst recognition (hidden until populated) ═════ */
+.section {
+  padding-block: var(--space-9);
+  border-block: 1px solid var(--line);
+}
+.kicker {
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+  margin-bottom: var(--space-7);
+}
+.logos {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-8);
+}
+.logo {
+  height: 28px;
+  width: auto;
+  opacity: 0.62;
+  filter: grayscale(1);
+  transition: opacity var(--t-fast), filter var(--t-fast);
+}
+.logo:hover {
+  opacity: 1;
+  filter: none;
+}
+.analysts {
+  margin-top: var(--space-9);
+}
+.analystList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+.analyst {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.program {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.placement {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.year {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}

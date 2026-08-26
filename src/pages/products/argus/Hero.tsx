@@ -15,8 +15,6 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Play, SkipForward, RotateCcw } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Magnetic from "@/components/motion/Magnetic";
-import NoiseOverlay from "@/components/graphics/NoiseOverlay";
 import { SITE } from "@/lib/site";
 import { EASE_OUT } from "@/lib/motion";
 import { MonoLabel, MaskLines } from "./primitives";
@@ -239,7 +237,6 @@ export default function Hero() {
   const demoHref = `mailto:${SITE.email}?subject=Argus%20demo`;
   return (
     <section className={styles.section}>
-      <NoiseOverlay />
       <Container size="wide">
         <div className={styles.grid}>
           {/* left */}
@@ -251,18 +248,16 @@ export default function Hero() {
               className={styles.eyebrow}
             >
               <span className={styles.eyebrowDot} />
-              <MonoLabel tone="accent">ARGUS · AGENTIC AML</MonoLabel>
+              <MonoLabel tone="accent">ARGUS · FINANCIAL-CRIME INTELLIGENCE</MonoLabel>
             </motion.div>
 
             <h1 className={styles.h1}>
               <MaskLines
                 delay={0.35}
                 lines={[
-                  "The AML platform",
-                  <>
-                    that <em>investigates</em>&nbsp;—
-                  </>,
-                  "not just alerts.",
+                  "One product for",
+                  <><em>fraud, AML, entities</em></>,
+                  "and trade surveillance.",
                 ]}
               />
             </h1>
@@ -273,9 +268,9 @@ export default function Hero() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className={styles.sub}
             >
-              A rules engine dispatches a configurable fleet of agents that trace
-              funds, read behavior and hand you a SAR-ready case — alert to
-              disposition.
+              ARGUS unifies real-time fraud detection, AML intelligence, entity
+              resolution and trade supervision in one AI-native product—with
+              robust, scalable investigation case management built in.
             </motion.p>
 
             <motion.div
@@ -284,16 +279,16 @@ export default function Hero() {
               transition={{ delay: 1.05, duration: 0.7 }}
               className={styles.actions}
             >
-              <Magnetic>
+              
                 <Button href={demoHref} size="lg">
                   REQUEST A DEMO
                 </Button>
-              </Magnetic>
-              <Magnetic strength={0.25}>
+              
+              
                 <Button variant="outline" size="lg" className={styles.watchBtn}>
                   <Play size={12} /> WATCH A RUN
                 </Button>
-              </Magnetic>
+              
             </motion.div>
           </div>
 

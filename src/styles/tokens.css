@@ -1,111 +1,105 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   SqAId · DESIGN TOKENS
-   ───────────────────────────────────────────────────────────────────────
-   HARD RULES (see .claude/design.md):
-     • Palette = Black + White + 4 product accents:
-       Faro Blue, Argus Green, Case Violet, Abacus Yellow — ONLY.
-       Vary with OPACITY, never new hues.
-     • NO box-shadows. NO color gradients. Depth comes from translucent
-       surfaces + hairline borders (white/black over the base).
-     • Transparency IS the effect: rgba surfaces, borders, and mask fades.
+   SqAId · DESIGN TOKENS  —  light-first rebuild (2026-08-26)
 
-   Two-axis theming:
-     AXIS 1 · MODE (dark / light) — surfaces, text, borders. Default = dark.
-     AXIS 2 · ACCENT (per product) — see themes.css (.theme-*).
+   Reference points: apple.com for restraint, whitespace and type rhythm;
+   niceactimize.com for enterprise trust structure.
+
+   HARD RULES (see .claude/design.md):
+     • LIGHT is the default. White canvas + one neutral band (--bg-1).
+     • ONE accent (--accent) carries links and CTAs. Product hues exist only
+       as small NON-TEXT identity marks (icon tile, 2px rule) — never as
+       text, never as a large fill.
+     • No box-shadows beyond the single subtle --shadow-card used on raised
+       cards; no glows.
+     • No colour gradients. Transparency and mask fades are fine.
+     • Every value below is contrast-verified (see design.md decision log).
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
   /* ─────────────────────────────────────────────────────────────
-     RAW PALETTE — the only five colors on the site.
+     NEUTRALS — the site is ~90% these.
      ───────────────────────────────────────────────────────────── */
-  --black: #0a0b0d;
   --white: #ffffff;
-  --blue: #2f6bff; /* Faro */
-  --green: #18e29a; /* Argus */
-  --violet: #7c5cff; /* Case Manager */
-  --yellow: #ffc233; /* Abacus */
+  --black: #1d1d1f;
+
+  --bg: #ffffff;
+  --bg-1: #f5f5f7;          /* alternating section band */
+  --bg-2: #fafafa;          /* subtle card fill on white */
+  --surface: #ffffff;
+  --surface-2: #f5f5f7;
+  --surface-glass: rgba(255, 255, 255, 0.72);
+
+  --line: #d2d2d7;          /* hairline borders */
+  --line-2: #c7c7cc;
+  --line-strong: #aeaeb2;
+
+  /* text ramp — all AA-verified on both --bg and --bg-1 */
+  --text: #1d1d1f;          /* 16.83 / 15.46 */
+  --text-2: #515154;        /*  7.91 /  7.26 */
+  --text-3: #6e6e73;        /*  5.07 /  4.66 */
+  --text-4: #86868b;        /*  3.62 /  3.33 — large text & non-text only */
 
   /* ─────────────────────────────────────────────────────────────
-     SURFACES — dark (default). Built from WHITE over black w/ opacity.
+     ACCENT — one blue, sitewide. 6.70 on white / 6.15 on the band.
      ───────────────────────────────────────────────────────────── */
-  --bg: var(--black);
-  --bg-1: #0d0e11; /* alt section base */
-  --surface: rgba(255, 255, 255, 0.03);
-  --surface-2: rgba(255, 255, 255, 0.055);
-  --surface-3: rgba(255, 255, 255, 0.09);
-  --surface-glass: rgba(10, 11, 13, 0.55); /* nav / glass over content */
-
-  /* ── borders / dividers / hairlines (white w/ opacity) ── */
-  --line: rgba(255, 255, 255, 0.08);
-  --line-2: rgba(255, 255, 255, 0.14);
-  --line-strong: rgba(255, 255, 255, 0.24);
+  --accent: #1d4ed8;
+  --accent-hover: #1a44bd;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(29, 78, 216, 0.08);
+  --accent-border: rgba(29, 78, 216, 0.28);
 
   /* ─────────────────────────────────────────────────────────────
-     TEXT — white w/ opacity (dark mode)
+     PRODUCT IDENTITY HUES — non-text marks only (all ≥3:1).
+     Overridden per-product in themes.css.
      ───────────────────────────────────────────────────────────── */
-  --text: rgba(255, 255, 255, 0.96);
-  --text-2: rgba(255, 255, 255, 0.62);
-  --text-3: rgba(255, 255, 255, 0.40);
-  --text-4: rgba(255, 255, 255, 0.26);
+  --faro: #1d4ed8;
+  --argus: #00875a;
+  --case: #5b3fd9;
+  --abacus: #9a6700;
 
-  /* ── chrome ── */
-  --nav-bg: rgba(10, 11, 13, 0.62);
-  --nav-border: rgba(255, 255, 255, 0.08);
-  --scrim: rgba(10, 11, 13, 0.7);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --nav-border: #d2d2d7;
+  --scrim: rgba(0, 0, 0, 0.4);
 
-  /* status — reuse palette (no new hues) */
-  --success: var(--green);
-  --info: var(--blue);
+  /* the single permitted shadow — Apple-style card lift, not a glow */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
 
   /* ─────────────────────────────────────────────────────────────
-     SEMANTIC ACCENT — default = Faro blue. Products override in themes.css.
-     Only solid color + opacity tints. No glow, no gradient.
+     TYPOGRAPHY — Inter throughout. Hierarchy comes from WEIGHT and
+     SPACING, not extreme scale contrast (per the Actimize read).
      ───────────────────────────────────────────────────────────── */
-  --accent: var(--blue);
-  --accent-contrast: #ffffff; /* text/icon on solid accent */
-  --accent-soft: rgba(47, 107, 255, 0.1); /* translucent fill */
-  --accent-softer: rgba(47, 107, 255, 0.05);
-  --accent-border: rgba(47, 107, 255, 0.4);
-  --accent-line: rgba(47, 107, 255, 0.16); /* faint lines / grids */
-
-  /* ─────────────────────────────────────────────────────────────
-     TYPOGRAPHY — Sora (display) · Inter (body) · JetBrains Mono (data)
-     ───────────────────────────────────────────────────────────── */
-  --font-display: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 
-  /* fluid type scale — clamp(min, preferred, max) */
-  --fs-display: clamp(3rem, 1.2rem + 8vw, 8rem); /* hero H1 */
-  --fs-h1: clamp(2.25rem, 1.5rem + 3.75vw, 4rem);
-  --fs-h2: clamp(1.75rem, 1.2rem + 2.75vw, 3rem);
-  --fs-h3: clamp(1.375rem, 1.05rem + 1.6vw, 2rem);
-  --fs-h4: clamp(1.125rem, 0.98rem + 0.75vw, 1.5rem);
-  --fs-lead: clamp(1.0625rem, 0.98rem + 0.5vw, 1.375rem);
+  --fs-display: clamp(2.5rem, 1.6rem + 3.6vw, 4rem);   /* 40 → 64  hero only */
+  --fs-h1: clamp(2rem, 1.5rem + 2.2vw, 3rem);          /* 32 → 48 */
+  --fs-h2: clamp(1.625rem, 1.3rem + 1.5vw, 2.25rem);   /* 26 → 36 */
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);     /* 20 → 24 */
+  --fs-h4: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);  /* 17 → 19 */
+  --fs-lead: clamp(1.0625rem, 1rem + 0.4vw, 1.3125rem);/* 17 → 21 */
   --fs-body: 1rem;
-  --fs-sm: 0.875rem;
-  --fs-xs: 0.75rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
   --fs-eyebrow: 0.75rem;
 
-  --lh-tight: 0.98;
-  --lh-snug: 1.2;
-  --lh-normal: 1.55;
-  --lh-relaxed: 1.7;
+  --lh-tight: 1.08;
+  --lh-snug: 1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.65;
 
-  --tracking-tight: -0.03em;
+  --tracking-tight: -0.022em;
   --tracking-normal: 0;
-  --tracking-wide: 0.04em;
-  --tracking-eyebrow: 0.22em;
+  --tracking-wide: 0.02em;
+  --tracking-eyebrow: 0.08em;
 
-  /* ── weights ── */
   --fw-body: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
   --fw-bold: 700;
 
-  /* ─────────────────────────────────────────────────────────────
-     SPACING — 4px base scale
-     ───────────────────────────────────────────────────────────── */
+  /* ── spacing — 4px base ── */
   --space-0: 0;
   --space-1: 4px;
   --space-2: 8px;
@@ -118,99 +112,90 @@
   --space-9: 96px;
   --space-10: 128px;
   --space-11: 160px;
-  --space-12: 200px;
 
-  --section-y: clamp(4rem, 2.5rem + 7vw, 9rem);
+  /* generous, Apple-ish vertical rhythm */
+  --section-y: clamp(4rem, 3rem + 5vw, 7.5rem);
 
-  /* ─────────────────────────────────────────────────────────────
-     LAYOUT
-     ───────────────────────────────────────────────────────────── */
-  --container: 1280px;
-  --container-wide: 1600px;
-  --container-narrow: 780px;
-  --gutter: 40px;
+  /* ── layout ── */
+  --container: 1024px;      /* text-led sections stay narrow and readable */
+  --container-wide: 1280px;
+  --container-narrow: 720px;
+  --gutter: 24px;
   --gutter-mobile: 20px;
-  --nav-h: 68px;
+  --nav-h: 56px;
 
-  /* ─────────────────────────────────────────────────────────────
-     RADIUS
-     ───────────────────────────────────────────────────────────── */
-  --r-xs: 4px;
-  --r-sm: 8px;
+  /* ── radius — softer, Apple-ish ── */
+  --r-xs: 6px;
+  --r-sm: 10px;
   --r-md: 12px;
-  --r-lg: 16px;
+  --r-lg: 18px;
   --r-xl: 24px;
   --r-2xl: 32px;
-  --r-pill: 999px;
+  --r-pill: 980px;
   --r-full: 9999px;
 
-  /* backdrop blur (glass — transparency effect, not a shadow) */
-  --blur-sm: 8px;
-  --blur-md: 16px;
-  --blur-lg: 40px;
+  --blur-md: 20px;
 
-  /* ─────────────────────────────────────────────────────────────
-     MOTION — easings + durations
-     ───────────────────────────────────────────────────────────── */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* ── motion — quiet. Fades and small offsets only. ── */
+  --ease-out: cubic-bezier(0.28, 0.11, 0.32, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   --dur-fast: 0.15s;
   --dur-base: 0.25s;
-  --dur-slow: 0.45s;
-  --dur-slower: 0.7s;
+  --dur-slow: 0.4s;
 
   --t-fast: var(--dur-fast) var(--ease-out);
   --t-base: var(--dur-base) var(--ease-out);
   --t-slow: var(--dur-slow) var(--ease-out);
 
-  /* ── z-index scale ── */
   --z-base: 0;
   --z-raised: 10;
   --z-sticky: 100;
   --z-nav: 1000;
   --z-overlay: 2000;
   --z-modal: 3000;
-  --z-toast: 4000;
 }
 
-/* wider gutters / container on large displays */
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
   :root {
-    --container: 1360px;
-    --container-wide: 1720px;
-    --gutter: 64px;
-  }
-}
-@media (min-width: 1920px) {
-  :root {
-    --container: 1440px;
-    --container-wide: 1880px;
-    --gutter: 88px;
+    --gutter: 40px;
   }
 }
 
-/* ═══════════════════════════════ LIGHT MODE ═══════════════════════════════
-   Surfaces built from BLACK over white w/ opacity. Same five colors. */
-[data-theme="light"] {
-  --bg: #ffffff;
-  --bg-1: #f5f6f8;
-  --surface: rgba(10, 11, 13, 0.025);
-  --surface-2: rgba(10, 11, 13, 0.05);
-  --surface-3: rgba(10, 11, 13, 0.08);
-  --surface-glass: rgba(255, 255, 255, 0.6);
+/* ═══════════════════════════ DARK MODE ═══════════════════════════
+   Available via the nav toggle. Same structure, inverted ramp; hues
+   brighten so they stay ≥4.5 on the dark canvas. */
+[data-theme="dark"] {
+  --bg: #0a0b0d;
+  --bg-1: #141517;
+  --bg-2: #1c1d20;
+  --surface: #141517;
+  --surface-2: #1c1d20;
+  --surface-glass: rgba(10, 11, 13, 0.72);
 
-  --line: rgba(10, 11, 13, 0.1);
-  --line-2: rgba(10, 11, 13, 0.16);
-  --line-strong: rgba(10, 11, 13, 0.28);
+  --line: #2c2d31;
+  --line-2: #3a3b40;
+  --line-strong: #55565c;
 
-  --text: rgba(10, 11, 13, 0.96);
-  --text-2: rgba(10, 11, 13, 0.62);
-  --text-3: rgba(10, 11, 13, 0.42);
-  --text-4: rgba(10, 11, 13, 0.28);
+  --text: #f5f5f7;          /* 18.08 */
+  --text-2: #a1a1a6;        /*  7.65 */
+  --text-3: #86868b;        /*  5.43 */
+  --text-4: #6e6e73;
 
-  --nav-bg: rgba(255, 255, 255, 0.7);
-  --nav-border: rgba(10, 11, 13, 0.1);
-  --scrim: rgba(10, 11, 13, 0.4);
+  --accent: #5b8dff;        /*  6.28 */
+  --accent-hover: #7ba3ff;
+  --accent-contrast: #0a0b0d;
+  --accent-soft: rgba(91, 141, 255, 0.12);
+  --accent-border: rgba(91, 141, 255, 0.32);
+
+  --faro: #5b8dff;
+  --argus: #18e29a;
+  --case: #9d85ff;
+  --abacus: #ffc233;
+
+  --nav-bg: rgba(10, 11, 13, 0.8);
+  --nav-border: #2c2d31;
+
+  --shadow-card: none;
+  --shadow-card-hover: none;
 }

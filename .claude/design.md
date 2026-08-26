@@ -11,103 +11,271 @@ Tokens live in `src/styles/tokens.css` (mode) and `src/styles/themes.css`
 
 ## 1. Hard rules (do not break without explicit sign-off)
 
-1. **Palette = Black + White + four product accents:** Faro Blue, Argus Green,
-   Case Violet, Abacus Yellow. Create variation with **opacity only** — never
-   introduce a new hue. (cyan/rose/etc. are gone.)
-2. **No box-shadows.** No drop-shadows, no glows. Depth = translucent surfaces
-   + hairline borders. "Borders" are real `border`, never `inset box-shadow`.
-3. **No color gradients.** No `linear-gradient`/`radial-gradient` used as a
-   visible multi-hue or color→color fill. No gradient text.
-4. **Transparency IS the effect.** rgba surfaces, rgba borders, and
-   `mask-image` edge fades are encouraged (they use one color + alpha).
-
-### Explicitly allowed (not considered "gradients/shadows")
-- `mask-image: linear-gradient(...)` for edge fades (transparency, single color).
-- The 1px grid-line technique in `GridBackdrop` (`linear-gradient` renders
-  hard 1px solid lines from a single accent color — no visible fade).
-- `backdrop-filter: blur()` for glass nav (transparency effect, not a shadow).
-- SVG turbulence noise overlay (texture via alpha).
+1. **LIGHT is the default.** White canvas (`--bg`) with one neutral band
+   (`--bg-1: #f5f5f7`) for alternating sections. Dark mode exists behind the
+   nav toggle and must keep working, but light is what ships by default.
+2. **ONE accent.** `--accent` (#1d4ed8) carries links, CTAs and focus rings —
+   sitewide, on every page. Product hues do **not** override it.
+3. **Product hues are non-text marks only.** A `.theme-*` class sets `--mark`,
+   used for an icon tile, a 2px rule, or a bullet. Never for text, never as a
+   large fill. This is why four products no longer read as a colour carousel.
+4. **Accent stays under ~10% of any component's area.** Large regions use
+   `--surface` / `--bg-1` with a `--line` hairline.
+5. **No colour gradients.** `mask-image` fades and the single-colour 1px
+   dot/grid technique are fine; a visible colour→colour fill is not.
+6. **One shadow.** `--shadow-card` / `--shadow-card-hover` on raised cards
+   only. No glows, no coloured shadows, no `inset box-shadow` as a border.
+7. **`100svh`/`100vh` is not a section height.** Reserve full-viewport
+   pinning for sections where **scroll *is* the interaction** — currently only
+   Argus `FundsTrace` and Faro `CrossRail`. Everything else uses
+   `padding-block: var(--section-y)` in normal document flow.
+8. **Hierarchy comes from weight and spacing, not scale.** Headings are
+   `--fw-semibold`; the scale tops out at `--fs-display` (64px) for a hero H1
+   and `--fs-h2` (36px) for section headings. No local oversized titles.
+9. **No decorative chrome.** No marquees, ghost numerals, particle fields,
+   noise overlays, spinning geometry, or parallax drift. Motion is limited to
+   a short fade-and-rise on scroll (`Reveal`) plus hover states.
+10. **Reference CSS variables, never raw hex**, in component styles. The one
+    exception is `#000` inside a `mask-image`, where it is an alpha stencil.
+11. **Every number on the site comes from `lib/metrics.ts`.** See §2.5.
 
 ---
 
-## 2. Color
+## 2. Colour
 
-### Raw palette (`--black --white --blue --green --violet`)
-| Token | Value | Meaning |
-|-------|-------|---------|
-| `--black` | `#0a0b0d` | base / page bg (dark) |
-| `--white` | `#ffffff` | base / page bg (light) |
-| `--blue`  | `#2f6bff` | **Faro** accent |
-| `--green` | `#18e29a` | **Argus** accent |
-| `--violet`| `#7c5cff` | **Case Manager** accent |
+Every value below is contrast-verified against both canvases. Re-verify with
+the script in the 2026-08-26 (c) decision-log entry before changing any of them.
 
-### Surfaces & text — built from white/black + opacity
-- Dark mode: surfaces are `rgba(255,255,255, .03–.09)` over `--black`; text is
-  `rgba(255,255,255, .96 / .62 / .40 / .26)`.
-- Light mode: mirror with `rgba(10,11,13, …)` over white.
-- Borders: `--line / --line-2 / --line-strong` = white(or black) at .08/.14/.24.
+### Light (default)
+| Token | Value | On `#fff` | On `#f5f5f7` |
+|-------|-------|-----------|--------------|
+| `--text`   | `#1d1d1f` | 16.83 | 15.46 |
+| `--text-2` | `#515154` |  7.91 |  7.26 |
+| `--text-3` | `#6e6e73` |  5.07 |  4.66 |
+| `--text-4` | `#86868b` |  3.62 |  3.33 — large text & non-text only |
+| `--accent` | `#1d4ed8` |  6.70 |  6.15 |
+| `--line`   | `#d2d2d7` | hairline borders | |
 
-### Accent tokens (per product, set in themes.css)
-`--accent`, `--accent-contrast` (text on solid accent), `--accent-soft` (~10%
-fill), `--accent-softer` (~5%), `--accent-border` (~40%), `--accent-line` (~16%,
-for grids/hairlines). No `--accent-glow`, no gradients.
+### Product marks (non-text, need 3:1)
+| Product | `--mark` | On `#fff` | On `#f5f5f7` |
+|---------|----------|-----------|--------------|
+| Faro | `#1d4ed8` | 6.70 | 6.15 |
+| Argus | `#00875a` | 4.55 | 4.18 |
+| Case Manager | `#5b3fd9` | 6.65 | 6.11 |
+| Abacus | `#9a6700` | 4.87 | 4.47 |
 
-### Product ↔ color mapping (AXIS 2 · `.theme-*`)
-| Product | Class | Accent |
-|---------|-------|--------|
-| Faro | `.theme-faro` | Blue |
-| Argus | `.theme-argus` | Green (dark contrast text on solid) |
-| Case Manager | `.theme-case-manager` | Violet |
-| Abacus | `.theme-abacus` | Yellow `#ffc233` (dark contrast text on solid) |
+### Dark (toggle)
+`--text #f5f5f7` (18.08) · `--text-2 #a1a1a6` (7.65) · `--text-3 #86868b`
+(5.43) · `--accent #5b8dff` (6.28) on `#0a0b0d`. Product marks brighten to
+`#5b8dff / #18e29a / #9d85ff / #ffc233`.
 
-Default accent (no theme wrapper) = **Faro Blue** (brand primary).
+### 2.5 — Numbers are a colour-level rule
+`lib/metrics.ts` is the only place a figure may be defined. Each carries a
+`basis`: `derived` (computed from repo data), `spec` (needs an `owner`),
+`statute` (needs a `citation`), or `customer` (needs a `source`). A `customer`
+metric with no source is filtered out of every page by `publishedMetrics()`,
+and `npm run verify:metrics` — which runs as part of `npm run build` — fails
+if content hard-codes a stat or references an unknown id.
 
-Solution **domains** map to the four accents too: Fraud→Blue, AML→Green,
-Compliance→Violet, AI→Yellow (used by the Capabilities constellation).
+**Do not hard-code a number in a content file or component.** The one
+exception is a product mockup carrying obviously-fake UI data, which must be
+marked `metrics-guard:mock-ui` *and* visibly badged as sample data on screen.
 
 ---
 
 ## 3. Typography
 
-- **Display / headings:** `Sora` (700/800 for big-bold moments). `--font-display`
-- **Body:** `Inter`. `--font-sans`
-- **Data / labels / eyebrows / code:** `JetBrains Mono`. `--font-mono`
-- Loaded via Google Fonts in `index.html`.
-- Fluid scale via `clamp()`: `--fs-display` (hero, up to 8rem) → `--fs-xs`.
-- Display line-height `--lh-tight: 0.98`, tracking `--tracking-tight: -0.03em`.
-- Big-bold beats (hero H1, `BigStatement`) use Sora 700, tight leading, and
-  an accent-colored `<em>` (solid color, not gradient).
+**Inter only** for display and body; **JetBrains Mono** for figures, indices
+and code-ish labels. Sora was dropped in the 2026-08-26 (c) rebuild — one
+family, differentiated by weight, is the apple.com/Actimize pattern.
+
+| Token | Range | Use |
+|-------|-------|-----|
+| `--fs-display` | 40 → 64px | hero `<h1>` only |
+| `--fs-h1` | 32 → 48px | page titles, CTA headings |
+| `--fs-h2` | 26 → 36px | section headings |
+| `--fs-h3` | 20 → 24px | card / capability titles |
+| `--fs-h4` | 17 → 19px | sub-headings |
+| `--fs-lead` | 17 → 21px | ledes and intro paragraphs |
+| `--fs-body` | 16px | body |
+| `--fs-sm` / `--fs-xs` | 15 / 13px | secondary, meta |
+
+- Headings are `--fw-semibold` (600), **not** bold. Hierarchy is weight and
+  spacing, not scale contrast.
+- `--tracking-tight: -0.022em` on headings; body sits at 0.
+- `<em>` inside a heading is **not** recoloured. Emphasis is weight or wording.
+- Do not define a local oversized title in a module. If a heading needs to be
+  bigger than `--fs-h2`, that is a layout decision to raise here first.
 
 ---
 
 ## 4. Layout & motion
 
-- **Containers:** `--container` (1280→1440), `--container-wide` (1600→1880),
-  `--container-narrow` (780). Landing sections use **wide** so content reaches
-  toward the edges on large screens (no narrow centered column).
-- Section rhythm: `--section-y` clamp.
-- **Motion:** Framer Motion + Lenis smooth scroll. Signature easing
-  `--ease-out: cubic-bezier(.22,1,.36,1)`. Reveal-on-scroll (`whileInView`,
-  once) is the default entrance. All motion degrades under
-  `prefers-reduced-motion`.
-- **Graphics** (`components/graphics`): `GridBackdrop`, `ParticleField` (canvas
-  network, recolors to `--accent`), `NoiseOverlay`. `GradientOrbs` was
-  **removed** (gradient-based).
+- **Containers:** `--container` (1024) for text-led sections — narrow enough to
+  keep a readable measure; `--container-wide` (1280) for grids;
+  `--container-narrow` (720) for prose. Section rhythm is `--section-y`
+  (64 → 120px).
+- **Section banding:** alternate `--bg` (white) and `--bg-1` (`#f5f5f7`) via the
+  `.band` utility. That alternation *is* the visual rhythm — it replaces the
+  decorative backdrops.
+- **Radius:** `--r-md` (12) for tiles, `--r-lg` (18) for cards, `--r-pill` for
+  buttons.
+- **Depth:** a hairline `--line` border, plus `--shadow-card` on hover for
+  raised cards. Nothing else.
 
-### Decorative language (replaces gradients for visual interest)
-Because gradients are banned, depth/interest comes from **geometry + glass**:
-- **Geometric shapes:** concentric circles, crosshair lines, dots/plus marks,
-  oversized "ghost" numerals, hairline rules. Stroke in `currentColor`/accent at
-  low opacity. Parallax them for motion.
-- **Glassmorphism:** translucent surface (`--surface`/`--surface-glass`) +
-  `backdrop-filter: blur()` + 1px border. Use for cards/rows over textured or
-  colored backdrops (needs something behind to blur).
-- **Solid accent blocks:** a half/section painted solid `--accent` with
-  `--accent-contrast` text is an intentional, encouraged contrast device.
+### Motion
+Framer Motion + Lenis smooth scroll. `--ease-out: cubic-bezier(.28,.11,.32,1)`.
+The **only** entrance is `components/motion/Reveal` — a short fade-and-rise,
+firing once. Plus hover states. That is the entire motion vocabulary.
+
+All motion must degrade under `prefers-reduced-motion`.
+
+### Removed — do not reintroduce
+`ParticleField`, `GradientOrbs`, `NoiseOverlay`, `GridBackdrop`,
+`IsometricCubes`, `Marquee`, `Magnetic`, `Parallax`, oversized ghost numerals,
+spinning geometry, dot-grid backdrops, and the scroll-jacked landing sections
+(`BigStatement`, `Capabilities`, `UseCasesScroll`, `SolutionsRoller`,
+`TestimonialsScroll`). Glassmorphism is no longer used — surfaces are opaque.
+
+**Kept:** Argus `FundsTrace` and Faro `CrossRail`. These are the only
+full-viewport pinned sections on the site, because there the scroll *is* the
+interaction rather than an effect applied to static content.
 
 ---
 
 ## 5. Decision log (append newest at top)
+
+- **2026-08-26 (c)** — **Ground-up rebuild: light-first styling, 4 domain
+  pages, typed metrics.** Requested as a complete overhaul referencing
+  apple.com for styling and Actimize/Feedzai for structure.
+
+  **What the references actually showed** (fetched, not recalled — I had
+  Feedzai wrong from memory): Feedzai is **dark**, Actimize is **light**; both
+  lead with heavy social proof (Actimize "1000+ clients · $6T protected daily"
+  plus Celent/Datos recognition; Feedzai 12 tier-1 logos plus Chartis); both
+  keep colour minimal (Actimize is white 80%+ with teal on 2–3 CTAs per
+  section); Actimize manages hierarchy "via weight and spacing rather than
+  extreme scale contrast". Direction chosen: apple.com restraint on a light
+  canvas + Actimize's trust structure.
+
+  - **Palette replaced — this required sign-off and got it.** The old brand
+    blue `#2f6bff` scores **4.13 on the `#f5f5f7` band** (fails AA) and only
+    4.50 on white; the neon green `#18e29a` and yellow `#ffc233` score **1.70
+    and 1.61** on light and were unusable. A light rebuild was impossible
+    without new hue values. New palette in §2, all verified. Verify script:
+    ```
+    python3 -c "
+    def lin(v):
+        v/=255.0
+        return v/12.92 if v<=0.03928 else ((v+0.055)/1.055)**2.4
+    def L(c):
+        r,g,b=int(c[1:3],16),int(c[3:5],16),int(c[5:7],16)
+        return 0.2126*lin(r)+0.7152*lin(g)+0.0722*lin(b)
+    def ratio(a,b):
+        x,y=L(a),L(b); return (max(x,y)+0.05)/(min(x,y)+0.05)
+    print(ratio('#1d4ed8','#ffffff'), ratio('#1d4ed8','#f5f5f7'))"
+    ```
+  - **`--accent` no longer varies per product.** `.theme-*` now sets only
+    `--mark` (an icon tile / 2px rule). Links and CTAs are one blue sitewide.
+  - **Solutions IA: 14 thin pages → 4 domain pages.** The 14 shared one
+    skeleton and one set of stats, which is *why* the solution content read as
+    filler. Each is now an anchored section inside its domain page with its own
+    named typologies and detection signals. Pages went from ~350 words to
+    **928–1160**. `lib/solutions-content.ts` deleted, replaced by
+    `lib/domains-content.ts`. Legacy `/solutions/:capability` URLs redirect to
+    `/solutions/:domain#:capability` via `LEGACY_SOLUTION_MAP`, so no link
+    breaks.
+  - **`lib/metrics.ts` + `npm run verify:metrics`.** The site carried ~72
+    invented stat slots including "0 hallucinated facts" and "0 tolerated true
+    misses" — legal exposure for a compliance vendor, not just weak copy. Every
+    figure now declares a basis; unsourced `customer` claims are filtered out of
+    the DOM and the guard fails the build on hard-coded stats. Currently
+    **13/19 publishable**; the 6 pending are exactly the numbers a buyer cares
+    about and need real data (see §2.5).
+  - **`lib/trust.ts`** — empty registries for customer logos, analyst
+    recognition and case studies. `TrustSection` renders nothing until they are
+    populated, so the site never fakes social proof. **This is the biggest
+    remaining gap versus both reference vendors.**
+  - **Decoration stripped.** Deleted `ParticleField`, `GradientOrbs`,
+    `NoiseOverlay`, `GridBackdrop`, `IsometricCubes`, `Marquee`, `Magnetic`,
+    `Parallax`, and the scroll-jacked landing sections (`BigStatement`,
+    `Capabilities`, `UseCasesScroll`, `SolutionsRoller`, `TestimonialsScroll`).
+    Argus `FundsTrace` and Faro `CrossRail` kept — the scroll there *is* the
+    interaction.
+  - **Type:** Sora dropped; Inter carries display and body. Scale tops out at
+    64px hero / 36px section, down from 192px section titles.
+
+- **2026-08-26 (b)** — **Every placeholder page built out; icon registry completed.**
+  `/solutions/:slug` (×14), `/industries/:slug` (×4) and `/company` were shipping
+  a literal `[ … to be built ]` string — every nav dropdown link led to one.
+  All now render real content. Page depth went **2.1 → ~7.5 screens** (solutions),
+  **1.7 → ~7.3** (industries), **2.0 → ~7.3** (company).
+  - **New content libraries:** `lib/solutions-content.ts` and
+    `lib/industries-content.ts`. Body copy lives there; `nav-data.ts` keeps
+    taxonomy only. Both carry a header note that `stats` are **marketing claims
+    consistent with the landing hero figures, not audited benchmarks** — these
+    need marketing/legal sign-off before launch.
+  - **Section rhythm (shared by all three templates):** PageHeader → stat band →
+    problem/context + pain cards → ordered "how it works" steps → capability grid
+    → delivered-by products + regulatory touchpoints → related links → CTA. All
+    normal document flow; no sticky, no viewport-height sections (rule 6).
+  - **`pages/ProductPage.tsx`** — was also a placeholder. It is unreachable today
+    (all four products have bespoke routes ahead of `:slug` in `App.tsx`) but
+    would have shipped the placeholder the moment a fifth product was added to
+    `nav-data.ts`. Now a real fallback built from `PRODUCT_CONTENT` plus every
+    solution listing that product as a deliverer.
+  - **`lib/icons.ts`** — the registry held **19** icons while content referenced
+    **50**; `getIcon()` silently falls back to a generic `Box`, so 31 distinct
+    icons would all have rendered identically. All 50 now registered. **When you
+    add an `icon:` string to any content file, add it to `icons.ts`** — there is
+    no build-time check for this.
+  - **`Footer`** — had no Company column at all despite the nav having one. Added
+    About / Contact / LinkedIn / X; grid 4 → 5 columns with a 1180px breakpoint.
+  - **Ghost numerals** — `RulesDispatch`, `Schema`, `Workflow` and
+    `ConvergenceDeepCut` used `clamp(8rem, 6rem + 6vw, 11–12rem)` = **176–192px**
+    outlined numerals, forcing `-4rem` offsets on their headings. Now
+    `clamp(4.5rem, 3rem + 3.5vw, 7rem)` = **112px**, offsets pulled in to match.
+    Decorative outlined numerals are the one permitted exception to rule 7.
+  - **Contrast — accent is not a body-text colour on dark.** Measured
+    `--blue #2f6bff` on `--black`: **4.38:1**, under the 4.5 AA floor for normal
+    text. (`--green` 11.61, `--violet` 4.53, `--yellow` 12.20 all pass.) The new
+    templates' `.kicker` labels initially used `color: var(--accent)` at 12px;
+    they now use `--text-2` with the accent as a leading dot — which is what
+    `ui/Eyebrow` already did. **Do not set 12–14px text in `var(--accent)`;
+    follow the Eyebrow pattern.**
+
+- **2026-08-26** — **Landing page: de-scrolled and accent ratio rebalanced.**
+  The homepage was **11,013px / 15.3 viewport-screens** for six sections because
+  four separate blocks were pinned at `100svh`. Now **~8.4 screens**.
+  - **`sections/landing/ProductShowcase`** — rebuilt. Was a pinned `100svh`
+    title plus four `position: sticky; top: 0; height: 100svh` cards stacking on
+    each other (5 screens). Now a **2×2 grid in normal document flow** (2
+    screens): all four products compare side by side. **No sticky, no viewport
+    units.**
+  - **Accent ratio — new hard rule (see §1):** each card previously filled
+    **46% of the viewport with solid `var(--accent)`**, cycling blue → green →
+    violet → yellow back to back, which read as cheap at that area. Accent is now
+    **≈5% of a card**: a 2px top rule, the icon tile, the category label, and the
+    feature dots, over a neutral `--surface`. **Palette itself is unchanged** —
+    this is an area-ratio decision, not a color decision.
+  - **`sections/landing/Capabilities`** — was a pinned `100svh` heading over a
+    `height: 400vh` scroll track that advanced the active domain (5 screens for
+    one screen of content). Now a **click-driven tab switcher** (1.4 screens)
+    using the WAI-ARIA tabs pattern: `role=tablist/tab/tabpanel`, roving
+    `tabIndex`, and ←/→ arrow-key navigation. All four bespoke
+    `CapabilityGraphics` are kept. Uses **keyed remount, not `AnimatePresence
+    mode="wait"`** — on a click-driven tab an exit animation delays the incoming
+    panel by its full duration, which reads as lag.
+  - **Type scale** — both sections defined a local `.bigTitle` at
+    `clamp(3.5rem, 1.5rem + 11vw, 12rem)` = **192px**, plus a 352px ghost
+    numeral, bypassing the shared `SectionHeading`. Both now use
+    **`SectionHeading` (`--fs-h2`, 48px max)**. `BigStatement` headline 96px →
+    56px, marquee 96px → 60px. Resulting hierarchy: **hero 57px › section 48px ›
+    card title 32px**.
+  - **Rule of thumb going forward:** `100svh`/`100vh` pinning is reserved for
+    sections where **scroll *is* the interaction** — i.e. Argus `FundsTrace`
+    (hop 0–12 graph reveal) and Faro `CrossRail`, which are untouched. It is not
+    a default section height.
 
 - **2026-08-14** — **Nav dropdowns + Case Manager polish.**
   - **Global nav dropdowns** (`components/layout/Nav.tsx` + `.module.css`):

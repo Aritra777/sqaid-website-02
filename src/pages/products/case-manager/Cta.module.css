@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
    CASE MANAGER — Cta. Solid-violet closing band.
    Background = var(--accent) (Case-Manager violet).
-   All text, borders, and SVG strokes → var(--black) — deliberate
+   All text, borders, and SVG strokes → var(--accent-contrast) — deliberate
    black-on-violet, matching the reference's inverse-contrast aesthetic.
 
    Local channel --on (space-separated) lets rgb(var(--on)/α) produce
@@ -10,12 +10,13 @@
 
 .section {
   /* local channel for translucent-black tints */
-  --on: 10 11 13;
+  /* local channel for translucent on-accent tints */
+  --on: 255 255 255;
 
   position: relative;
   overflow: hidden;
   background: var(--accent);
-  color: var(--black);
+  color: var(--accent-contrast);
 }
 
 /* ── Decorative ring SVGs ────────────────────────────────────────────── */
@@ -25,7 +26,7 @@
   position: absolute;
   top: -96px;
   right: -96px;
-  color: var(--black);
+  color: var(--accent-contrast);
   opacity: 0.16;
   pointer-events: none;
 }
@@ -35,7 +36,7 @@
   position: absolute;
   bottom: -96px;
   left: -64px;
-  color: var(--black);
+  color: var(--accent-contrast);
   opacity: 0.12;
   pointer-events: none;
 }
@@ -61,7 +62,7 @@
   font-size: clamp(2.3rem, 1.1rem + 4.6vw, 4.4rem);
   line-height: 0.98;
   letter-spacing: var(--tracking-tight);
-  color: var(--black);
+  color: var(--accent-contrast);
 }
 
 /* ── Lead paragraph ──────────────────────────────────────────────────── */
@@ -88,30 +89,30 @@
 /* Primary: solid-black chip, accent-violet text.
    Double-class specificity to override Button's own .primary rules. */
 .demoBtn.demoBtn {
-  background: var(--black);
+  background: var(--accent-contrast);
   color: var(--accent);
-  border-color: var(--black);
+  border-color: var(--accent-contrast);
   font-family: var(--font-mono);
   font-weight: 600;
   letter-spacing: 0.08em;
 }
 .demoBtn.demoBtn:hover {
-  background: var(--black);
+  background: var(--accent-contrast);
   color: var(--accent);
-  border-color: var(--black);
+  border-color: var(--accent-contrast);
 }
 
 /* Ghost: transparent, black hairline border and text. */
 .tryBtn.tryBtn {
   background: transparent;
-  color: var(--black);
-  border-color: var(--black);
+  color: var(--accent-contrast);
+  border-color: var(--accent-contrast);
   font-family: var(--font-mono);
   font-weight: 600;
   letter-spacing: 0.08em;
 }
 .tryBtn.tryBtn:hover {
   background: transparent;
-  color: var(--black);
-  border-color: var(--black);
+  color: var(--accent-contrast);
+  border-color: var(--accent-contrast);
 }

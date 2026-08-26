@@ -17,37 +17,28 @@ export type ProductLink = {
 
 export const PRODUCTS: ProductLink[] = [
   {
-    slug: "faro",
-    name: "Faro",
-    tagline: "Real-time fraud & AML microservices",
-    theme: "theme-faro",
-    icon: "Zap",
-    status: "live",
-  },
-  {
     slug: "argus",
-    name: "Argus",
-    tagline: "AI-native financial-crime intelligence",
+    name: "ARGUS",
+    tagline: "Real-time fraud, AML, entities and trade surveillance",
     theme: "theme-argus",
     icon: "Network",
     status: "live",
   },
   {
-    slug: "case-manager",
-    name: "Case Manager",
-    tagline: "Configurable case management for compliance",
+    slug: "cais",
+    name: "CAIS",
+    tagline: "Universal AI-native case management",
     theme: "theme-case-manager",
     icon: "FolderKanban",
     status: "live",
   },
   {
     slug: "abacus",
-    name: "Abacus",
-    tagline: "Cross-product analytics & reporting",
+    name: "ABACUS",
+    tagline: "Multi-gated entity and real-time transaction screening",
     theme: "theme-abacus",
     icon: "BarChart3",
-    status: "soon",
-    disabled: true,
+    status: "live",
   },
 ];
 
@@ -60,6 +51,12 @@ export type SolutionItem = {
 
 export type SolutionDomain = {
   name: string;
+  /** own page: /solutions/:slug */
+  slug: string;
+  /** short label for nav / tabs */
+  short: string;
+  /** product theme class supplying --mark for this domain */
+  theme: string;
   color: string;
   items: SolutionItem[];
 };
@@ -67,6 +64,9 @@ export type SolutionDomain = {
 export const SOLUTIONS: SolutionDomain[] = [
   {
     name: "Fraud Detection",
+    slug: "fraud-detection",
+    short: "Fraud",
+    theme: "theme-faro",
     color: "var(--blue)",
     items: [
       {
@@ -97,6 +97,9 @@ export const SOLUTIONS: SolutionDomain[] = [
   },
   {
     name: "AML & Financial Crime",
+    slug: "aml-financial-crime",
+    short: "AML",
+    theme: "theme-argus",
     color: "var(--green)",
     items: [
       {
@@ -127,6 +130,9 @@ export const SOLUTIONS: SolutionDomain[] = [
   },
   {
     name: "Compliance Operations",
+    slug: "compliance-operations",
+    short: "Compliance",
+    theme: "theme-case-manager",
     color: "var(--violet)",
     items: [
       {
@@ -151,6 +157,9 @@ export const SOLUTIONS: SolutionDomain[] = [
   },
   {
     name: "AI & Automation",
+    slug: "ai-automation",
+    short: "AI",
+    theme: "theme-abacus",
     color: "var(--yellow)",
     items: [
       {
@@ -189,5 +198,9 @@ export const ALL_SOLUTIONS: SolutionItem[] = SOLUTIONS.flatMap((d) => d.items);
 export const getSolution = (slug: string) =>
   ALL_SOLUTIONS.find((s) => s.slug === slug);
 export const getProduct = (slug: string) => PRODUCTS.find((p) => p.slug === slug);
+export const getDomain = (slug: string) => SOLUTIONS.find((d) => d.slug === slug);
+/** the domain a legacy solution slug now lives under */
+export const getDomainForSolution = (slug: string) =>
+  SOLUTIONS.find((d) => d.items.some((i) => i.slug === slug));
 export const getIndustry = (slug: string) =>
   INDUSTRIES.find((i) => i.slug === slug);

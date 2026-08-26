@@ -8,8 +8,18 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.6fr repeat(3, 1fr);
+  grid-template-columns: 1.8fr repeat(2, 1fr);
   gap: var(--space-8);
+}
+@media (max-width: 1180px) {
+  .grid {
+    grid-template-columns: 1fr repeat(2, 1fr);
+    gap: var(--space-7);
+  }
+  .brandCol {
+    grid-column: 1 / -1;
+    max-width: none;
+  }
 }
 @media (max-width: 900px) {
   .grid {

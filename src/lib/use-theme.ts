@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 
-export type ThemeMode = "dark" | "light";
+export type ThemeMode = "light" | "dark";
 
 const STORAGE_KEY = "sqaid-theme";
 
 function getInitial(): ThemeMode {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
   const stored = localStorage.getItem(STORAGE_KEY) as ThemeMode | null;
   if (stored === "dark" || stored === "light") return stored;
-  // default to dark; honor OS preference only if user hasn't chosen
-  return window.matchMedia("(prefers-color-scheme: light)").matches
-    ? "light"
-    : "dark";
+  // default to LIGHT; honor an explicit OS dark preference if the user
+  // has not chosen for themselves.
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 /**

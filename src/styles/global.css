@@ -50,10 +50,12 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   line-height: var(--lh-tight);
   letter-spacing: var(--tracking-tight);
-  color: var(--text);
+  /* NO explicit colour: an element rule here beats inherited colour, which
+     silently breaks headings inside .invert and on-accent bands. Inherit
+     from body / the local context instead. */
 }
 h1 {
   font-size: var(--fs-h1);
@@ -92,6 +94,7 @@ h4 {
 .section {
   position: relative;
   padding-block: var(--section-y);
+  scroll-margin-top: var(--nav-h);
 }
 
 /* ─────────────────────── TEXT HELPERS (solid, no gradient) ─────────── */
@@ -133,58 +136,66 @@ h4 {
 }
 
 /* ───────────────────────── INVERTED SURFACE ───────────────────────────
-   `.invert` always renders the OPPOSITE of the current mode: a light panel
-   in dark mode, a dark panel in light mode (and vice-versa when the user
-   flips the theme). It re-declares the mode tokens locally, so any child that
-   references --bg/--surface/--text/etc. adapts automatically. Used to build
-   "half light / half dark" split layouts on the product pages.
-   Accent tokens are intentionally NOT touched — the product accent carries
-   across both halves. No new hues, no gradients, no shadows. */
+   `.invert` renders the OPPOSITE of the current mode — a dark panel in light
+   mode and vice-versa. Used sparingly (product-page split layouts). It only
+   re-declares mode tokens; --accent and --mark carry across unchanged. */
 .invert {
-  --bg: #ffffff;
-  --bg-1: #f5f6f8;
-  --surface: rgba(10, 11, 13, 0.025);
-  --surface-2: rgba(10, 11, 13, 0.05);
-  --surface-3: rgba(10, 11, 13, 0.08);
-  --surface-glass: rgba(255, 255, 255, 0.6);
-  --line: rgba(10, 11, 13, 0.1);
-  --line-2: rgba(10, 11, 13, 0.16);
-  --line-strong: rgba(10, 11, 13, 0.28);
-  --text: rgba(10, 11, 13, 0.96);
-  --text-2: rgba(10, 11, 13, 0.62);
-  --text-3: rgba(10, 11, 13, 0.42);
-  --text-4: rgba(10, 11, 13, 0.28);
-  --scrim: rgba(10, 11, 13, 0.4);
+  --bg: #0a0b0d;
+  --bg-1: #141517;
+  --bg-2: #1c1d20;
+  --surface: #141517;
+  --surface-2: #1c1d20;
+  --line: #2c2d31;
+  --line-2: #3a3b40;
+  --line-strong: #55565c;
+  --text: #f5f5f7;
+  --text-2: #a1a1a6;
+  --text-3: #86868b;
+  --text-4: #6e6e73;
+  /* accent and mark MUST flip too. Leaving them at the light-mode value put
+     #1d4ed8 on a #0a0b0d panel — 2.94:1, well under AA. */
+  --accent: #5b8dff;
+  --accent-hover: #7ba3ff;
+  --accent-contrast: #0a0b0d;
+  --accent-soft: rgba(91, 141, 255, 0.14);
+  --accent-border: rgba(91, 141, 255, 0.32);
+  --mark: var(--mark-invert, #5b8dff);
+  --mark-soft: rgba(255, 255, 255, 0.08);
+  --mark-border: rgba(255, 255, 255, 0.18);
+  --shadow-card: none;
+  --shadow-card-hover: none;
   background: var(--bg);
   color: var(--text);
 }
-[data-theme="light"] .invert {
-  --bg: var(--black);
-  --bg-1: #0d0e11;
-  --surface: rgba(255, 255, 255, 0.03);
-  --surface-2: rgba(255, 255, 255, 0.055);
-  --surface-3: rgba(255, 255, 255, 0.09);
-  --surface-glass: rgba(10, 11, 13, 0.55);
-  --line: rgba(255, 255, 255, 0.08);
-  --line-2: rgba(255, 255, 255, 0.14);
-  --line-strong: rgba(255, 255, 255, 0.24);
-  --text: rgba(255, 255, 255, 0.96);
-  --text-2: rgba(255, 255, 255, 0.62);
-  --text-3: rgba(255, 255, 255, 0.4);
-  --text-4: rgba(255, 255, 255, 0.26);
-  --scrim: rgba(10, 11, 13, 0.7);
+[data-theme="dark"] .invert {
+  --bg: #ffffff;
+  --bg-1: #f5f5f7;
+  --bg-2: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f5f5f7;
+  --line: #d2d2d7;
+  --line-2: #c7c7cc;
+  --line-strong: #aeaeb2;
+  --text: #1d1d1f;
+  --text-2: #515154;
+  --text-3: #6e6e73;
+  --text-4: #86868b;
+  --accent: #1d4ed8;
+  --accent-hover: #1a44bd;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(29, 78, 216, 0.08);
+  --accent-border: rgba(29, 78, 216, 0.28);
+  --mark: var(--accent);
+  --mark-soft: var(--accent-soft);
+  --mark-border: var(--accent-border);
+}
+
+/* ── section band: the alternating Apple-style grey ── */
+.band {
+  background: var(--bg-1);
 }
 
 /* ─────────────────── GLOBAL KEYFRAMES (shared) ─────────────────────── */
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
 @keyframes pulse-soft {
   0%,
   100% {
@@ -192,5 +203,17 @@ h4 {
   }
   50% {
     opacity: 1;
+  }
+}
+
+.product-fullscreen > section,
+.product-use-cases {
+  min-height: 100svh;
+}
+
+@media (max-width: 700px) {
+  .product-fullscreen > section,
+  .product-use-cases {
+    min-height: auto;
   }
 }

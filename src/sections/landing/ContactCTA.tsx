@@ -1,7 +1,6 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
-import GridBackdrop from "@/components/graphics/GridBackdrop";
 import { SITE } from "@/lib/site";
 import styles from "./ContactCTA.module.css";
 
@@ -11,7 +10,6 @@ export default function ContactCTA() {
     <section id="contact" className="section">
       <Container size="wide">
         <Reveal className={styles.panel}>
-          <GridBackdrop className={styles.grid} />
           <div className={styles.content}>
             <h2 className={styles.title}>
               See SqAId on <em>your</em> data.

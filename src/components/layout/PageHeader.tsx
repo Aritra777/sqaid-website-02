@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Eyebrow from "@/components/ui/Eyebrow";
-import GridBackdrop from "@/components/graphics/GridBackdrop";
 import { staggerParent, fadeUp } from "@/lib/motion";
 import styles from "./PageHeader.module.css";
 
@@ -25,7 +24,6 @@ export default function PageHeader({
 }: PageHeaderProps) {
   return (
     <header className={styles.header}>
-      <GridBackdrop />
       <Container>
         <motion.div
           className={styles.inner}

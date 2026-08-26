@@ -1,8 +1,9 @@
+/* ═══ SectionHeading — weight- and space-led hierarchy, not scale contrast ═══ */
 .head {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  max-width: 720px;
+  max-width: 46rem;
 }
 .center {
   align-items: center;
@@ -15,15 +16,20 @@
 
 .title {
   font-size: var(--fs-h2);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
 }
+/* <em> no longer recolours — emphasis is weight, per the restraint brief */
 .title em {
   font-style: normal;
-  color: var(--accent);
+  color: var(--text);
 }
 
 .lede {
   color: var(--text-2);
   font-size: var(--fs-lead);
   line-height: var(--lh-relaxed);
-  max-width: 60ch;
+  max-width: 42rem;
 }

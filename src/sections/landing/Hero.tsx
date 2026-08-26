@@ -1,86 +1,37 @@
+import { ArrowDown, ArrowRight, Play, ShieldCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Eyebrow from "@/components/ui/Eyebrow";
-import GridBackdrop from "@/components/graphics/GridBackdrop";
-import IsometricCubes from "@/components/graphics/IsometricCubes";
-import { staggerParent, fadeUp } from "@/lib/motion";
 import styles from "./Hero.module.css";
 
-type Stat = { value: string; unit?: string; label: string };
+const sparks = Array.from({ length: 28 }, (_, i) => ({ left: `${(i * 37) % 97}%`, top: `${8 + ((i * 53) % 78)}%`, animationDelay: `${(i % 9) * -0.7}s`, transform: `rotate(${(i * 29) % 180}deg)` }));
 
-const STATS: Stat[] = [
-  { value: "40–60", unit: "%", label: "Faster investigations" },
-  { value: "95", unit: "%", label: "False positives suppressed" },
-  { value: "<5", unit: "ms", label: "Per-event evaluation" },
-  { value: "4", label: "Unified surveillance workflows" },
-];
-
-/**
- * Hero — two-column: messaging on the left, an infinite vertical wall of
- * real solution cards on the right. Static grid backdrop only (no animated
- * graph). Stats pinned to a full-width baseline.
- */
 export default function Hero() {
   return (
-    <section className={styles.hero}>
-      <GridBackdrop className={styles.grid} />
-
-      <div className={`container container--wide ${styles.top}`}>
-        <motion.div
-          className={styles.left}
-          variants={staggerParent}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.div variants={fadeUp}>
-            <Eyebrow>AI-Native Risk &amp; Compliance Intelligence</Eyebrow>
+    <header className={styles.hero}>
+      <div className={styles.sparks} aria-hidden="true">{sparks.map((spark, i) => <i key={i} style={spark} />)}</div>
+      <Container size="wide">
+        <motion.div className={styles.inner} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .7 }}>
+          <div className={styles.kicker}><span className={styles.brandMark}><Sparkles size={15} /></span> SqAId Intelligence Platform</div>
+          <h1 className={styles.title}>Fraud. AML. Entities. Trade.<br /><em>Everything in one.</em></h1>
+          <p className={styles.lede}>ARGUS replaces fragmented financial-crime tools with one AI-native product for real-time detection, intelligence, investigation, and scalable case management.</p>
+          <div className={styles.actions}>
+            <Button to="/#contact" size="lg">Request a demo <ArrowRight size={16} /></Button>
+            <Button to="/products/argus" variant="outline" size="lg">Explore Argus</Button>
+          </div>
+          <div className={styles.proof}><ShieldCheck size={15} /> Built for governed, explainable financial-crime decisions</div>
+          <motion.div className={styles.stage} initial={{ opacity: 0, y: 36, rotateX: 4 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ delay: .35, duration: 1 }}>
+            <div className={styles.stageBar}><div className={styles.dots}><i /><i /><i /></div><span>ARGUS / NETWORK INTELLIGENCE</span><div className={styles.live}><i /> LIVE</div></div>
+            <div className={styles.screen}>
+              <img src="/assets/products/argus.png" alt="Argus network intelligence graph explorer" />
+              <div className={styles.scan} />
+              <div className={styles.agentCard}><span><Sparkles size={13} /> GRAPH AI</span><strong>Fraud ring detected</strong><p>11 linked entities · 5 hops · risk 98</p></div>
+              <button className={styles.play} type="button" aria-label="Preview the Argus investigation flow"><Play size={17} fill="currentColor" /></button>
+            </div>
           </motion.div>
-
-          <motion.h1 className={styles.title} variants={fadeUp}>
-            Turn alert overload into
-            <br />
-            <em>decisions you can defend.</em>
-          </motion.h1>
-
-          <motion.p className={styles.sub} variants={fadeUp}>
-            SqAId unifies <b>AML, fraud, sanctions, and trade surveillance</b>{" "}
-            into one AI-native platform — so compliance teams investigate the
-            cases that matter, not the noise.
-          </motion.p>
-
-          <motion.div className={styles.actions} variants={fadeUp}>
-            <Button to="/#contact" size="lg">
-              Request a Demo →
-            </Button>
-            <Button to="/products/argus" variant="outline" size="lg">
-              See the Platform
-            </Button>
-          </motion.div>
+          <a className={styles.scroll} href="#platform">Meet the platform <ArrowDown size={14} /></a>
         </motion.div>
-
-        <motion.div
-          className={styles.right}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <IsometricCubes />
-        </motion.div>
-      </div>
-
-      <div className={`container container--wide ${styles.statsWrap}`}>
-        <ul className={styles.stats}>
-          {STATS.map((s) => (
-            <li key={s.label} className={styles.stat}>
-              <div className={styles.statVal}>
-                {s.value}
-                {s.unit && <span>{s.unit}</span>}
-              </div>
-              <div className={styles.statLabel}>{s.label}</div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+      </Container>
+    </header>
   );
 }

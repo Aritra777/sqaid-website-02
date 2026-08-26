@@ -12,9 +12,6 @@ import Button from "@/components/ui/Button";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Badge from "@/components/ui/Badge";
 import Carousel from "@/components/ui/Carousel";
-import Marquee from "@/components/motion/Marquee";
-import Magnetic from "@/components/motion/Magnetic";
-import Parallax from "@/components/motion/Parallax";
 import { fadeUp, inViewOnce, staggerParent } from "@/lib/motion";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import { SITE } from "@/lib/site";
@@ -46,8 +43,11 @@ const CAPABILITIES = [
   },
 ];
 
-/** Illustrative preview metrics — Abacus is still in development. */
-const METRICS = [
+/* metrics-guard:mock-ui — these are FAKE numbers rendered inside a product
+   mockup, not claims about outcomes. The panel is visibly badged "Sample data"
+   below so a visitor cannot mistake them for real figures. Do not copy any of
+   these into marketing copy; real numbers belong in lib/metrics.ts. */
+const MOCK_DASHBOARD_TILES = [
   { label: "Alerts triaged", value: "128k", note: "+18% MoM", spark: [8, 12, 10, 16, 14, 22, 26] },
   { label: "Cross-product coverage", value: "4/4", note: "all products", spark: [10, 10, 12, 12, 14, 14, 16] },
   { label: "False positives", value: "−61%", note: "suppressed", spark: [24, 20, 22, 16, 14, 10, 8] },
@@ -72,10 +72,6 @@ const BOARDS = [
   { tag: "Exec", name: "Executive summary", body: "One board that rolls the whole platform up for leadership and the board.", spark: [12, 16, 14, 20, 22, 26, 30] },
 ];
 
-const MARQUEE_TAGS = [
-  "Dashboards", "Trends", "Benchmarks", "Velocity", "Drift", "Exports",
-  "SAR cycle time", "False positives", "Coverage", "Scheduled reports",
-];
 
 /* ───────────────────────────── sparkline ─────────────────────────────── */
 
@@ -103,7 +99,7 @@ function Sparkline({ points }: { points: number[] }) {
 function DataViz() {
   return (
     <div className={styles.viz} aria-hidden="true">
-      <Parallax speed={30} className={styles.vizBarsWrap}>
+      
         <svg className={styles.bars} viewBox="0 0 260 200">
           {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
             const h = [70, 110, 90, 150, 120, 180, 140, 200][i];
@@ -120,8 +116,8 @@ function DataViz() {
             );
           })}
         </svg>
-      </Parallax>
-      <Parallax speed={-22} className={styles.vizLineWrap}>
+      
+      
         <svg className={styles.line} viewBox="0 0 260 120">
           <path d="M4 96 L40 78 L76 86 L112 54 L148 62 L184 30 L220 40 L256 12" />
           {[
@@ -133,7 +129,7 @@ function DataViz() {
             <circle key={x} cx={x} cy={y} r="4" />
           ))}
         </svg>
-      </Parallax>
+      
     </div>
   );
 }
@@ -173,14 +169,14 @@ export default function AbacusPage() {
               the details; here&apos;s where it&apos;s headed.
             </motion.p>
             <motion.div className={styles.actions} variants={fadeUp}>
-              <Magnetic>
+              
                 <Button
                   href={`mailto:${SITE.email}?subject=Abacus%20early%20access`}
                   size="lg"
                 >
                   Notify me <BellRing size={17} />
                 </Button>
-              </Magnetic>
+              
               <Button href="#preview" variant="outline" size="lg">
                 See the preview
               </Button>
@@ -200,14 +196,6 @@ export default function AbacusPage() {
 
       {/* ══ MARQUEE ══ */}
       <div className={styles.marqueeWrap}>
-        <Marquee duration={30}>
-          {MARQUEE_TAGS.map((t) => (
-            <span key={t} className={styles.marqueeItem}>
-              {t}
-              <span className={styles.marqueeDot} />
-            </span>
-          ))}
-        </Marquee>
       </div>
 
       {/* ══ WHAT IT WILL DO ══ */}
@@ -291,8 +279,13 @@ export default function AbacusPage() {
             </p>
           </div>
 
+          <p className={styles.sampleBadge}>
+            <span aria-hidden="true">●</span> Sample data — illustrative mockup, not
+            measured results
+          </p>
+
           <div className={styles.checker}>
-            {METRICS.map((m, i) => (
+            {MOCK_DASHBOARD_TILES.map((m, i) => (
               <motion.div
                 key={m.label}
                 /* every other tile flips to the opposite mode → checkerboard */
@@ -359,14 +352,14 @@ export default function AbacusPage() {
               for a walkthrough.
             </p>
             <div className={styles.actions}>
-              <Magnetic>
+              
                 <Button
                   href={`mailto:${SITE.email}?subject=Abacus%20early%20access`}
                   size="lg"
                 >
                   Notify me <ArrowRight size={18} />
                 </Button>
-              </Magnetic>
+              
               <Button to="/#products" variant="outline" size="lg">
                 See the Platform
               </Button>

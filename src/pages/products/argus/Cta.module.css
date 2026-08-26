@@ -51,12 +51,12 @@
    .demoBtn: solid dark chip with accent text (inverse of a normal primary).
    .watchBtn: transparent with an accent-contrast hairline outline. */
 .demoBtn.demoBtn {
-  background: var(--black);
+  background: var(--accent-contrast);
   color: var(--accent);
-  border-color: var(--black);
+  border-color: var(--accent-contrast);
 }
 .demoBtn.demoBtn:hover {
-  background: var(--black);
+  background: var(--accent-contrast);
   color: var(--accent);
 }
 

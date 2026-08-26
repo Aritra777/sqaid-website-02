@@ -8,6 +8,9 @@
   overflow-x: clip;
 }
 
+.page > section { min-height: 100svh; }
+@media (max-width: 700px) { .page > section { min-height: auto; } }
+
 /* ── Editorial marquee band · hairline top + bottom ── */
 .marqueeStrip {
   border-top: 1px solid var(--line-2);

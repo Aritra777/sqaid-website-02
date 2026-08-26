@@ -8,7 +8,6 @@
    hex / no shadows / no gradients.
    ═══════════════════════════════════════════════════════════════════════ */
 import Button from "@/components/ui/Button";
-import Magnetic from "@/components/motion/Magnetic";
 import Reveal from "@/components/motion/Reveal";
 import Container from "@/components/ui/Container";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
@@ -129,7 +128,7 @@ export default function DecisionTapeCTA() {
 
           <Reveal delay={0.1}>
             <div className={styles.actions}>
-              <Magnetic>
+              
                 <Button
                   variant="primary"
                   size="lg"
@@ -138,8 +137,8 @@ export default function DecisionTapeCTA() {
                 >
                   REQUEST A DEMO
                 </Button>
-              </Magnetic>
-              <Magnetic strength={0.25}>
+              
+              
                 <Button
                   variant="outline"
                   size="lg"
@@ -148,7 +147,7 @@ export default function DecisionTapeCTA() {
                 >
                   SEE IT RUN
                 </Button>
-              </Magnetic>
+              
             </div>
           </Reveal>
         </Container>

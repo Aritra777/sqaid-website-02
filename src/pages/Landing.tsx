@@ -1,21 +1,25 @@
 import Hero from "@/sections/landing/Hero";
-import BigStatement from "@/sections/landing/BigStatement";
+import TrustSection from "@/sections/landing/TrustSection";
 import ProductShowcase from "@/sections/landing/ProductShowcase";
-import Capabilities from "@/sections/landing/Capabilities";
-import UseCasesScroll from "@/sections/landing/UseCasesScroll";
+import HomeIntelligence from "@/sections/landing/HomeIntelligence";
 import ContactCTA from "@/sections/landing/ContactCTA";
 import { useDocumentTitle } from "@/lib/use-document-title";
 
+/**
+ * Landing — hero → trust → platform → solutions → how we deploy → contact.
+ *
+ * Section order follows the reference vendors (trust signal immediately after
+ * the hero). TrustSection self-hides until lib/trust.ts is populated.
+ */
 export default function Landing() {
   useDocumentTitle(null);
 
   return (
     <>
       <Hero />
-      <BigStatement />
+      <TrustSection />
+      <HomeIntelligence />
       <ProductShowcase />
-      <Capabilities />
-      <UseCasesScroll />
       <ContactCTA />
     </>
   );

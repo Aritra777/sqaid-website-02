@@ -26,9 +26,9 @@
 /* GhostNumeral — top-right, decorative */
 .ghost {
   position: absolute;
-  top: -3.5rem;
+  top: -2.1rem;
   right: 0;
-  font-size: clamp(8rem, 6rem + 6vw, 11rem);
+  font-size: clamp(4.5rem, 3rem + 3.5vw, 7rem);
   /* -webkit-text-stroke inherits from primitives.module.css .ghost rule */
 }
 

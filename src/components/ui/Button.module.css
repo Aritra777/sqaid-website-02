@@ -1,31 +1,27 @@
+/* ═══ Button — Apple-style: pill, one accent, no decoration ═══════════ */
 .btn {
-  --btn-h: 46px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  height: var(--btn-h);
-  padding-inline: var(--space-6);
+  border: 1px solid transparent;
   border-radius: var(--r-pill);
   font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-normal);
   white-space: nowrap;
   cursor: pointer;
-  transition: transform var(--t-fast), background var(--t-base),
-    border-color var(--t-base), opacity var(--t-base), color var(--t-base);
-}
-.btn:active {
-  transform: translateY(1px);
+  transition: background var(--t-fast), border-color var(--t-fast),
+    color var(--t-fast), opacity var(--t-fast);
 }
 
+/* ── sizes ── */
 .md {
-  --btn-h: 46px;
+  padding: 10px 20px;
+  font-size: var(--fs-sm);
 }
 .lg {
-  --btn-h: 54px;
-  padding-inline: var(--space-7);
+  padding: 13px 26px;
   font-size: var(--fs-body);
 }
 
@@ -33,31 +29,36 @@
 .primary {
   background: var(--accent);
   color: var(--accent-contrast);
-  border: 1px solid transparent;
 }
 .primary:hover {
-  transform: translateY(-1px);
-  opacity: 0.9;
+  background: var(--accent-hover);
 }
 
-/* ── outline: accent border, fills on hover ── */
+/* ── outline: hairline, neutral ── */
 .outline {
   background: transparent;
+  border-color: var(--line-2);
   color: var(--text);
-  border: 1px solid var(--line-2);
 }
 .outline:hover {
-  border-color: var(--accent-border);
-  color: var(--accent);
+  border-color: var(--text-3);
+  background: var(--surface-2);
 }
 
-/* ── ghost: minimal ── */
+/* ── ghost: the Apple "Learn more ›" text link, not a button shape ── */
 .ghost {
-  background: var(--surface-2);
-  color: var(--text);
-  border: 1px solid var(--line);
+  padding-inline: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: var(--accent);
 }
 .ghost:hover {
-  background: var(--surface-3);
-  transform: translateY(-1px);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }

@@ -1,16 +1,12 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 
 /* ── Lazy routes (code-split per page) ─────────────────────────────── */
 const Landing = lazy(() => import("@/pages/Landing"));
-const ProductPage = lazy(() => import("@/pages/ProductPage"));
-const FaroPage = lazy(() => import("@/pages/products/FaroPage"));
+const ProductDetailPage = lazy(() => import("@/pages/ProductDetailPage"));
 const ArgusPage = lazy(() => import("@/pages/products/ArgusPage"));
-const CaseManagerPage = lazy(() => import("@/pages/products/CaseManagerPage"));
-const AbacusPage = lazy(() => import("@/pages/products/AbacusPage"));
-const SolutionPage = lazy(() => import("@/pages/SolutionPage"));
-const IndustryPage = lazy(() => import("@/pages/IndustryPage"));
+const AbacusScreeningPage = lazy(() => import("@/pages/products/AbacusScreeningPage"));
 const Company = lazy(() => import("@/pages/Company"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
@@ -40,18 +36,13 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Landing />} />
 
-          {/* Bespoke product pages — each has its own signature layout.
-              Matched before the dynamic template below. Argus (and any
-              future product) falls through to the data-driven template. */}
-          <Route path="/products/faro" element={<FaroPage />} />
           <Route path="/products/argus" element={<ArgusPage />} />
-          <Route path="/products/case-manager" element={<CaseManagerPage />} />
-          <Route path="/products/abacus" element={<AbacusPage />} />
-
-          {/* Dynamic, data-driven template (Argus + fallback). */}
-          <Route path="/products/:slug" element={<ProductPage />} />
-          <Route path="/solutions/:slug" element={<SolutionPage />} />
-          <Route path="/industries/:slug" element={<IndustryPage />} />
+          <Route path="/products/abacus" element={<AbacusScreeningPage />} />
+          <Route path="/products/:slug" element={<ProductDetailPage />} />
+          <Route path="/products/faro" element={<Navigate to="/products/argus" replace />} />
+          <Route path="/products/case-manager" element={<Navigate to="/products/cais" replace />} />
+          <Route path="/solutions/*" element={<Navigate to="/products/argus" replace />} />
+          <Route path="/industries/*" element={<Navigate to="/" replace />} />
           <Route path="/company" element={<Company />} />
 
           <Route path="*" element={<NotFound />} />

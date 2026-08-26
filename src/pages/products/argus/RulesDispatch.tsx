@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import NoiseOverlay from "@/components/graphics/NoiseOverlay";
 import Reveal from "@/components/motion/Reveal";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { EASE_OUT } from "@/lib/motion";
@@ -56,7 +55,6 @@ export default function RulesDispatch() {
 
   return (
     <section className={styles.section}>
-      <NoiseOverlay className={styles.noise} />
       <Container size="wide">
         <div className={styles.grid}>
           {/* ── Left: copy + stats ─────────────────────────────────── */}

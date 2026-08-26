@@ -15,7 +15,6 @@ import {
   useMotionValueEvent,
   useReducedMotion,
 } from "framer-motion";
-import NoiseOverlay from "@/components/graphics/NoiseOverlay";
 import { MonoLabel } from "./primitives";
 import { hopGraph, hopContext, decay, type HopNode } from "./data";
 import styles from "./FundsTrace.module.css";
@@ -51,7 +50,6 @@ export default function FundsTrace() {
       style={{ height: reduced ? "auto" : "340vh" }}
     >
       <div className={styles.sticky}>
-        <NoiseOverlay />
 
         <div className={styles.header}>
           <div>
