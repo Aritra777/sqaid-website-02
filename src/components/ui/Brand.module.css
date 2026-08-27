@@ -5,18 +5,8 @@
   color: var(--text);
 }
 
-.glyph {
-  display: grid;
-  place-items: center;
-  color: var(--accent);
-}
-
-.word {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: var(--tracking-tight);
-}
-.ai {
-  color: var(--accent);
+.logo {
+  height: 28px;
+  width: auto;
+  display: block;
 }

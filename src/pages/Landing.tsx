@@ -1,5 +1,7 @@
 import Hero from "@/sections/landing/Hero";
 import TrustSection from "@/sections/landing/TrustSection";
+import HowWeDeploy from "@/sections/landing/HowWeDeploy";
+import Industries from "@/sections/landing/Industries";
 import ProductShowcase from "@/sections/landing/ProductShowcase";
 import HomeIntelligence from "@/sections/landing/HomeIntelligence";
 import ContactCTA from "@/sections/landing/ContactCTA";
@@ -18,6 +20,8 @@ export default function Landing() {
     <>
       <Hero />
       <TrustSection />
+      <HowWeDeploy />
+      <Industries />
       <HomeIntelligence />
       <ProductShowcase />
       <ContactCTA />

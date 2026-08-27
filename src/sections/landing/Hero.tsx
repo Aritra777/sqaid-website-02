@@ -12,7 +12,6 @@ export default function Hero() {
       <div className={styles.sparks} aria-hidden="true">{sparks.map((spark, i) => <i key={i} style={spark} />)}</div>
       <Container size="wide">
         <motion.div className={styles.inner} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .7 }}>
-          <div className={styles.kicker}><span className={styles.brandMark}><Sparkles size={15} /></span> SqAId Intelligence Platform</div>
           <h1 className={styles.title}>Fraud. AML. Entities. Trade.<br /><em>Everything in one.</em></h1>
           <p className={styles.lede}>ARGUS replaces fragmented financial-crime tools with one AI-native product for real-time detection, intelligence, investigation, and scalable case management.</p>
           <div className={styles.actions}>

@@ -9,6 +9,7 @@ import SurfacesGallery from "./argus/SurfacesGallery";
 import LineageStrip from "./argus/LineageStrip";
 import Cta from "./argus/Cta";
 import ProductUseCases from "@/components/product/ProductUseCases";
+import ProductCaseStudies from "@/components/product/ProductCaseStudies";
 import styles from "./ArgusPage.module.css";
 
 
@@ -23,6 +24,7 @@ export default function ArgusPage() {
       <FleetComposer />
       <FundsTrace />
       <ProductUseCases product="argus" />
+      <ProductCaseStudies product="argus" />
 
       <div className={styles.marqueeStrip}>
       </div>

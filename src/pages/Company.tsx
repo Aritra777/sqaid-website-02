@@ -87,6 +87,77 @@ export default function Company() {
         </Button>
       </PageHeader>
 
+      {/* ── origin / story ── */}
+      <section className="section">
+        <Container size="wide">
+          <div className={styles.storyGrid}>
+            <Reveal className={styles.storyCopy}>
+              <span className={styles.kicker}>Our origin</span>
+              <h2 className={styles.storyTitle}>From the queue to the platform</h2>
+              <p className={styles.storyLead}>
+                SqAId started in Tampa, Florida, USA, in a conference room where two compliance veterans sketched a simple idea on a whiteboard: what if the analyst got the case, not the noise? Both founders brought 20+ years of hands-on risk and compliance experience — years spent in alert queues, defending tuning decisions to examiners, and watching talented teams burn out on manual work.
+              </p>
+            </Reveal>
+            <Reveal className={styles.storyBody}>
+              <p>
+                We had seen the same pattern across banks, fintechs and crypto firms: detection systems tuned to catch everything produce endless noise, and teams raise thresholds just to survive the volume. Investigation remains manual — pulling statements, walking graphs, drafting narratives, reconciling silos — so coverage ends up set by headcount, not by risk.
+              </p>
+              <p>
+                The insight was simple. If the machine can assemble the evidence, cite it, and surface uncertainty, the analyst can stay where they add the most value: deciding. That’s why SqAId is AI-native, not AI-wrapped. Evidence is traceable, policies are configurable in-house, and every deployment proves itself in shadow mode on your own traffic before it touches a customer outcome.
+              </p>
+              <div className={styles.storyMeta}>
+                <div>
+                  <strong>Founded</strong>
+                  <span>2023</span>
+                </div>
+                <div>
+                  <strong>Headquarters</strong>
+                  <span>Tampa, Florida, USA</span>
+                </div>
+                <div>
+                  <strong>Experience</strong>
+                  <span>20+ years avg. per founder</span>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── founders ── */}
+      <section className={cn("section", styles.foundersSection)}>
+        <Container size="wide">
+          <SectionHeading eyebrow="Founders" title={<>People who have lived the problem</>} lede="SqAId is built by operators, not just technologists." />
+          <div className={styles.foundersGrid}>
+            {[ 
+              {
+                name: "Samip Singh",
+                role: "Co-founder",
+                bio: "20+ years in risk, compliance and AI operations. Former head of financial crime at global banks. Focused on making evidence-first systems that examiners trust.",
+                img: "https://i.pravatar.cc/300?img=12",
+              },
+              {
+                name: "Sarwari Hole",
+                role: "Co-founder",
+                bio: "20+ years building data platforms for payments, AML and fraud. Architected real-time risk systems at scale. Drives the multi-gated screening and graph intelligence foundations.",
+                img: "https://i.pravatar.cc/300?img=32",
+              },
+            ].map((f) => (
+              <Reveal key={f.name} className={styles.founderCard}>
+                <div className={styles.founderAvatar}>
+                  <img src={f.img} alt={f.name} />
+                </div>
+                <div className={styles.founderInfo}>
+                  <h3 className={styles.founderName}>{f.name}</h3>
+                  <span className={styles.founderRole}>{f.role}</span>
+                  <p className={styles.founderBio}>{f.bio}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       {/* ── mission ── */}
       <section className={cn("section", styles.missionSection)}>
         <Container size="wide">

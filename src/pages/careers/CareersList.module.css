@@ -1,0 +1,67 @@
+.grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color .15s, transform .15s;
+}
+.card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+}
+
+.link {
+  display: block;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.badge {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.sub {
+  margin-top: 4px;
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.desc {
+  margin: 12px 0 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.cta {
+  margin-top: 14px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}

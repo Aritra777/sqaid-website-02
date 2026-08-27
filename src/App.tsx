@@ -8,6 +8,9 @@ const ProductDetailPage = lazy(() => import("@/pages/ProductDetailPage"));
 const ArgusPage = lazy(() => import("@/pages/products/ArgusPage"));
 const AbacusScreeningPage = lazy(() => import("@/pages/products/AbacusScreeningPage"));
 const Company = lazy(() => import("@/pages/Company"));
+const Careers = lazy(() => import("@/pages/careers/CareersList"));
+const JobDetail = lazy(() => import("@/pages/careers/JobDetail"));
+const Application = lazy(() => import("@/pages/careers/Application"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 function RouteFallback() {
@@ -44,6 +47,9 @@ export default function App() {
           <Route path="/solutions/*" element={<Navigate to="/products/argus" replace />} />
           <Route path="/industries/*" element={<Navigate to="/" replace />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/company/careers" element={<Careers />} />
+          <Route path="/company/careers/:id" element={<JobDetail />} />
+          <Route path="/company/careers/apply/:id" element={<Application />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>

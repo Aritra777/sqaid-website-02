@@ -10,6 +10,7 @@ import LegacyScenario from "./case-manager/LegacyScenario";
 import AuditView from "./case-manager/AuditView";
 import LineageStrip from "./case-manager/LineageStrip";
 import Cta from "./case-manager/Cta";
+import ProductCaseStudies from "@/components/product/ProductCaseStudies";
 import styles from "./CaseManagerPage.module.css";
 
 export default function CaseManagerPage() {
@@ -31,6 +32,7 @@ export default function CaseManagerPage() {
       <Band tone="light"><LegacyScenario /></Band>
       <Band tone="dark"><AuditView /></Band>
       <Band tone="light"><LineageStrip /></Band>
+      <ProductCaseStudies product="cais" />
       <Cta />
     </div>
   );

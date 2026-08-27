@@ -11,18 +11,19 @@ import styles from "./Nav.module.css";
 
 export default function Nav({ theme, onToggleTheme }: { theme: ThemeMode; onToggleTheme: () => void }) {
   const [productsOpen, setProductsOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const root = useRef<HTMLElement>(null);
   const location = useLocation();
 
-  useEffect(() => { setProductsOpen(false); setMobileOpen(false); }, [location.pathname, location.hash]);
+  useEffect(() => { setProductsOpen(false); setCompanyOpen(false); setMobileOpen(false); }, [location.pathname, location.hash]);
   useEffect(() => {
     const close = (event: PointerEvent) => { if (root.current && !root.current.contains(event.target as Node)) setProductsOpen(false); };
     window.addEventListener("pointerdown", close);
     return () => window.removeEventListener("pointerdown", close);
   }, []);
 
-  const closeAll = () => { setProductsOpen(false); setMobileOpen(false); };
+  const closeAll = () => { setProductsOpen(false); setCompanyOpen(false); setMobileOpen(false); };
 
   return (
     <header ref={root} className={styles.nav}>
@@ -33,7 +34,9 @@ export default function Nav({ theme, onToggleTheme }: { theme: ThemeMode; onTogg
             Products <ChevronDown size={14} className={productsOpen ? styles.chevronOpen : ""} />
           </button>
           <Link to="/#platform" onClick={closeAll}>Platform</Link>
-          <Link to="/company" onClick={closeAll}>Company</Link>
+          <button className={styles.trigger} onClick={() => setCompanyOpen((v) => !v)} aria-expanded={companyOpen}>
+            Company <ChevronDown size={14} className={companyOpen ? styles.chevronOpen : ""} />
+          </button>
         </nav>
         <div className={styles.actions}>
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
@@ -55,9 +58,19 @@ export default function Nav({ theme, onToggleTheme }: { theme: ThemeMode; onTogg
         </div>
       )}
 
+      {companyOpen && (
+        <div className={styles.dropdown}>
+          <div className={styles.companyGrid}>
+            <Link to="/company" onClick={closeAll} className={styles.companyLink}><strong>Company</strong><small>Our story, principles & team</small></Link>
+            <Link to="/company/careers" onClick={closeAll} className={styles.companyLink}><strong>Careers</strong><small>Join the team</small></Link>
+          </div>
+        </div>
+      )}
+
       {mobileOpen && <div className={styles.mobilePanel}>
         {PRODUCTS.map((p) => <Link key={p.slug} to={`/products/${p.slug}`} onClick={closeAll}>{p.name}</Link>)}
         <Link to="/company" onClick={closeAll}>Company</Link>
+        <Link to="/company/careers" onClick={closeAll}>Careers</Link>
       </div>}
     </header>
   );
