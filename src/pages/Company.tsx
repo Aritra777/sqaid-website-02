@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Linkedin } from "lucide-react";
+import { Mail, Linkedin } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/motion/Reveal";
 import { getIcon } from "@/lib/icons";
-import { PRODUCTS } from "@/lib/nav-data";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import { fadeUp, inViewOnce, staggerParent } from "@/lib/motion";
 import { SITE, SOCIALS } from "@/lib/site";
@@ -45,26 +43,6 @@ const PRINCIPLES = [
     title: "Built to be examined",
     body: "Audit lineage, model governance, and tuning evidence are produced as a by-product of running — not assembled the week before an exam.",
     icon: "ShieldCheck",
-  },
-];
-
-/* ── how a deployment actually runs ── */
-const APPROACH = [
-  {
-    title: "Scope",
-    body: "We agree the segment, the rails, and the success metric before any integration work starts.",
-  },
-  {
-    title: "Shadow",
-    body: "The platform runs against your live traffic with no customer impact, producing a directly comparable set of numbers.",
-  },
-  {
-    title: "Compare",
-    body: "Alert volume, false-positive rate, and investigation time are measured against your existing controls.",
-  },
-  {
-    title: "Migrate",
-    body: "You move workloads over on your own schedule, with the previous system still in place until you decide otherwise.",
   },
 ];
 
@@ -226,74 +204,6 @@ export default function Company() {
               );
             })}
           </motion.div>
-        </Container>
-      </section>
-
-      {/* ── approach ── */}
-      <section className="section">
-        <Container size="wide">
-          <SectionHeading
-            eyebrow="How we deploy"
-            title={
-              <>
-                Nobody signs before they see the <em>numbers.</em>
-              </>
-            }
-            lede="Every engagement runs the same way, because replacing a control you cannot yet trust is not a reasonable thing to ask."
-          />
-          <motion.ol
-            className={styles.approach}
-            variants={staggerParent}
-            initial="hidden"
-            whileInView="show"
-            viewport={inViewOnce}
-          >
-            {APPROACH.map((a, i) => (
-              <motion.li key={a.title} className={styles.step} variants={fadeUp}>
-                <span className={styles.stepNum}>{String(i + 1).padStart(2, "0")}</span>
-                <h3 className={styles.stepTitle}>{a.title}</h3>
-                <p className={styles.stepBody}>{a.body}</p>
-              </motion.li>
-            ))}
-          </motion.ol>
-        </Container>
-      </section>
-
-      {/* ── the platform ── */}
-      <section className={cn("section", styles.platformSection)}>
-        <Container size="wide">
-          <SectionHeading eyebrow="What we build" title={<>The platform</>} />
-          <div className={styles.products}>
-            {PRODUCTS.map((p) => {
-              const PIcon = getIcon(p.icon);
-              const live = p.status === "live";
-              const inner = (
-                <>
-                  <span className={styles.prodIcon}>
-                    <PIcon size={18} strokeWidth={2} />
-                  </span>
-                  <span className={styles.prodBody}>
-                    <span className={styles.prodName}>{p.name}</span>
-                    <span className={styles.prodTag}>{p.tagline}</span>
-                  </span>
-                  {live ? (
-                    <ArrowRight size={16} className={styles.prodArrow} />
-                  ) : (
-                    <span className={styles.prodSoon}>Soon</span>
-                  )}
-                </>
-              );
-              return live ? (
-                <Link key={p.slug} to={`/products/${p.slug}`} className={cn(styles.prod, p.theme)}>
-                  {inner}
-                </Link>
-              ) : (
-                <div key={p.slug} className={cn(styles.prod, p.theme)}>
-                  {inner}
-                </div>
-              );
-            })}
-          </div>
         </Container>
       </section>
 
