@@ -20,10 +20,10 @@ export default function Landing() {
     <>
       <Hero />
       <TrustSection />
-      <HowWeDeploy />
       <Industries />
       <HomeIntelligence />
       <ProductShowcase />
+      <HowWeDeploy />
       <ContactCTA />
     </>
   );
