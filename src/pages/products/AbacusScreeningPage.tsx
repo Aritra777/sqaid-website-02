@@ -6,7 +6,6 @@ import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import ProductUseCases from "@/components/product/ProductUseCases";
 import ProductCaseStudies from "@/components/product/ProductCaseStudies";
-import AbacusDifferentiation from "@/components/product/AbacusDifferentiation";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import styles from "./AbacusScreeningPage.module.css";
 
@@ -33,7 +32,6 @@ export default function AbacusScreeningPage(){useDocumentTitle("ABACUS · AI-nat
 
   <section className={styles.adjudication}><Container size="wide" className={styles.adjudicationGrid}><Reveal className={styles.adjCopy}><span className={styles.label}>Gate 05 · edge cases only</span><h2>AI adjudicates the evidence—not the policy.</h2><p>When the first four gates disagree or land near a threshold, ABACUS asks its AI adjudicator to weigh the evidence, explain uncertainty and recommend human review.</p><ul><li><Check/>Every supporting and conflicting attribute cited</li><li><Check/>Confidence and uncertainty shown separately</li><li><Check/>Human control preserved at policy boundaries</li></ul></Reveal><Reveal className={styles.adjPanel}><div className={styles.adjHead}><BrainCircuit/><span>AI ADJUDICATION</span><b>EDGE CASE</b></div><div className={styles.candidate}><small>CANDIDATE</small><strong>MUHAMMAD ALI ALI</strong><span>Watchlist · WL-994281</span></div><div className={styles.evidence}>{["Name semantics","DOB proximity","Nationality","Beneficial owner"].map((e,i)=><div key={e}><span>{e}</span><i><b style={{width:`${[94,72,88,41][i]}%`}}/></i><strong>{[94,72,88,41][i]}</strong></div>)}</div><div className={styles.recommend}><ShieldCheck/><div><small>RECOMMENDATION</small><strong>REVIEW · POSSIBLE ALIAS</strong></div><span>96%</span></div></Reveal></Container></section>
 
-  <AbacusDifferentiation />
   <ProductUseCases product="abacus"/>
   <ProductCaseStudies product="abacus"/>
 
