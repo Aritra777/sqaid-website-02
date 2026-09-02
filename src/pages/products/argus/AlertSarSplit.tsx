@@ -1,83 +1,15 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { Activity, CheckCircle2, FileSearch, Fingerprint, ScanSearch, ShieldCheck } from "lucide-react";
+import Container from "@/components/ui/Container";
 import Reveal from "@/components/motion/Reveal";
 import { MonoLabel } from "./primitives";
-import { rawAlert, sarNarrative } from "./data";
 import styles from "./AlertSarSplit.module.css";
 
-/**
- * AlertSarSplit — full-bleed ALERT → SAR split.
- * Top half = current mode (raw alert JSON in a chrome panel).
- * Bottom half = inverse mode (`.invert`) with the synthesized SAR narrative.
- * A vertical accent "stitch" line spans both halves and grows on scroll.
- */
-export default function AlertSarSplit() {
-  const rm = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.85", "end 0.4"],
-  });
-  const stitch = useTransform(scrollYProgress, [0, 1], [0, 1]);
+const outcomes=[
+ {label:"FRAUD",icon:Activity,title:"Decision brief",status:"BLOCK RECOMMENDED",event:"EVT-FRD-4471",signals:["New device after credential reset","Impossible-travel session","Beneficiary linked to challenged payments"],brief:"ARGUS connected the payment to a newly observed device, a high-risk session and a beneficiary shared across challenged accounts. The evidence satisfies policy FRD-ATO-17 and supports blocking the transaction with analyst review."},
+ {label:"BATCH AML",icon:FileSearch,title:"Investigation narrative",status:"ESCALATE FOR REVIEW",event:"CASE-AML-2048",signals:["Eleven sub-threshold deposits","Four-hop movement through a shell entity","Fan-in hub connected to nine sources"],brief:"Across the governed UDM history, ARGUS identified repeated structuring followed by rapid movement through a recently formed company and a connected fan-in hub. FundsTrace preserved the complete path and the Narrator assembled the evidence for investigator disposition."},
+ {label:"ENTITY",icon:Fingerprint,title:"Resolution evidence pack",status:"MERGE APPROVED",event:"ENTITY-E-204",signals:["Name and date-of-birth agreement","Shared device and address evidence","Governed relationship confidence 0.96"],brief:"ARGUS resolved fragmented customer, account and device records into one canonical entity. Every contributing source, relationship score and merge decision remains visible and reversible for downstream risk decisions."},
+ {label:"TRADE",icon:ScanSearch,title:"Supervisor review brief",status:"CONDUCT REVIEW",event:"TRD-SUP-091",signals:["Repeated bid-side layering","Ninety-seven percent cancellation pattern","Opposite-side executions after price movement"],brief:"ClickHouse detected a repeated order-and-cancel sequence across trading sessions. Market-conduct ML ranked the pattern, and agents connected the activity to trader, account and supervisory context for review."},
+] as const;
 
-  return (
-    <section ref={ref} className={styles.section}>
-      {/* stitch line */}
-      <div className={styles.stitchTrack} aria-hidden="true">
-        <motion.div
-          className={styles.stitchLine}
-          style={{ scaleY: rm ? 1 : stitch }}
-        />
-      </div>
-
-      {/* TOP — raw alert (current mode) */}
-      <div className={styles.half}>
-        <div className={styles.inner}>
-          <div className={styles.copy}>
-            <MonoLabel tone="accent">01 · RAW ALERT</MonoLabel>
-            <h2 className={styles.heading}>What the machine sees.</h2>
-            <p className={styles.para}>
-              Correlation IDs, timestamps, sub-threshold bands. Signal, but not a
-              story — and nothing an examiner would accept on its own.
-            </p>
-          </div>
-          <Reveal>
-            <div className={styles.panel}>
-              <div className={styles.chrome}>
-                <span className={styles.dot} />
-                <span className={styles.dot} />
-                <MonoLabel style={{ opacity: 0.4, marginLeft: 8 }}>
-                  ALERT-4471.json
-                </MonoLabel>
-              </div>
-              <pre className={styles.code}>{rawAlert}</pre>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-
-      {/* BOTTOM — SAR narrative (opposite mode) */}
-      <div className={`invert ${styles.half}`}>
-        <div className={styles.inner}>
-          <Reveal className={`${styles.copy} ${styles.copyBottom}`}>
-            <MonoLabel tone="accent">02 · SYNTHESIZED</MonoLabel>
-            <h2 className={styles.heading}>What the Narrator writes.</h2>
-            <p className={styles.para}>
-              The same alert, reasoned across four hops and compressed into a
-              filing-ready account a regulator can read top to bottom.
-            </p>
-          </Reveal>
-          <Reveal className={styles.articleWrap}>
-            <article className={styles.article}>
-              <div className={styles.articleHead}>
-                <span className={styles.articleTitle}>{sarNarrative.title}</span>
-                <MonoLabel style={{ opacity: 0.45 }}>{sarNarrative.meta}</MonoLabel>
-              </div>
-              <div className={styles.articleBody}>{sarNarrative.body}</div>
-            </article>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
+export default function AlertSarSplit(){const [active,setActive]=useState(0);const item=outcomes[active];return <section className={styles.section}><Container size="wide"><Reveal className={styles.head}><MonoLabel tone="accent">INVESTIGATION OUTCOMES</MonoLabel><h2>Evidence becomes the document the reviewer needs.</h2><p>ARGUS does not force every workload into a SAR. It produces the right governed outcome for fraud, AML, entity resolution or trade supervision.</p></Reveal><div className={styles.tabs} role="tablist" aria-label="ARGUS investigation outcomes">{outcomes.map((o,i)=>{const Icon=o.icon;return <button type="button" role="tab" aria-selected={i===active} className={i===active?styles.activeTab:""} onClick={()=>setActive(i)} key={o.label}><Icon/><span>{o.label}</span></button>})}</div><div className={styles.workspace}><div className={styles.evidence}><div className={styles.panelHead}><span><i/>EVIDENCE ASSEMBLY</span><b>{item.event}</b></div><div className={styles.signalList}>{item.signals.map((s,i)=><div key={s}><span>0{i+1}</span><CheckCircle2/><p>{s}</p></div>)}</div><div className={styles.lineage}><ShieldCheck/><div><small>LINEAGE PRESERVED</small><strong>Source · detection · model · agent · human action</strong></div></div></div><div className={styles.outcome} key={item.label}><div className={styles.documentTop}><span>{item.title}</span><b>{item.status}</b></div><small>GENERATED FROM CITED CASE EVIDENCE</small><p>{item.brief}</p><div className={styles.approval}><span>HUMAN DECISION REQUIRED</span><strong>Ready for review</strong></div></div></div></Container></section>}

@@ -23,11 +23,11 @@ export default function ArgusPage() {
       <Hero />
       <IntelligenceFabric />
       <WorkloadGraphs />
-      <AlertSarSplit />
       <RulesDispatch />
       <FleetComposer />
       <FundsTrace />
       <ProductUseCases product="argus" />
+      <AlertSarSplit />
       <ProductCaseStudies product="argus" />
 
       <div className={styles.marqueeStrip}>
