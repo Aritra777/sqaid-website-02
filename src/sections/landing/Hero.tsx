@@ -13,12 +13,12 @@ export default function Hero() {
       <Container size="wide">
         <motion.div className={styles.inner} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .7 }}>
           <h1 className={styles.title}>Fraud. AML. Entities. Trade.<br /><em>Everything in one.</em></h1>
-          <p className={styles.lede}>ARGUS replaces fragmented financial-crime tools with one AI-native product for real-time detection, intelligence, investigation, and scalable case management.</p>
+          <p className={styles.lede}>ARGUS unifies fraud, AML, entity resolution and trade surveillance in one AI-native network intelligence platform. Real-time detection, graph-powered investigations and explainable case management — without stitching tools together.</p>
           <div className={styles.actions}>
             <Button to="/#contact" size="lg">Request a demo <ArrowRight size={16} /></Button>
             <Button to="/products/argus" variant="outline" size="lg">Explore Argus</Button>
           </div>
-          <div className={styles.proof}><ShieldCheck size={15} /> Built for governed, explainable financial-crime decisions</div>
+          <div className={styles.proof}><ShieldCheck size={15} /> Built for governed, explainable financial-crime decisions with full audit trails</div>
           <motion.div className={styles.stage} initial={{ opacity: 0, y: 36, rotateX: 4 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ delay: .35, duration: 1 }}>
             <div className={styles.stageBar}><div className={styles.dots}><i /><i /><i /></div><span>ARGUS / NETWORK INTELLIGENCE</span><div className={styles.live}><i /> LIVE</div></div>
             <div className={styles.screen}>

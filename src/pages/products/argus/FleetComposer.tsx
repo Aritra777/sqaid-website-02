@@ -40,9 +40,9 @@ export default function FleetComposer() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className={styles.lede}>
-              Behavioral, fraud, identity, network, temporal — wire the squad
-              your policy demands. Not a fixed roster. As many agents as the case
-              needs.
+              Fraud, AML, entity and trade workloads each assemble the agents,
+              models and tools their policy requires. The roster is configurable,
+              and every contribution remains part of the case evidence.
             </p>
           </Reveal>
         </div>

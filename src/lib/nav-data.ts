@@ -19,7 +19,7 @@ export const PRODUCTS: ProductLink[] = [
   {
     slug: "argus",
     name: "ARGUS",
-    tagline: "Real-time fraud, AML, entities and trade surveillance",
+    tagline: "Network intelligence for fraud, AML, entities & trade surveillance",
     theme: "theme-argus",
     icon: "Network",
     status: "live",
@@ -27,7 +27,7 @@ export const PRODUCTS: ProductLink[] = [
   {
     slug: "cais",
     name: "CAIS",
-    tagline: "Universal AI-native case management",
+    tagline: "AI-native case management from alert to disposition",
     theme: "theme-case-manager",
     icon: "FolderKanban",
     status: "live",
@@ -35,7 +35,7 @@ export const PRODUCTS: ProductLink[] = [
   {
     slug: "abacus",
     name: "ABACUS",
-    tagline: "Multi-gated entity and real-time transaction screening",
+    tagline: "Multi-gated screening with rules, embeddings & graph context",
     theme: "theme-abacus",
     icon: "BarChart3",
     status: "live",
@@ -187,10 +187,10 @@ export const SOLUTIONS: SolutionDomain[] = [
 export type IndustryLink = { label: string; slug: string; blurb: string };
 
 export const INDUSTRIES: IndustryLink[] = [
-  { label: "Fintech", slug: "fintech", blurb: "Ship compliant, scale fast" },
-  { label: "Banks & Credit Unions", slug: "banks", blurb: "Modernize legacy controls" },
-  { label: "Crypto & Web3", slug: "crypto", blurb: "On-chain + off-chain risk" },
-  { label: "Sponsor Banks", slug: "sponsor-banks", blurb: "Oversee every program" },
+  { label: "Fintech", slug: "fintech", blurb: "Launch compliant products and scale without adding headcount" },
+  { label: "Banks & Credit Unions", slug: "banks", blurb: "Modernize legacy controls with AI-native detection" },
+  { label: "Crypto & Web3", slug: "crypto", blurb: "On-chain + off-chain risk in one graph" },
+  { label: "Sponsor Banks", slug: "sponsor-banks", blurb: "Oversee every program with unified visibility" },
 ];
 
 /** Flat lookup helpers */

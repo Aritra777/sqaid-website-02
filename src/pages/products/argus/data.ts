@@ -91,23 +91,28 @@ export const fleetAgents: FleetAgent[] = [
   { id: "narrator", name: "Narrator", tag: "SYNTHESIS", role: "Compresses the case into a SAR-ready ≤400-word account." },
   { id: "sanctions", name: "SanctionsMatch", tag: "IDENTITY", role: "Fuzzy-matches parties against OFAC & global lists." },
   { id: "temporal", name: "TemporalBurst", tag: "TEMPORAL", role: "Surfaces velocity spikes and dormancy breaks." },
+  { id: "entityresolver", name: "EntityResolver", tag: "GRAPH IDENTITY", role: "Links fragmented party, account, device and business records with confidence." },
+  { id: "batchaml", name: "AMLPattern", tag: "CLICKHOUSE", role: "Tests long-horizon UDM history for structuring, layering and laundering patterns." },
+  { id: "tradesurveillance", name: "TradeSupervisor", tag: "MARKET CONDUCT", role: "Connects order and execution patterns to trader, account and entity context." },
+  { id: "riskreasoner", name: "RiskReasoner", tag: "ML + AI", role: "Combines model signals and conflicting evidence into a cited recommendation." },
 ];
 
 export const alertTypes = [
-  { id: "struct", label: "STRUCTURING", squad: ["investigator", "fundstrace", "temporal", "narrator"] },
-  { id: "fraud", label: "FRAUD RING", squad: ["investigator", "networkring", "profileshift", "darkweb", "narrator"] },
-  { id: "identity", label: "IDENTITY", squad: ["investigator", "sanctions", "profileshift", "narrator"] },
+  { id: "struct", label: "BATCH AML", squad: ["investigator", "batchaml", "fundstrace", "riskreasoner", "narrator"] },
+  { id: "fraud", label: "REAL-TIME FRAUD", squad: ["investigator", "networkring", "profileshift", "darkweb", "riskreasoner"] },
+  { id: "identity", label: "ENTITY", squad: ["investigator", "entityresolver", "networkring", "profileshift", "riskreasoner"] },
+  { id: "trade", label: "TRADE", squad: ["investigator", "tradesurveillance", "entityresolver", "riskreasoner", "narrator"] },
 ];
 
 /* ═══════════ Product surfaces ═══════════ */
 export type Surface = { key: string; tag: string; title: string; copy: string };
 export const surfaces: Surface[] = [
-  { key: "ingestion", tag: "INGESTION", title: "Stream anything, normalize once", copy: "Wire, card, crypto and core-banking events land in one typed event bus." },
-  { key: "signals", tag: "SIGNALS", title: "50+ rules, sub-5ms evaluation", copy: "Author, version and shadow-test detection logic without redeploys." },
-  { key: "agents", tag: "AGENTS", title: "Compose the crew per alert type", copy: "Bind a squad of agents to each rule and watch them reason live." },
-  { key: "flows", tag: "FLOWS", title: "Every decision, fully replayable", copy: "Step the investigation forward and back with full state at each node." },
-  { key: "graph", tag: "GRAPH EXPLORER", title: "Trace funds up to twelve hops", copy: "Expand, prune and pin subgraphs with hop-decay legibility built in." },
-  { key: "mcp", tag: "MCP", title: "Bring your own tools", copy: "Expose internal systems to the fleet through a governed MCP surface." },
+  { key: "ingestion", tag: "GOVERNED UDM", title: "Normalize every risk domain once", copy: "Transactions, parties, accounts, devices, orders and executions enter governed contracts that both real-time and batch workloads understand." },
+  { key: "signals", tag: "DETECTION", title: "Run streaming and long-horizon policy together", copy: "Real-time engines evaluate live events while ClickHouse owns complete histories for batch AML and trade-surveillance patterns." },
+  { key: "agents", tag: "ML · AI · AGENTS", title: "Compose intelligence for the detected risk", copy: "Model signals, AI reasoning and specialist agents are assembled by workload with their evidence and boundaries visible." },
+  { key: "flows", tag: "INVESTIGATION", title: "Move from signal to governed outcome", copy: "Cases preserve inputs, enrichment, agent work, human decisions and the exact path to disposition." },
+  { key: "graph", tag: "GRAPH INTELLIGENCE", title: "Resolve identities and investigate connected risk", copy: "Entity resolution connects fragmented records; the same graph exposes rings, shared infrastructure and multi-hop movement." },
+  { key: "mcp", tag: "GOVERNED TOOLS", title: "Bring enterprise context to every agent", copy: "Agents access approved internal and external tools through governed interfaces with permissions and lineage retained." },
 ];
 
 /* ═══════════ Lineage strip ═══════════ */

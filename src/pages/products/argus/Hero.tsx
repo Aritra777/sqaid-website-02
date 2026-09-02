@@ -117,6 +117,16 @@ function HeroGraph() {
                 style={{ transformOrigin: `${n.x}px ${n.y}px`, cursor: "pointer" }}
                 onMouseEnter={() => setHover(n.id)}
                 onMouseLeave={() => setHover(null)}
+                onClick={() => setHover((current) => current === n.id ? null : n.id)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setHover((current) => current === n.id ? null : n.id);
+                  }
+                }}
+                role="button"
+                tabIndex={on ? 0 : -1}
+                aria-label={`${n.label}: ${n.meta.detail}; risk ${n.meta.risk}`}
               >
                 {isAlert && on && !reduced && (
                   <circle
@@ -268,9 +278,9 @@ export default function Hero() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className={styles.sub}
             >
-              ARGUS unifies real-time fraud detection, AML intelligence, entity
-              resolution and trade supervision in one AI-native product—with
-              robust, scalable investigation case management built in.
+              One governed UDM powers real-time fraud, batch AML, graph-based
+              entity resolution and batch trade surveillance. ML, AI and a
+              configurable agent fleet turn every signal into explainable action.
             </motion.p>
 
             <motion.div
@@ -285,8 +295,8 @@ export default function Hero() {
                 </Button>
               
               
-                <Button variant="outline" size="lg" className={styles.watchBtn}>
-                  <Play size={12} /> WATCH A RUN
+                <Button href="#argus-fabric" variant="outline" size="lg" className={styles.watchBtn}>
+                  <Play size={12} /> EXPLORE THE FABRIC
                 </Button>
               
             </motion.div>

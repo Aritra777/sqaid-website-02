@@ -63,28 +63,29 @@ export default function RulesDispatch() {
             <div className={styles.copyInner}>
               <MonoLabel tone="accent">DISPATCH</MonoLabel>
               <Reveal>
-                <h2 className={styles.h2}>Rules dispatch the investigation.</h2>
+                <h2 className={styles.h2}>Every detection can dispatch intelligence.</h2>
               </Reveal>
               <Reveal delay={0.1}>
                 <p className={styles.para}>
-                  Fifty-plus detection rules evaluate every event in under five
-                  milliseconds. A match doesn&rsquo;t just raise a flag — it
-                  commissions a crew and hands them the case.
+                  Real-time policies evaluate live events while ClickHouse owns
+                  long-horizon batch AML and trade-surveillance patterns. A
+                  detection does not stop at an alert—it commissions the right
+                  ML, AI and agent investigation.
                 </p>
               </Reveal>
               <Reveal delay={0.2}>
                 <div className={styles.stats}>
                   <div className={styles.stat}>
-                    <div className={styles.statNumAccent}>&lt;5ms</div>
+                    <div className={styles.statNumAccent}>LIVE</div>
                     <MonoLabel className={styles.statLabel}>
-                      EVAL LATENCY
+                      STREAMING PATH
                     </MonoLabel>
                   </div>
                   <div className={styles.statRule} />
                   <div className={styles.stat}>
-                    <div className={styles.statNum}>50+</div>
+                    <div className={styles.statNum}>BATCH</div>
                     <MonoLabel className={styles.statLabel}>
-                      ACTIVE RULES
+                      CLICKHOUSE PATH
                     </MonoLabel>
                   </div>
                 </div>
@@ -102,9 +103,9 @@ export default function RulesDispatch() {
                     animate={reduced ? {} : { opacity: [1, 0.3, 1] }}
                     transition={{ duration: 1.2, repeat: Infinity }}
                   />
-                  <MonoLabel>RULE · STRUCTURING_SUBTHRESHOLD</MonoLabel>
+                  <MonoLabel>DETECTION · STRUCTURING_SUBTHRESHOLD</MonoLabel>
                 </div>
-                <MonoLabel tone="accent">MATCH &lt;5MS</MonoLabel>
+                <MonoLabel tone="accent">EVIDENCE READY</MonoLabel>
               </div>
 
               <motion.div

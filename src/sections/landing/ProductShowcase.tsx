@@ -5,9 +5,9 @@ import Reveal from "@/components/motion/Reveal";
 import styles from "./ProductShowcase.module.css";
 
 const products = [
-  { name: "ARGUS", label: "Financial-crime intelligence", copy: "Real-time fraud, AML, entity resolution, and trade surveillance in one AI-native intelligence layer.", image: "/assets/products/argus.png", to: "/products/argus", icon: Network, tone: "violet" },
-  { name: "CAIS", label: "Universal case manager", copy: "A configurable AI-native case system for every investigation, workflow, review and regulated decision.", image: "/assets/products/case-manager.png", to: "/products/cais", icon: Workflow, tone: "mint" },
-  { name: "ABACUS", label: "Multi-gated screening", copy: "Entity and real-time transaction screening through governed rules, embeddings, graph context, and policy gates.", to: "/products/abacus", icon: BarChart3, tone: "amber" },
+  { name: "ARGUS", label: "Financial-crime intelligence", copy: "Real-time fraud, AML, entity resolution and trade surveillance in one AI-native network intelligence layer. 12-hop graph exploration, agentic investigation and live risk scoring.", image: "/assets/products/argus.png", to: "/products/argus", icon: Network, tone: "violet" },
+  { name: "CAIS", label: "Universal case manager", copy: "Universal AI-native case management for fraud, AML and compliance. Intake to disposition with AI narratives, SAR drafting and regulator-ready audit.", image: "/assets/products/case-manager.png", to: "/products/cais", icon: Workflow, tone: "mint" },
+  { name: "ABACUS", label: "Multi-gated screening", copy: "Multi-gated entity and real-time transaction screening. Governed rules + embeddings + graph context with policy gates and zero-miss watchlist screening.", to: "/products/abacus", icon: BarChart3, tone: "amber" },
 ] as const;
 
 export default function ProductShowcase() {

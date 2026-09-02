@@ -1,6 +1,8 @@
 import { useDocumentTitle } from "@/lib/use-document-title";
 import { cn } from "@/lib/cn";
 import Hero from "./argus/Hero";
+import IntelligenceFabric from "./argus/IntelligenceFabric";
+import WorkloadGraphs from "./argus/WorkloadGraphs";
 import AlertSarSplit from "./argus/AlertSarSplit";
 import RulesDispatch from "./argus/RulesDispatch";
 import FleetComposer from "./argus/FleetComposer";
@@ -19,6 +21,8 @@ export default function ArgusPage() {
   return (
     <div className={cn("theme-argus", styles.page)}>
       <Hero />
+      <IntelligenceFabric />
+      <WorkloadGraphs />
       <AlertSarSplit />
       <RulesDispatch />
       <FleetComposer />
