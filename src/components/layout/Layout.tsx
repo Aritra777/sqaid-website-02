@@ -16,7 +16,7 @@ export default function Layout() {
         Skip to content
       </a>
       <Nav theme={theme} onToggleTheme={toggle} />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />

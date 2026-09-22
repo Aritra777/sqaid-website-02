@@ -123,7 +123,7 @@ h4 {
   position: fixed;
   top: -100px;
   left: var(--space-4);
-  z-index: var(--z-toast);
+  z-index: 4000;
   padding: var(--space-3) var(--space-5);
   background: var(--accent);
   color: var(--accent-contrast);

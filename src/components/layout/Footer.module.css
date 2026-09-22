@@ -1,6 +1,6 @@
 .footer {
   position: relative;
-  margin-top: var(--space-11);
+  margin-top: 0;
   padding-block: var(--space-9) var(--space-6);
   border-top: 1px solid var(--line);
   background: var(--bg-1);
@@ -8,7 +8,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.8fr repeat(2, 1fr);
+  grid-template-columns: 1.5fr repeat(3, 1fr);
   gap: var(--space-8);
 }
 @media (max-width: 1180px) {
@@ -87,4 +87,15 @@
 }
 .mono {
   font-family: var(--font-mono);
+}
+
+@media (max-width: 560px) {
+  .bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mono {
+    font-size: 9px;
+  }
 }

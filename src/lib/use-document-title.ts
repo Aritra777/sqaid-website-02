@@ -1,17 +1,41 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { SITE } from "./site";
-
-/**
- * Sets document.title as `Page — SqAId`. Pass the bare page name; pass
- * `null`/undefined on the landing page to use the brand default.
- */
-export function useDocumentTitle(title?: string | null) {
+export function useDocumentTitle(title?: string | null, description?: string) {
+  const { pathname } = useLocation();
   useEffect(() => {
-    document.title = title
+    const fullTitle = title
       ? `${title} — ${SITE.name}`
       : `${SITE.name} — ${SITE.tagline}`;
-    return () => {
-      document.title = `${SITE.name} — ${SITE.tagline}`;
+    const text = description || SITE.description;
+    document.title = fullTitle;
+    const meta = (name: string, content: string, property = false) => {
+      const key = property ? "property" : "name";
+      let el = document.querySelector<HTMLMetaElement>(
+        `meta[${key}="${name}"]`,
+      );
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(key, name);
+        document.head.appendChild(el);
+      }
+      el.content = content;
     };
-  }, [title]);
+    meta("description", text);
+    meta("og:title", fullTitle, true);
+    meta("og:description", text, true);
+    meta("og:url", `${SITE.url}${pathname}`, true);
+    meta("og:type", "website", true);
+    meta("og:image", `${SITE.url}/social-preview.png`, true);
+    meta("twitter:card", "summary_large_image");
+    let canonical = document.querySelector<HTMLLinkElement>(
+      'link[rel="canonical"]',
+    );
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = `${SITE.url}${pathname}`;
+  }, [title, description, pathname]);
 }

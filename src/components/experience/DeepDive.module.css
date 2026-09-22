@@ -1,0 +1,204 @@
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+.tabs button {
+  padding: 13px 20px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+.tabs button[aria-pressed="true"] {
+  border-color: var(--mark);
+  background: var(--mark-soft);
+  color: var(--mark);
+}
+.workloadCopy h3 {
+  font-size: clamp(27px, 3vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+}
+.workloadCopy > a {
+  margin-top: 25px;
+}
+.studio {
+  padding: 32px 25px;
+}
+.bindings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  gap: 10px;
+}
+.bindings::before {
+  content: "";
+  position: absolute;
+  top: 34px;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: var(--panel-line);
+}
+.bindings button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 14px;
+  color: var(--panel-muted);
+  font-size: 10px;
+}
+.bindings svg {
+  box-sizing: content-box;
+  padding: 19px;
+  border: 1px solid var(--panel-line);
+  border-radius: 14px;
+  background: var(--panel-bg);
+  transition: border-color 0.25s;
+}
+.bindings .active {
+  color: var(--ink);
+}
+.bindings .active svg {
+  border-color: var(--ink);
+  background: var(--panel-raised);
+}
+.detail {
+  margin-top: 40px;
+  padding: 24px;
+  border: 1px solid var(--panel-line);
+  border-radius: 12px;
+  background: var(--panel-raised);
+  min-height: 230px;
+}
+.detail small {
+  font: 9px var(--font-mono);
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.detail h3 {
+  font-size: 25px;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 18px 0;
+}
+.detail p {
+  font-size: 13px;
+  color: var(--panel-muted);
+  line-height: 1.8;
+}
+.release {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 25px;
+  color: var(--ink);
+  font: 9px var(--font-mono);
+}
+.provenance {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 50px;
+  border: 1px solid var(--line);
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+}
+.provenance button {
+  padding: 28px;
+  text-align: left;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background: var(--surface);
+}
+.provenance button:last-child {
+  border: 0;
+}
+.provenance button[aria-pressed="true"] {
+  background: var(--mark-soft);
+}
+.provenance small {
+  font: 10px var(--font-mono);
+  color: var(--mark);
+}
+.provenance strong {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.provenance svg {
+  color: var(--mark);
+}
+.trailDetail {
+  border: 1px solid var(--line);
+  border-top: 0;
+  border-radius: 0 0 15px 15px;
+  padding: 35px;
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1.2fr;
+  gap: 35px;
+  align-items: center;
+  min-height: 160px;
+}
+.trailDetail small {
+  font: 10px var(--font-mono);
+  color: var(--mark);
+}
+.trailDetail h3 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.trailDetail p {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+@media (max-width: 700px) {
+  .provenance {
+    grid-template-columns: 1fr 1fr;
+  }
+  .provenance button {
+    padding: 22px;
+    gap: 18px;
+  }
+  .provenance button:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+  .trailDetail {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 25px;
+  }
+  .provenance strong {
+    font-size: 18px;
+  }
+  .bindings svg {
+    padding: 12px;
+    width: 19px;
+    height: 19px;
+  }
+  .studio {
+    padding: 25px 18px;
+  }
+  .detail {
+    padding: 20px;
+    min-height: 260px;
+  }
+  .tabs button {
+    font-size: 10px;
+    padding: 12px 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bindings svg {
+    transition: none;
+  }
+}

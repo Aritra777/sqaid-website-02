@@ -1,5 +1,5 @@
 import { HTMLAttributes, forwardRef } from "react";
-import clsx from "clsx";
+import { cn } from "@/lib/cn";
 
 export interface SectionHeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   size?: "small" | "medium" | "large" | "hero";
@@ -20,7 +20,7 @@ export const SectionHeadingImproved = forwardRef<HTMLHeadingElement, SectionHead
     return (
       <Component
         ref={ref}
-        className={clsx(baseClasses, sizeClasses[size], className)}
+        className={cn(baseClasses, sizeClasses[size], className)}
         {...props}
       >
         {children}

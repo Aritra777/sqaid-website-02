@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 import { fadeUp, inViewOnce } from "@/lib/motion";
 
@@ -21,11 +21,12 @@ export default function Reveal({
   as = "div",
 }: RevealProps) {
   const MotionTag = motion[as];
+  const reduced = useReducedMotion();
   return (
     <MotionTag
       className={className}
       variants={fadeUp}
-      initial="hidden"
+      initial={reduced ? false : "hidden"}
       whileInView="show"
       viewport={inViewOnce}
       transition={{ delay }}

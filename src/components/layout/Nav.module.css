@@ -1,32 +1,200 @@
-.nav{position:fixed;inset:0 0 auto;z-index:var(--z-nav);height:var(--nav-h);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent);backdrop-filter:blur(18px)}
-.inner{height:100%;max-width:var(--container-wide);margin:auto;padding:0 var(--gutter);display:flex;align-items:center;gap:28px}
-.links{display:flex;align-items:center;gap:30px;margin:auto}
-.links>a,.trigger{font:500 14px/1 var(--font-sans);color:var(--text-2);transition:color .2s}
-.links>a:hover,.trigger:hover{color:var(--text)}
-.trigger{display:flex;align-items:center;gap:5px}
-.trigger svg{transition:transform .2s}
-.chevronOpen{transform:rotate(180deg)}
-.actions{display:flex;align-items:center;gap:10px}
-.burger{display:none;color:var(--text)}
-
-.dropdown{position:absolute;top:calc(var(--nav-h) + 8px);left:50%;width:min(260px,calc(100vw - 32px));padding:8px;transform:translateX(-50%);border:1px solid var(--line);border-radius:12px;background:var(--bg);box-shadow:0 12px 40px rgba(19,19,27,.18);animation:enter .18s ease-out}
-.productGrid{display:grid;grid-template-columns:1fr;gap:4px}
-.productLink{display:flex;gap:10px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line);transition:background .15s,border-color .15s}
-.productLink:hover{background:var(--surface-2);border-color:var(--accent-border)}
-.companyGrid{display:grid;grid-template-columns:1fr;gap:4px}
-.companyLink{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line);transition:background .15s,border-color .15s}
-.companyLink:hover{background:var(--surface-2);border-color:var(--accent-border)}
-.companyLink strong{display:block;font-weight:600;font-size:13px}
-.companyLink small{display:block;color:var(--text-3);font-size:11px}
-.productLink>span{flex:none;display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);border-radius:8px;color:#6b63ff}
-.productLink div{display:flex;flex-direction:column;gap:4px}
-.productLink strong{font-size:13px;color:var(--text)}
-.productLink small{font-size:11px;line-height:1.3;color:var(--text-3)}
-
-.mobilePanel{position:absolute;top:var(--nav-h);left:0;right:0;display:flex;flex-direction:column;padding:18px 20px;background:var(--bg);border-top:1px solid var(--line)}
-.mobilePanel a{padding:14px 4px;border-bottom:1px solid var(--line);font-weight:600}
-.mobilePanel a:last-child{border:0}
-.burger{width:40px;height:40px;place-items:center}
-.mobilePanel{display:none}
-@keyframes enter{from{opacity:0;translate:0 -7px}}
-@media(max-width:800px){.links,.cta{display:none}.actions{margin-left:auto}.burger{display:grid}.mobilePanel{display:flex}.dropdown{display:none}.inner{padding:0 var(--gutter-mobile)}}
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-nav);
+  height: var(--nav-h);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+.inner {
+  height: 100%;
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: auto;
+}
+.links > a,
+.trigger {
+  font: 500 12px/1 var(--font-sans);
+  color: var(--text-2);
+  transition: color 0.2s;
+}
+.links > a:hover,
+.trigger:hover {
+  color: var(--text);
+}
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 0;
+}
+.trigger svg {
+  transition: transform 0.2s;
+}
+.chevronOpen {
+  transform: rotate(180deg);
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.burger {
+  display: none;
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  place-items: center;
+}
+.dropdown {
+  position: absolute;
+  top: calc(var(--nav-h) + 10px);
+  left: 50%;
+  width: min(730px, calc(100vw - 40px));
+  padding: 20px;
+  transform: translateX(-50%);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg);
+  box-shadow: var(--shadow-card-hover);
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 25px;
+  animation: enter 0.2s ease;
+}
+.menuIntro {
+  padding: 20px;
+}
+.menuIntro > small {
+  font: 9px var(--font-mono);
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+}
+.menuIntro > strong {
+  display: block;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  margin-top: 22px;
+}
+.menuIntro > a {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 11px;
+  margin-top: 30px;
+  color: var(--accent);
+}
+.productGrid {
+  display: grid;
+  gap: 3px;
+}
+.productLink {
+  display: flex;
+  gap: 13px;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  align-items: center;
+}
+.productLink:hover {
+  background: var(--mark-soft);
+  border-color: var(--mark-border);
+}
+.productLink > span {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--mark-border);
+  background: var(--mark-soft);
+  border-radius: 9px;
+  color: var(--mark);
+}
+.productLink div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.productLink strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.productLink small {
+  font-size: 10px;
+  color: var(--text-3);
+}
+.productLink > svg {
+  margin-left: auto;
+  color: var(--text-3);
+}
+.mobilePanel {
+  position: absolute;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  padding: 12px 24px 25px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  max-height: calc(100dvh - var(--nav-h));
+  overflow: auto;
+}
+.mobilePanel a {
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.mobilePanel a:last-child {
+  border: 0;
+  color: var(--accent);
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    translate: 0 -5px;
+  }
+}
+@media (max-width: 850px) {
+  .links,
+  .cta,
+  .dropdown {
+    display: none;
+  }
+  .actions {
+    margin-left: auto;
+  }
+  .burger {
+    display: grid;
+  }
+  .mobilePanel {
+    display: flex;
+  }
+  .inner {
+    padding: 0 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dropdown {
+    animation: none;
+  }
+  .nav * {
+    transition: none;
+  }
+}

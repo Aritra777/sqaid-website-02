@@ -72,6 +72,8 @@ function walk(dir) {
 const contentFiles = walk(SRC).filter(
   (p) =>
     /-content\.ts$/.test(p) ||
+    /content[\\/].*\.ts$/.test(p) ||
+    /components[\\/]experience[\\/].*\.tsx$/.test(p) ||
     /pages[\\/].*\.tsx$/.test(p) ||
     /sections[\\/].*\.tsx$/.test(p)
 );

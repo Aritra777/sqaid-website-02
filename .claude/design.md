@@ -1,3 +1,7 @@
+# September 2026 rebuild amendment (current user-approved direction)
+
+The approved WEBSITE-REBUILD-PLAN.md and subsequent request to implement it supersede conflicting historical rules below. Preserve existing editorial Inter typography, generous spacing, graph effects and distinct product palettes. New Brain indigo, KYC teal and UDM cobalt themes extend ARGUS emerald and ABACUS amber. Product hues may appear in accessible labels, graph selections and subtle panel accents. Page headings use the current ARGUS/ABACUS editorial scale. Purposeful graph paths and state transitions are allowed, with reduced-motion alternatives. No forced full-screen sections. Interactive illustrations use synthetic, visibly labeled records. Dark technical panels use local semantic tokens; no live product data is exposed. Shared light/dark theme remains available. Historical material below is retained for reference.
+
 # SqAId — Design System (source of truth)
 
 > This file is the canonical record of every design decision on this site.

@@ -15,7 +15,7 @@ export default function ScrollToTop() {
       const scrollToTarget = () => {
         if (cancelled) return;
         const target = document.getElementById(id);
-        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (target) target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
       };
 
       // Hash targets on lazy routes mount after the URL has already changed.

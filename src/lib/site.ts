@@ -6,9 +6,9 @@ export const SITE = {
   domain: "sqaid.ai",
   url: "https://sqaid.ai",
   email: "info@sqaid.ai",
-  tagline: "AI-Native Risk & Compliance Intelligence",
+  tagline: "Connected Data & Risk Intelligence",
   description:
-    "SqAId unifies AML, fraud, sanctions, and trade surveillance into one AI-native platform — so compliance teams investigate the cases that matter, not the noise.",
+    "SqAId connects enterprise data, customer lifecycle, screening and financial-crime workflows with evidence-led intelligence.",
 } as const;
 
 export const SOCIALS = {
