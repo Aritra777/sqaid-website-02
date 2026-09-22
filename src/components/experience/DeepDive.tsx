@@ -174,23 +174,25 @@ export function ScreeningTrail() {
           Inspect the path from watchlist source to recorded review. Select a
           stage to follow the evidence.
         </p>
-        <div className={w.provenance}>
-          {provenance.map((v, i) => (
-            <button
-              key={v.label}
-              onClick={() => setActive(i)}
-              aria-pressed={active === i}
-            >
-              <small>{String(i + 1).padStart(2, "0")}</small>
-              <strong>{v.label}</strong>
-              <ArrowRight size={18} />
-            </button>
-          ))}
-        </div>
-        <div className={w.trailDetail} aria-live="polite">
-          <small>{v.reference}</small>
-          <h3>{v.title}</h3>
-          <p>{v.body}</p>
+        <div className={`glass-diagram ${w.trailSurface}`}>
+          <div className={w.provenance}>
+            {provenance.map((v, i) => (
+              <button
+                key={v.label}
+                onClick={() => setActive(i)}
+                aria-pressed={active === i}
+              >
+                <small>{String(i + 1).padStart(2, "0")}</small>
+                <strong>{v.label}</strong>
+                <ArrowRight size={18} />
+              </button>
+            ))}
+          </div>
+          <div className={w.trailDetail} aria-live="polite">
+            <small>{v.reference}</small>
+            <h3>{v.title}</h3>
+            <p>{v.body}</p>
+          </div>
         </div>
       </div>
     </section>

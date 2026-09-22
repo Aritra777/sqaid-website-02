@@ -13,7 +13,9 @@ body {
   font-family: var(--font-sans);
   font-size: var(--fs-body);
   letter-spacing: var(--tracking-normal);
-  transition: background var(--t-base), color var(--t-base);
+  transition:
+    background var(--t-base),
+    color var(--t-base);
 }
 
 ::selection {
@@ -215,5 +217,29 @@ h4 {
   .product-fullscreen > section,
   .product-use-cases {
     min-height: auto;
+  }
+}
+
+/* Responsive site frame: broad layouts, readable copy, modest device gutters. */
+:root {
+  --site-width: 1680px;
+  --site-gutter: clamp(16px, 3vw, 64px);
+  --container: var(--site-width);
+  --container-wide: var(--site-width);
+  --gutter: var(--site-gutter);
+  --gutter-mobile: 16px;
+}
+img,
+video,
+canvas {
+  max-width: 100%;
+}
+@media (pointer: coarse) {
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
   }
 }

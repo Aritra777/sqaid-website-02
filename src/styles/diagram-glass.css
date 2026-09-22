@@ -1,40 +1,27 @@
 /* Shared optical materials for every interactive product illustration. */
 .glass-diagram {
-  --glass-base: #f0f3f9;
-  --glass-card: linear-gradient(
-    145deg,
-    #ffffffee 0%,
-    #ffffff94 46%,
-    #e9eef7a6 100%
-  );
-  --glass-edge: #ffffffd9;
-  --glass-line: #64748b25;
-  --glass-shadow:
-    0 12px 32px -16px #23385e40, inset 0 1px 0 #fff, inset 0 -1px 0 #ffffff99;
-  --glass-stage:
-    radial-gradient(ellipse at 0% 0%, #cbdafa80, transparent 50%),
-    radial-gradient(ellipse at 100% 90%, #dfd7f880, transparent 48%),
-    linear-gradient(145deg, #fafbff, #edf1f7 60%, #f9fbff);
-  --glass-ink: #202735;
-  --glass-muted: #566174;
-  --glass-highlight: #ffffffcc;
-  --glass-blue: #4164b7;
+  --glass-base: #f4f4f5;
+  --glass-card: linear-gradient(155deg, #fff 0%, #fafafa 62%, #f2f2f3 100%);
+  --glass-edge: #dedee1;
+  --glass-line: #dedee1;
+  --glass-shadow: 0 8px 22px -14px #00000026, inset 0 1px 0 #fff;
+  --glass-stage: linear-gradient(150deg, #fafafa, #f0f0f2);
+  --glass-ink: #202024;
+  --glass-muted: #585861;
+  --glass-highlight: #ffffffb3;
+  --glass-blue: #315caa;
 }
 [data-theme="dark"] .glass-diagram {
-  --glass-base: #181e29;
-  --glass-card: linear-gradient(145deg, #ffffff14, #ffffff06 50%, #91acdf0e);
-  --glass-edge: #d4e2ff2e;
-  --glass-line: #d4e2ff20;
-  --glass-shadow:
-    0 16px 36px -18px #0009, inset 0 1px 0 #ffffff20, inset 0 -1px 0 #ffffff08;
-  --glass-stage:
-    radial-gradient(ellipse at 0% 0%, #647fab25, transparent 55%),
-    radial-gradient(ellipse at 100% 95%, #8e76d922, transparent 55%),
-    linear-gradient(145deg, #202632, #131923 65%, #202434);
-  --glass-ink: #f1f5ff;
-  --glass-muted: #afbbce;
-  --glass-highlight: #ffffff16;
-  --glass-blue: #a8c6ff;
+  --glass-base: #171719;
+  --glass-card: linear-gradient(155deg, #28282b, #202023 65%, #1c1c1f);
+  --glass-edge: #3a3a40;
+  --glass-line: #36363c;
+  --glass-shadow: 0 10px 24px -14px #0009, inset 0 1px 0 #ffffff0a;
+  --glass-stage: linear-gradient(150deg, #1b1b1e, #111113);
+  --glass-ink: #f5f5f7;
+  --glass-muted: #b6b6c0;
+  --glass-highlight: #ffffff12;
+  --glass-blue: #9dbdf5;
 }
 .glass-diagram button:focus-visible,
 .glass-diagram a:focus-visible {

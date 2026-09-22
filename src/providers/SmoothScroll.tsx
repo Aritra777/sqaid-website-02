@@ -14,7 +14,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
   const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || window.matchMedia("(pointer: coarse)").matches) return;
 
     const lenis = new Lenis({
       duration: 1.1,

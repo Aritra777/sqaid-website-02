@@ -587,8 +587,9 @@ export function DataWorkspace() {
         <div className={s.consumers}>
           <span>AML</span>
           <span>Fraud</span>
-          <span>Trade</span>
-          <span>Brain</span>
+          <span>Trade surveillance</span>
+          <span>Entity resolution</span>
+          <span>KYC</span>
         </div>
       </div>
     </Panel>
@@ -597,7 +598,12 @@ export function DataWorkspace() {
 export function KycWorkspace() {
   const [business, setBusiness] = useState(true);
   const [step, setStep] = useState(0);
-  const stages = ["Intake", "Ownership", "Checks", "Review"];
+  const stages = [
+    "Intake",
+    business ? "Ownership" : "Identity",
+    "Checks",
+    "Review",
+  ];
   return (
     <Panel title="KYC / CUSTOMER JOURNEY">
       <div className={s.dataBody}>
@@ -706,18 +712,21 @@ export function TradeWorkspace() {
         <span className={s.label}>INSPECT THE EVENT SEQUENCE</span>
         <div className={s.orderBook}>
           <div>
-            <small>BUY ORDERS</small>
+            <small>BUY DEPTH · ILLUSTRATIVE</small>
             {[85, 63, 92, 40].map((v, i) => (
               <i
                 key={i}
-                style={{ width: `${step === 2 && i === 0 ? 20 : v}%` }}
+                style={{ width: `${step >= 2 && i === 0 ? 20 : v}%` }}
               />
             ))}
           </div>
           <div>
-            <small>SELL ORDERS</small>
+            <small>SELL DEPTH · ILLUSTRATIVE</small>
             {[40, 80, 55, 65].map((v, i) => (
-              <i key={i} style={{ width: `${v}%` }} />
+              <i
+                key={i}
+                style={{ width: `${step >= 1 && i === 1 ? 45 : v}%` }}
+              />
             ))}
           </div>
         </div>

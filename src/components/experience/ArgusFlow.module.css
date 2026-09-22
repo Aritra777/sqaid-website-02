@@ -649,3 +649,54 @@
     padding: 18px;
   }
 }
+
+.presentation {
+  box-shadow:
+    0 24px 64px -38px #00000045,
+    inset 0 1px 0 var(--glass-highlight);
+}
+.layer,
+.argusGroup {
+  background: transparent;
+  box-shadow: none;
+}
+.warehouse,
+.kyc {
+  background: var(--glass-card);
+}
+.node,
+.warehouse,
+.consumer,
+.kyc {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+@media (max-width: 380px) {
+  .identity {
+    gap: 8px;
+  }
+  .identity h2 {
+    font-size: 18px;
+  }
+  .identity small {
+    letter-spacing: 0.4px;
+  }
+  .identity > span {
+    display: none;
+  }
+  .strategy > div {
+    gap: 5px;
+  }
+  .chapters {
+    margin-inline: 8px;
+  }
+  .caption {
+    padding-inline: 12px;
+  }
+  .canvas {
+    padding-inline: 8px;
+  }
+  .pipeline {
+    grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr);
+  }
+}
