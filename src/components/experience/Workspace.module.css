@@ -837,13 +837,13 @@
     var(--glass-card);
   box-shadow:
     var(--glass-shadow),
-    0 12px 45px #9582db33;
+    0 12px 45px #159bc31f;
   border: 1px solid var(--glass-edge);
   transform: rotate(-5deg);
 }
 .brainOrb > span {
   transform: rotate(5deg);
-  filter: drop-shadow(0 3px 7px #8a76d945);
+  filter: drop-shadow(0 3px 7px #159bc329);
 }
 .copilotWelcome h3 {
   font-size: 25px;

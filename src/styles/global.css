@@ -243,3 +243,23 @@ canvas {
     -webkit-tap-highlight-color: transparent;
   }
 }
+
+/* White presentation surfaces; retain the established typography and dark palette. */
+:root[data-theme="light"] {
+  --bg: #fff;
+  --bg-1: #fff;
+  --bg-2: #fff;
+  --surface: #fff;
+  --surface-2: #fff;
+  --text: #142536;
+  --text-2: #3f566b;
+  --text-3: #52697c;
+  --accent: #0066cc;
+  --accent-hover: #005bb5;
+  --accent-contrast: #fff;
+  --accent-soft: #0066cc08;
+  --accent-border: #0066cc29;
+  --line: #1739581a;
+  --line-2: #17395826;
+  --nav-border: #17395814;
+}

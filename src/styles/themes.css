@@ -64,10 +64,10 @@
 }
 
 /* September 2026: product identities extended under the approved rebuild brief. */
-.theme-brain { --mark: #5850c7; --mark-invert: #aca4ff; --mark-soft: rgba(88,80,199,.07); --mark-border: rgba(88,80,199,.25); }
+.theme-brain { --mark: #006d9e; --mark-invert: #65d5ff; --mark-soft: rgba(0,109,158,.07); --mark-border: rgba(0,109,158,.25); }
 .theme-kyc { --mark: #087782; --mark-invert: #6ddbe3; --mark-soft: rgba(8,119,130,.07); --mark-border: rgba(8,119,130,.25); }
 .theme-udm { --mark: #275fba; --mark-invert: #82b5ff; --mark-soft: rgba(39,95,186,.07); --mark-border: rgba(39,95,186,.25); }
-[data-theme="dark"] .theme-brain { --mark: #aca4ff; --mark-soft: rgba(172,164,255,.07); --mark-border: rgba(172,164,255,.25); }
+[data-theme="dark"] .theme-brain { --mark: #65d5ff; --mark-soft: rgba(101,213,255,.07); --mark-border: rgba(101,213,255,.25); }
 [data-theme="dark"] .theme-kyc { --mark: #6ddbe3; --mark-soft: rgba(109,219,227,.07); --mark-border: rgba(109,219,227,.25); }
 [data-theme="dark"] .theme-udm { --mark: #82b5ff; --mark-soft: rgba(130,181,255,.07); --mark-border: rgba(130,181,255,.25); }
 

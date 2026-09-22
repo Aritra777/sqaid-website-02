@@ -1,13 +1,14 @@
 /* Shared optical materials for every interactive product illustration. */
 .glass-diagram {
-  --glass-base: #f4f4f5;
-  --glass-card: linear-gradient(155deg, #fff 0%, #fafafa 62%, #f2f2f3 100%);
-  --glass-edge: #dedee1;
-  --glass-line: #dedee1;
-  --glass-shadow: 0 8px 22px -14px #00000026, inset 0 1px 0 #fff;
-  --glass-stage: linear-gradient(150deg, #fafafa, #f0f0f2);
-  --glass-ink: #202024;
-  --glass-muted: #585861;
+  --glass-base: #ffffff;
+  --glass-card: linear-gradient(155deg, #fff, #fff);
+  --glass-edge: #17395814;
+  --glass-line: #1739581f;
+  --glass-shadow:
+    0 12px 32px -18px #16395635, 0 2px 6px #16395604, inset 0 1px 0 #fff;
+  --glass-stage: linear-gradient(150deg, #fff, #fff);
+  --glass-ink: #142536;
+  --glass-muted: #486176;
   --glass-highlight: #ffffffb3;
   --glass-blue: #315caa;
 }
