@@ -1,0 +1,480 @@
+.presentation {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+  overflow: hidden;
+  margin-top: 12px;
+  text-align: left;
+  box-shadow: 0 24px 90px #0000000a;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 30px;
+  gap: 15px;
+}
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.identity small,
+.layerLabel,
+.node > small,
+.warehouse small,
+.argusGroup > small,
+.strategy > span,
+.foot > span,
+.kyc > small {
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  color: var(--text-3);
+}
+.identity h2 {
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: 550;
+  letter-spacing: -1px;
+  margin: 7px 0 0;
+}
+.controls {
+  display: flex;
+  gap: 8px;
+}
+.controls button {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.chapters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-block: 1px solid var(--line);
+}
+.chapters button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 22px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-3);
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+.chapters button span {
+  font-family: monospace;
+  font-size: 10px;
+}
+.chapters button.reached {
+  color: var(--text);
+  background: color-mix(in srgb, var(--mark) 7%, transparent);
+}
+.chapters button[aria-pressed="true"] {
+  box-shadow: inset 0 -2px var(--mark);
+}
+.caption {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px 30px;
+  min-height: 104px;
+}
+.caption > span {
+  color: var(--mark);
+  font: 11px monospace;
+  white-space: nowrap;
+  padding-top: 5px;
+}
+.caption p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 850px;
+}
+.canvas {
+  padding: 0 30px 28px;
+}
+.layer {
+  border: 1px solid color-mix(in srgb, var(--mark) 25%, var(--line));
+  border-radius: 16px;
+  padding: 20px;
+  background: color-mix(in srgb, var(--mark) 3%, transparent);
+}
+.layerLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: var(--mark);
+}
+.layerLabel small {
+  font-size: 10px;
+  letter-spacing: 0;
+}
+.pipeline {
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr;
+  align-items: stretch;
+}
+.node {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 17px 14px;
+  min-width: 0;
+}
+.node > svg {
+  color: var(--mark);
+  margin-bottom: 12px;
+}
+.node strong,
+.warehouse strong,
+.consumer strong,
+.kyc strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+.node p,
+.warehouse p,
+.consumer p,
+.kyc p {
+  font-size: 11px;
+  color: var(--text-2);
+  line-height: 1.65;
+  margin: 8px 0 0;
+}
+.engine {
+  border-color: var(--mark);
+}
+.scenarios {
+  display: flex;
+  gap: 5px;
+  margin: 10px 0;
+}
+.scenarios button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+.scenarios button[aria-pressed="true"] {
+  border-color: var(--mark);
+  color: var(--mark);
+}
+.connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mark);
+  position: relative;
+  overflow: hidden;
+}
+.connector i {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--mark);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--mark);
+  animation: travel 2s linear infinite;
+  animation-play-state: paused;
+}
+.presentation[data-running="true"] .connector i {
+  animation-play-state: running;
+}
+.connector svg {
+  opacity: 0.4;
+}
+.tag {
+  display: inline-block;
+  font: 8px monospace;
+  letter-spacing: 0.6px;
+  color: var(--mark);
+  margin-top: 12px;
+}
+.strategy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 22px;
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+  padding-top: 16px;
+}
+.strategy > div,
+.strategy > div > span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.strategy b {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text);
+}
+.strategy svg {
+  color: var(--text-3);
+}
+.strategy > small {
+  font-size: 10px;
+  color: var(--text-3);
+}
+.reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-15px);
+  transition:
+    opacity 0.7s,
+    transform 0.7s,
+    max-height 0.9s;
+}
+.shown {
+  opacity: 1;
+  max-height: 550px;
+  transform: translateY(0);
+  display: block;
+}
+.down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 17px 0;
+  color: var(--text-3);
+  font: 9px monospace;
+}
+.down svg {
+  color: var(--mark);
+}
+.warehouse {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+  border: 1px solid #6896e84d;
+  border-radius: 14px;
+  background: #6896e80b;
+}
+.warehouse strong {
+  font-size: 19px;
+  margin-top: 6px;
+}
+.warehouse > .tag {
+  margin: 0 0 0 auto;
+  color: var(--text-3);
+}
+.consumers {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 14px;
+}
+.argusGroup {
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--mark) 30%, var(--line));
+  border-radius: 14px;
+}
+.argusGroup > small {
+  color: var(--mark);
+}
+.argusGroup > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+.consumer {
+  padding: 12px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--mark) 5%, transparent);
+}
+.kyc {
+  border: 1px solid #36b4ab4d;
+  background: #36b4ab09;
+  border-radius: 14px;
+  padding: 16px;
+}
+.kyc > span {
+  float: right;
+}
+.kyc > small {
+  display: block;
+  font-size: 8px;
+  margin-top: 10px;
+}
+.foot {
+  padding: 18px 30px;
+  border-top: 1px solid var(--line);
+}
+.foot p {
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--text-3);
+  margin: 8px 0 0;
+  max-width: 800px;
+}
+.presentation button:focus-visible {
+  outline: 2px solid var(--mark);
+  outline-offset: -3px;
+}
+@keyframes travel {
+  from {
+    transform: translateX(-8px);
+  }
+  to {
+    transform: translateX(40px);
+  }
+}
+@media (max-width: 800px) {
+  .pipeline {
+    grid-template-columns: 1fr 25px 1fr;
+    gap: 10px 0;
+  }
+  .pipeline > .connector:nth-child(4) {
+    display: none;
+  }
+  .consumers {
+    grid-template-columns: 1fr;
+  }
+  .warehouse {
+    flex-wrap: wrap;
+  }
+  .warehouse > .tag {
+    margin-left: 64px;
+  }
+  .chapters button {
+    padding: 15px 10px;
+    font-size: 10px;
+    gap: 6px;
+  }
+  .caption {
+    min-height: 140px;
+  }
+  .strategy > div {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 480px) {
+  .header,
+  .caption {
+    padding: 20px 16px;
+  }
+  .header {
+    align-items: flex-start;
+  }
+  .identity {
+    gap: 10px;
+  }
+  .identity small {
+    font-size: 7px;
+  }
+  .identity h2 {
+    font-size: 20px;
+  }
+  .controls {
+    gap: 4px;
+  }
+  .controls button {
+    width: 28px;
+    height: 28px;
+  }
+  .canvas {
+    padding: 0 12px 20px;
+  }
+  .layer {
+    padding: 12px;
+  }
+  .layerLabel {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .node {
+    padding: 12px 8px;
+  }
+  .node strong {
+    font-size: 12px;
+  }
+  .node p {
+    font-size: 10px;
+  }
+  .scenarios {
+    flex-wrap: wrap;
+  }
+  .caption {
+    gap: 10px;
+    min-height: 175px;
+  }
+  .caption p {
+    font-size: 12px;
+  }
+  .argusGroup > div {
+    grid-template-columns: 1fr;
+  }
+  .down {
+    font-size: 8px;
+    line-height: 1.6;
+  }
+  .warehouse {
+    padding: 15px;
+    gap: 12px;
+  }
+  .warehouse strong {
+    font-size: 15px;
+  }
+  .warehouse > .tag {
+    margin-left: 0;
+  }
+  .foot {
+    padding: 16px;
+  }
+  .strategy > div,
+  .strategy > div > span {
+    gap: 6px;
+  }
+  .chapters button {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .shown {
+    max-height: 900px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    transform: none;
+  }
+  .connector i {
+    animation: none;
+    display: none;
+  }
+}

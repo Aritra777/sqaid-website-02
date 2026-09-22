@@ -981,3 +981,11 @@
     margin: 0 0 13px;
   }
 }
+
+.argusHero {
+  display: grid;
+  gap: 48px;
+}
+.argusHero > div:first-child {
+  max-width: 850px;
+}

@@ -1,12 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, ChevronRight, FileCheck2, GitBranch } from "lucide-react";
 import { allProducts, findProduct, workloads } from "@/content/products";
-import {
-  Architecture,
-  CTA,
-  ProductCards,
-  Stories,
-} from "@/components/experience/Shared";
+import { CTA, ProductCards, Stories } from "@/components/experience/Shared";
+import ArgusFlow from "@/components/experience/ArgusFlow";
 import Workspace from "@/components/experience/Workspace";
 import {
   Studio,
@@ -27,7 +23,9 @@ export default function ProductPage() {
   return (
     <div className={`theme-${p.theme} ${s.page}`} key={p.slug}>
       <section className={s.hero}>
-        <div className={`${s.wrap} ${s.heroGrid}`}>
+        <div
+          className={`${s.wrap} ${p.slug === "argus" ? s.argusHero : s.heroGrid}`}
+        >
           <div>
             {workload && (
               <Link to="/products/argus" className={s.breadcrumb}>
@@ -70,7 +68,7 @@ export default function ProductPage() {
             </div>
           </div>
           <div>
-            <Workspace kind={p.slug} />
+            {p.slug === "argus" ? <ArgusFlow /> : <Workspace kind={p.slug} />}
           </div>
         </div>
       </section>
@@ -127,31 +125,6 @@ export default function ProductPage() {
           )}
         </div>
       </section>
-      {p.slug === "argus" && (
-        <section className={s.section}>
-          <div className={`${s.wrap} ${s.split}`}>
-            <div>
-              <span className={s.eyebrow}>The shared foundation</span>
-              <h2 className={s.heading}>
-                Different workloads.
-                <br />
-                Connected context.
-              </h2>
-              <p className={s.intro}>
-                UDM is an enterprise warehouse product in its own right. Within
-                ARGUS, it gives fraud, AML, trade surveillance and entity
-                intelligence a common data foundation. Brain brings the
-                connected view above them.
-              </p>
-              <Link className={s.textLink} to="/products/udm">
-                Meet UDM
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-            <Architecture />
-          </div>
-        </section>
-      )}
       {p.slug === "brain" && <Studio />}
       {p.slug === "argus" && <WorkloadExplorer />}
       {p.slug === "abacus" && <ScreeningTrail />}
