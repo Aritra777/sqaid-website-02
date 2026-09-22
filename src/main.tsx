@@ -5,6 +5,7 @@ import App from "./App";
 import SmoothScroll from "./providers/SmoothScroll";
 import ScrollToTop from "./providers/ScrollToTop";
 import "./styles/global.css";
+import "./styles/diagram-glass.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -14,5 +15,5 @@ createRoot(document.getElementById("root")!).render(
         <App />
       </SmoothScroll>
     </BrowserRouter>
-  </StrictMode>
+  </StrictMode>,
 );

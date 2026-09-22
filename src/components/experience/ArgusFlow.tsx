@@ -57,7 +57,7 @@ export default function ArgusFlow() {
   return (
     <section
       ref={root}
-      className={s.presentation}
+      className={`glass-diagram ${s.presentation}`}
       aria-label="How ARGUS works: animated architecture"
       data-running={running}
     >

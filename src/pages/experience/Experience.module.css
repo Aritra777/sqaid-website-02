@@ -989,3 +989,120 @@
 .argusHero > div:first-child {
   max-width: 850px;
 }
+
+/* Optical architecture: neutral glass, with color reserved for identity. */
+.architecture {
+  position: relative;
+  padding: 22px;
+  border-radius: 32px;
+  background: var(--glass-stage);
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    0 30px 70px -35px #526a9d55,
+    inset 0 1px 0 var(--glass-highlight);
+  isolation: isolate;
+}
+.architectureTop,
+.architectureBase,
+.argusPlatform,
+.argusModules > a,
+.complianceProducts > a {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border-radius: 20px;
+  color: var(--glass-ink);
+  transition:
+    transform 0.35s,
+    box-shadow 0.35s;
+}
+.architectureTop {
+  background:
+    radial-gradient(ellipse at top right, #aa9af229, transparent 65%),
+    var(--glass-card);
+}
+.argusPlatform {
+  background: linear-gradient(145deg, #ffffff12, #b4cafa16), var(--glass-card);
+  padding: 22px;
+  border-radius: 24px;
+}
+.argusModules > a {
+  border-radius: 14px;
+  box-shadow:
+    0 5px 16px -10px #1f355b40,
+    inset 0 1px 0 var(--glass-highlight);
+}
+.architectureBase {
+  background:
+    radial-gradient(ellipse at bottom right, #81adf32b, transparent 70%),
+    var(--glass-card);
+}
+.architecture small {
+  color: var(--glass-muted);
+}
+.architecture .argusPlatformTitle small {
+  color: var(--glass-muted);
+}
+.architectureLabel {
+  margin: 8px 0 0;
+  color: var(--glass-muted);
+}
+.architecture a:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 32px -20px #324d8580,
+    inset 0 1px 0 var(--glass-highlight);
+  border-color: var(--glass-edge);
+}
+.architecture img {
+  filter: drop-shadow(0 4px 7px #667bb02b);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 85% 25%,
+    color-mix(in srgb, var(--mark) 5%, transparent),
+    transparent 55%
+  );
+}
+.productCard {
+  transition:
+    transform 0.35s,
+    box-shadow 0.35s,
+    border-color 0.35s;
+}
+@media (hover: hover) {
+  .productCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 22px 50px -30px #5871a85c;
+  }
+}
+@media (max-width: 520px) {
+  .architecture {
+    padding: 13px;
+    border-radius: 24px;
+  }
+  .argusPlatform {
+    padding: 15px;
+  }
+  .architectureTop,
+  .architectureBase {
+    padding: 19px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .architecture a,
+  .productCard {
+    transition: none;
+  }
+  .architecture a:hover,
+  .productCard:hover {
+    transform: none;
+  }
+}

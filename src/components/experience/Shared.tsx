@@ -9,7 +9,7 @@ import s from "@/pages/experience/Experience.module.css";
 export function Architecture() {
   return (
     <div
-      className={s.architecture}
+      className={`glass-diagram ${s.architecture}`}
       aria-label="ARGUS unified financial crime platform powered by UDM"
     >
       <Link to="/products/brain" className={`theme-brain ${s.architectureTop}`}>

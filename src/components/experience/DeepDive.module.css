@@ -202,3 +202,27 @@
     transition: none;
   }
 }
+
+.bindings svg,
+.detail,
+.trailDetail {
+  background: var(--glass-card);
+  border-color: var(--glass-edge);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+}
+.bindings .active svg {
+  background: var(--glass-card);
+  box-shadow:
+    var(--glass-shadow),
+    0 0 25px color-mix(in srgb, var(--ink) 12%, transparent);
+  border-color: var(--glass-edge);
+}
+.provenance button {
+  border-color: transparent;
+  border-radius: 14px;
+}
+.provenance button[aria-pressed="true"] {
+  background: var(--glass-card);
+  box-shadow: var(--glass-shadow);
+}

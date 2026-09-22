@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ProductLogo from "@/components/ui/ProductLogo";
 import {
   ArrowUpRight,
   Check,
@@ -9,7 +10,6 @@ import {
   Network,
   Search,
   ShieldCheck,
-  Sparkles,
   UserRound,
 } from "lucide-react";
 import s from "./Workspace.module.css";
@@ -72,10 +72,24 @@ export function Panel({
   className?: string;
 }) {
   return (
-    <div className={`${s.panel} ${className}`}>
+    <div className={`glass-diagram ${s.panel} ${className}`}>
       <div className={s.top}>
         <span>
-          <i />
+          <ProductLogo
+            product={
+              title.includes("BRAIN")
+                ? "brain"
+                : title.includes("ABACUS")
+                  ? "abacus"
+                  : title.includes("UDM")
+                    ? "udm"
+                    : title.includes("KYC")
+                      ? "kyc"
+                      : "argus"
+            }
+            size={23}
+            decorative
+          />
           {title}
         </span>
         <small>ILLUSTRATIVE DATA</small>
@@ -288,76 +302,84 @@ const answers = [
 export function BrainWorkspace() {
   const [question, setQuestion] = useState(0);
   const [source, setSource] = useState<number | null>(null);
+  const [showSources, setShowSources] = useState(false);
   const a = answers[question];
   return (
-    <Panel title="BRAIN / CONNECTED COMPANION">
-      <div className={s.brainBody}>
-        <div className={s.workspaceLabel}>
-          <Sparkles size={16} /> Risk investigation workspace{" "}
-          <span>PREVIEW</span>
-        </div>
-        <div className={s.questionList}>
-          {answers.map((v, i) => (
-            <button
-              key={v.q}
-              aria-pressed={question === i}
-              className={question === i ? s.chosen : ""}
-              onClick={() => {
-                setQuestion(i);
-                setSource(null);
-              }}
-            >
-              {v.q}
-              <ArrowUpRight size={14} />
-            </button>
-          ))}
-        </div>
-        <div className={s.activity}>
-          <span>
-            <Check size={12} /> Sources retrieved
-          </span>
-          <ChevronRight size={12} />
-          <span>
-            <Check size={12} /> Context assembled
-          </span>
-        </div>
-        <div className={s.answer} key={question}>
-          <div className={s.answerIcon}>
-            <Sparkles size={17} />
+    <Panel title="SQAID BRAIN" className={s.copilot}>
+      <div className={s.copilotBody}>
+        <div className={s.copilotWelcome}>
+          <div className={s.brainOrb}>
+            <ProductLogo product="brain" size={56} decorative />
           </div>
-          <div>
-            <small className={s.label}>CONNECTED FINDING</small>
-            <p>{a.text}</p>
-            <div className={s.sourceChips}>
-              {a.sources.map((v, i) => (
+          <h3>Your risk. A clearer picture.</h3>
+          <p>Explore the evidence with SqAId Brain.</p>
+        </div>
+        <div className={s.userMessage} key={`q-${question}`}>
+          {a.q}
+        </div>
+        <div className={s.copilotResponse} key={question}>
+          <div className={s.copilotAuthor}>
+            <ProductLogo product="brain" size={25} decorative />
+            <strong>Brain</strong>
+            <span>
+              <Check size={11} /> Grounded in 3 sources
+            </span>
+          </div>
+          <p>{a.text}</p>
+          <button
+            className={s.evidenceToggle}
+            aria-expanded={showSources}
+            onClick={() => setShowSources(!showSources)}
+          >
+            <FileText size={13} />{" "}
+            {showSources ? "Hide evidence" : "Explore 3 sources"}
+            <ChevronRight size={13} />
+          </button>
+          {showSources && (
+            <div className={s.evidenceDrawer}>
+              <div className={s.sourceChips}>
+                {a.sources.map((v, i) => (
+                  <button
+                    key={v}
+                    aria-pressed={source === i}
+                    onClick={() => setSource(source === i ? null : i)}
+                  >
+                    {v}
+                  </button>
+                ))}
+              </div>
+              {source !== null && (
+                <p aria-live="polite">{a.evidence[source]}</p>
+              )}
+            </div>
+          )}
+        </div>
+        <div className={s.followups}>
+          <small>KEEP EXPLORING</small>
+          {answers.map(
+            (v, i) =>
+              i !== question && (
                 <button
-                  key={v}
-                  aria-pressed={source === i}
-                  onClick={() => setSource(source === i ? null : i)}
+                  key={v.q}
+                  onClick={() => {
+                    setQuestion(i);
+                    setSource(null);
+                    setShowSources(false);
+                  }}
                 >
-                  <FileText size={11} />
-                  {v}
+                  {v.q}
+                  <ArrowUpRight size={14} />
                 </button>
-              ))}
-            </div>
-          </div>
+              ),
+          )}
         </div>
-        {source !== null ? (
-          <div className={s.sourceDetail} aria-live="polite">
-            <span className={s.label}>SOURCE / {a.sources[source]}</span>
-            <p>{a.evidence[source]}</p>
-          </div>
-        ) : (
-          <div className={s.miniChart}>
-            <span>Illustrative activity pattern</span>
-            <div>
-              {a.bars.map((v, i) => (
-                <i key={i} style={{ height: `${v}%` }} />
-              ))}
-            </div>
-            <small>Context is a starting point. Inspect the evidence.</small>
-          </div>
-        )}
+        <div className={s.promptBar}>
+          <ProductLogo product="brain" size={22} decorative />
+          <span>Select a suggested question to explore</span>
+          <span className={s.promptArrow}>
+            <ArrowUpRight size={16} />
+          </span>
+        </div>
       </div>
     </Panel>
   );

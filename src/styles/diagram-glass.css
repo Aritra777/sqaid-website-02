@@ -1,0 +1,92 @@
+/* Shared optical materials for every interactive product illustration. */
+.glass-diagram {
+  --glass-base: #f0f3f9;
+  --glass-card: linear-gradient(
+    145deg,
+    #ffffffee 0%,
+    #ffffff94 46%,
+    #e9eef7a6 100%
+  );
+  --glass-edge: #ffffffd9;
+  --glass-line: #64748b25;
+  --glass-shadow:
+    0 12px 32px -16px #23385e40, inset 0 1px 0 #fff, inset 0 -1px 0 #ffffff99;
+  --glass-stage:
+    radial-gradient(ellipse at 0% 0%, #cbdafa80, transparent 50%),
+    radial-gradient(ellipse at 100% 90%, #dfd7f880, transparent 48%),
+    linear-gradient(145deg, #fafbff, #edf1f7 60%, #f9fbff);
+  --glass-ink: #202735;
+  --glass-muted: #566174;
+  --glass-highlight: #ffffffcc;
+  --glass-blue: #4164b7;
+}
+[data-theme="dark"] .glass-diagram {
+  --glass-base: #181e29;
+  --glass-card: linear-gradient(145deg, #ffffff14, #ffffff06 50%, #91acdf0e);
+  --glass-edge: #d4e2ff2e;
+  --glass-line: #d4e2ff20;
+  --glass-shadow:
+    0 16px 36px -18px #0009, inset 0 1px 0 #ffffff20, inset 0 -1px 0 #ffffff08;
+  --glass-stage:
+    radial-gradient(ellipse at 0% 0%, #647fab25, transparent 55%),
+    radial-gradient(ellipse at 100% 95%, #8e76d922, transparent 55%),
+    linear-gradient(145deg, #202632, #131923 65%, #202434);
+  --glass-ink: #f1f5ff;
+  --glass-muted: #afbbce;
+  --glass-highlight: #ffffff16;
+  --glass-blue: #a8c6ff;
+}
+.glass-diagram button:focus-visible,
+.glass-diagram a:focus-visible {
+  outline: 2px solid var(--glass-blue);
+  outline-offset: 4px;
+}
+
+/* A brief optical glint on interaction; never intercept controls. */
+.glass-diagram {
+  position: relative;
+  isolation: isolate;
+}
+.glass-diagram::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 25%,
+    var(--glass-highlight) 47%,
+    transparent 65%
+  );
+  background-size: 260% 100%;
+  background-position: 120% 0;
+  opacity: 0;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .glass-diagram:hover::after {
+    animation: glass-glint 1.25s ease-out 1;
+  }
+}
+@keyframes glass-glint {
+  0% {
+    opacity: 0;
+    background-position: 120% 0;
+  }
+  20% {
+    opacity: 0.18;
+  }
+  100% {
+    opacity: 0;
+    background-position: -40% 0;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass-diagram {
+    --glass-card: linear-gradient(var(--glass-base), var(--glass-base));
+  }
+  .glass-diagram::after {
+    display: none;
+  }
+}
