@@ -844,3 +844,88 @@
 .band + .band {
   padding-top: 0;
 }
+
+/* ARGUS owns the capabilities; UDM is its warehouse, not a peer workload. */
+.argusPlatform {
+  border: 1px solid var(--mark-border);
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--mark-soft);
+}
+.argusPlatformTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 3px 3px 20px;
+}
+.argusPlatformTitle strong {
+  font-size: 36px;
+  letter-spacing: -0.045em;
+  margin-top: 9px;
+}
+.argusPlatformTitle small {
+  color: var(--mark);
+  font-size: 8px;
+  line-height: 1.6;
+}
+.argusModules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+.argusModules > a {
+  padding: 16px 13px;
+  background: var(--surface);
+  border: 1px solid var(--mark-border);
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.argusModules small {
+  font-size: 8px;
+  line-height: 1.5;
+}
+.argusModules > a:hover {
+  border-color: var(--mark);
+}
+.complianceProducts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.complianceProducts > a {
+  padding: 20px;
+  border: 1px solid var(--mark-border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.complianceProducts strong {
+  font-size: 18px;
+}
+.complianceProducts small {
+  font-size: 8px;
+  line-height: 1.6;
+}
+@media (max-width: 520px) {
+  .argusPlatform {
+    padding: 15px;
+  }
+  .argusModules > a {
+    font-size: 12px;
+    padding: 14px 10px;
+  }
+  .argusModules small {
+    font-size: 7px;
+  }
+  .complianceProducts > a {
+    padding: 17px 12px;
+  }
+  .argusPlatformTitle small {
+    font-size: 7px;
+  }
+  .architectureTop small {
+    font-size: 7px;
+  }
+}

@@ -11,9 +11,9 @@ export default function Footer() {
         <div className={styles.brandCol}>
           <Brand />
           <p className={styles.tagline}>
-            Your data. Your risk.
+            Financial compliance.
             <br />
-            One connected view.
+            Fighting financial crime globally.
           </p>
           <a href={`mailto:${SITE.email}`} className={styles.email}>
             {SITE.email}
@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
         <div className={styles.col}>
           <h4 className={styles.colTitle}>Products</h4>
-          {products.map((p) => (
+          {[products[1], products[0], ...products.slice(2)].map((p) => (
             <Link
               key={p.slug}
               to={`/products/${p.slug}`}
@@ -66,7 +66,9 @@ export default function Footer() {
         <span>
           © {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </span>
-        <span className={styles.mono}>CONNECTED DATA & RISK INTELLIGENCE</span>
+        <span className={styles.mono}>
+          FINANCIAL COMPLIANCE & CRIME PREVENTION
+        </span>
       </div>
     </footer>
   );

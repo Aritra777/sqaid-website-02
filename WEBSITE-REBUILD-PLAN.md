@@ -1,3 +1,5 @@
+> Owner correction, 22 September 2026: Preserve and restyle existing company history, founders and job postings. Lead the site with financial compliance and fighting financial crime globally. ARGUS is one unified platform for AML, fraud, trade surveillance and entity resolution, powered by the UDM enterprise warehouse. This direction supersedes conflicting proposals below.
+
 # SqAId website rebuild blueprint
 
 Planning baseline: 21 September 2026. Based on the current website and a targeted review of the seven local product projects. This is a website specification, not a production certification of those products. Product applications were not run or exhaustively audited during planning.

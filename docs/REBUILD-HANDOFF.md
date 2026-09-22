@@ -10,7 +10,7 @@ Implemented 22 September 2026 in the existing React/Vite repository. The design 
 - Buyer journeys: `/solutions`, `/solutions/financial-crime`, `/solutions/customer-lifecycle`, `/solutions/enterprise-intelligence`.
 - Company/contact: `/company`, `/company/careers`, `/contact`.
 - Legacy case-management inquiry: `/products/cais`.
-- Legacy job detail/application routes now give an honest availability/email inquiry path. Old solution and industry URLs have relevant redirects; unknown routes show the existing 404.
+- All six original job detail and application routes are restored with the new styling; applications prepare an email draft. Old solution and industry URLs have relevant redirects; unknown routes show the existing 404.
 
 ## Interactions
 
@@ -46,4 +46,12 @@ Content: `src/content/`. Route composition: `src/pages/experience/`. Interactive
 
 Titles, descriptions and canonical URLs update per route. Root social metadata, a raster social preview, sitemap and robots file are included. This remains a client-rendered SPA: deployment needs an index.html history fallback. `public/_redirects` supplies the common static-host rule; configure equivalent behavior on other hosting. Route-specific social HTML prerendering is not included.
 
-Nothing has been published or deployed. Contact uses the email client until a real form-delivery service is configured. Reviewed legal content and confirmed job openings remain external publication dependencies. The user's existing untracked `index 2.html` was not modified.
+Nothing has been published or deployed. Contact uses the email client until a real form-delivery service is configured. Reviewed legal content remains an external publication dependency. Original job postings and company content are restored at the owner’s request. The user's existing untracked `index 2.html` was not modified.
+
+## Restoration and positioning correction
+
+At the owner’s request, restored company origin, founders, mission, principles, company facts, contact links and all six original job listings with role details and application pages. The new design is retained. Original job data remains in `src/pages/careers/jobs.ts`. Application fields prepare an email; the resume is attached in the email client.
+
+The homepage, platform page, ARGUS/UDM/Brain positioning, navigation, footer, social preview and metadata now lead with financial compliance and fighting financial crime globally. The architecture encloses AML, fraud, trade surveillance and entity resolution within ARGUS, with the UDM enterprise warehouse powering them.
+
+Validation: lint and production build pass. Restored careers navigation, Java AI Engineer details and application email preparation tested. Eleven affected routes checked at mobile width without document overflow; revised architecture and company page visually reviewed at desktop width.

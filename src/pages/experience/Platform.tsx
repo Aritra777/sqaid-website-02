@@ -10,25 +10,30 @@ import { useDocumentTitle } from "@/lib/use-document-title";
 import s from "./Experience.module.css";
 export default function Platform() {
   useDocumentTitle(
-    "Platform · Connected by design",
-    "Explore how Brain, ARGUS, ABACUS, KYC and UDM fit together across enterprise data and risk workflows.",
+    "ARGUS · Unified financial crime platform",
+    "ARGUS is one unified platform for AML, fraud, trade surveillance and entity resolution, powered by the UDM enterprise warehouse. Built by SqAId for financial compliance.",
   );
   return (
-    <div className={`theme-brain ${s.page}`}>
+    <div className={`theme-argus ${s.page}`}>
       <section className={s.hero}>
         <div className={`${s.wrap} ${s.heroGrid}`}>
           <div>
-            <span className={s.eyebrow}>The SqAId platform</span>
+            <span className={s.eyebrow}>
+              ARGUS / Unified financial crime platform
+            </span>
             <h1 className={s.title}>
-              Built for the work.
+              AML. Fraud. Trade.
               <br />
-              Connected for
+              Entity resolution.
               <br />
-              the insight.
+              One platform.
             </h1>
             <p className={s.lead}>
-              An enterprise data foundation. Specialist risk products. An
-              intelligence experience that spans the picture.
+              ARGUS brings financial crime detection, surveillance and connected
+              identities into a single platform, powered by UDM—the enterprise
+              warehouse. SqAId helps financial institutions build a unified
+              approach to financial compliance and the global fight against
+              financial crime.
             </p>
             <div className={s.actions}>
               <Button to="/contact">
@@ -42,21 +47,23 @@ export default function Platform() {
       </section>
       <section className={`${s.section} ${s.band}`}>
         <div className={s.wrap}>
-          <span className={s.eyebrow}>Clear roles. Shared context.</span>
-          <h2 className={s.heading}>Each layer does its part.</h2>
+          <span className={s.eyebrow}>One ARGUS. Powered by UDM.</span>
+          <h2 className={s.heading}>
+            Unified at the platform. Connected through the warehouse.
+          </h2>
           <div className={s.features}>
             {[
               {
-                title: "The foundation",
-                body: "UDM organizes enterprise data through a canonical model, source contracts and reconciliation. It is a standalone product and the foundation in the ARGUS proposition.",
+                title: "UDM powers ARGUS",
+                body: "UDM is the enterprise warehouse powering ARGUS. It supplies the shared model for parties, accounts, transactions and market activity, and is also available as a standalone data product.",
               },
               {
-                title: "The domain workflows",
-                body: "ARGUS brings fraud, AML, trade surveillance and entity context together. ABACUS handles screening. KYC manages customer lifecycle workflows.",
+                title: "One platform, four capabilities",
+                body: "AML, fraud, trade surveillance and entity resolution are capabilities within ARGUS. Teams can investigate different types of financial crime using shared data and connected identity context.",
               },
               {
-                title: "The intelligence experience",
-                body: "Brain connects source discovery, configured agents and evidence exploration. It can connect to supported sources directly as well as to UDM.",
+                title: "Brain spans the compliance suite",
+                body: "Brain brings multi-agent investigation and analytics above ARGUS, ABACUS, KYC and UDM. ABACUS supports sanctions screening; KYC supports onboarding and ongoing due diligence.",
               },
             ].map((v, i) => (
               <article className={s.feature} key={v.title}>
@@ -91,17 +98,19 @@ export default function Platform() {
           </div>
           <div className={s.statement}>
             <p>
-              One product can solve a focused problem. Connecting the products
-              creates room for a broader question.
+              One ARGUS platform. A shared UDM warehouse. A unified view across
+              AML, fraud, trade surveillance and entity resolution.
             </p>
-            <small>START WITH THE WORKFLOW YOU NEED</small>
+            <small>FINANCIAL COMPLIANCE / ONE CONNECTED PLATFORM</small>
           </div>
         </div>
       </section>
       <section className={`${s.section} ${s.band}`}>
         <div className={s.wrap}>
           <span className={s.eyebrow}>Choose your starting point</span>
-          <h2 className={s.heading}>A suite with distinct strengths.</h2>
+          <h2 className={s.heading}>
+            Financial compliance, from onboarding to investigation.
+          </h2>
           <ProductCards />
         </div>
       </section>
@@ -133,7 +142,7 @@ export default function Platform() {
           </div>
         </div>
       </section>
-      <CTA title="Start with the question you need to answer." />
+      <CTA title="Unify your financial crime operations." />
     </div>
   );
 }

@@ -27,7 +27,7 @@ export const products: Product[] = [
     category: "Multi-agent intelligence",
     theme: "brain",
     headline: "Ask across your data.\nSee the evidence.",
-    lead: "A shared intelligence workspace above your products and data. Bring specialist agents, analytics and investigation context into one conversation.",
+    lead: "Multi-agent intelligence above the SqAId financial compliance suite. Ask across ARGUS, ABACUS, KYC and UDM, connect financial crime evidence and explore your data in one workspace.",
     question: "The answer is somewhere. Why does finding it take so long?",
     answer:
       "A customer record in one system. A screening result in another. Transactions in a warehouse. Brain connects source discovery, configured tools and agents, so you can explore the question and inspect the evidence in the same workspace.",
@@ -100,13 +100,13 @@ export const products: Product[] = [
   {
     slug: "argus",
     name: "ARGUS",
-    category: "Financial crime & surveillance",
+    category: "Unified financial crime platform",
     theme: "argus",
-    headline: "See financial crime\nin context.",
-    lead: "Fraud, AML, trade surveillance and entity relationships in one product. A shared enterprise data foundation makes the connections meaningful.",
-    question: "Risk does not stay inside a single system.",
+    headline: "One platform.\nAgainst financial crime.",
+    lead: "ARGUS is one unified platform for AML, fraud, trade surveillance and entity resolution, powered by the UDM enterprise warehouse. Built for financial compliance teams fighting financial crime.",
+    question: "Financial crime crosses boundaries. ARGUS unifies the response.",
     answer:
-      "A payment, an account, a trading pattern and a related business can each look ordinary in isolation. ARGUS brings these workloads into a connected product story, with UDM underneath and Brain for cross-source exploration.",
+      "Money laundering, fraud and market abuse can involve the same accounts and entities. ARGUS brings AML, fraud, trade surveillance and entity resolution into one platform, powered by UDM warehouse data. Brain adds multi-agent investigation across the compliance suite.",
     features: [
       {
         title: "A foundation that carries context.",
@@ -338,10 +338,10 @@ export const products: Product[] = [
   {
     slug: "udm",
     name: "UDM",
-    category: "Enterprise data foundation",
+    category: "Enterprise warehouse / Powering ARGUS",
     theme: "udm",
     headline: "One enterprise model.\nMore possibilities.",
-    lead: "A standalone enterprise warehouse foundation, and the data foundation for ARGUS. Bring source data into a canonical model with contracts, reconciliation and controlled promotion.",
+    lead: "The enterprise warehouse powering ARGUS across AML, fraud, trade surveillance and entity resolution. Also a standalone product for enterprise-wide data, with canonical models, contracts and reconciliation.",
     question: "Every team should not have to redefine the same customer.",
     answer:
       "When systems disagree on entities, fields and relationships, each new use case starts with another mapping exercise. UDM organizes enterprise data around shared definitions that can support risk, surveillance and analytics.",

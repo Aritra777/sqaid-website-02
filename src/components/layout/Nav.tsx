@@ -61,7 +61,7 @@ export default function Nav({
       <div className={styles.inner}>
         <Brand />
         <nav className={styles.links} aria-label="Primary">
-          <Link to="/platform">Platform</Link>
+          <Link to="/platform">ARGUS platform</Link>
           <button
             ref={trigger}
             className={styles.trigger}
@@ -74,6 +74,7 @@ export default function Nav({
           </button>
           <Link to="/solutions">Use cases</Link>
           <Link to="/company">Company</Link>
+          <Link to="/company/careers">Careers</Link>
         </nav>
         <div className={styles.actions}>
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
@@ -98,9 +99,9 @@ export default function Nav({
           <div className={styles.menuIntro}>
             <small>THE CONNECTED SUITE</small>
             <strong>
-              Specialist products.
+              Financial compliance.
               <br />
-              Shared context.
+              One mission.
             </strong>
             <Link to="/platform">
               Explore the architecture
@@ -108,7 +109,7 @@ export default function Nav({
             </Link>
           </div>
           <div className={styles.productGrid}>
-            {products.map((p) => {
+            {[products[1], products[0], ...products.slice(2)].map((p) => {
               const Icon = productIcons[p.theme as keyof typeof productIcons];
               return (
                 <Link
@@ -136,8 +137,8 @@ export default function Nav({
           className={styles.mobilePanel}
           aria-label="Mobile navigation"
         >
-          <Link to="/platform">Platform</Link>
-          {products.map((p) => (
+          <Link to="/platform">ARGUS platform</Link>
+          {[products[1], products[0], ...products.slice(2)].map((p) => (
             <Link key={p.slug} to={`/products/${p.slug}`}>
               {p.name}
             </Link>

@@ -24,29 +24,30 @@ import s from "./Experience.module.css";
 export default function Home() {
   useDocumentTitle(
     null,
-    "Connect enterprise data, screening, customer lifecycle and financial-crime monitoring. Ask better questions with SqAId Brain.",
+    "SqAId builds financial compliance technology to fight financial crime globally. ARGUS unifies AML, fraud, trade surveillance and entity resolution, powered by the UDM enterprise warehouse.",
   );
   return (
-    <div className={`theme-brain ${s.page}`}>
+    <div className={`theme-argus ${s.page}`}>
       <section className={s.hero}>
         <div className={`${s.wrap} ${s.heroGrid}`}>
           <div>
-            <span className={s.eyebrow}>Connected risk intelligence</span>
+            <span className={s.eyebrow}>
+              Financial compliance. Fighting financial crime globally.
+            </span>
             <h1 className={s.title}>
-              Your data.
+              One platform.
               <br />
-              Your risk.
-              <br />
-              One connected view.
+              Against financial crime.
             </h1>
             <p className={s.lead}>
-              Bring enterprise data, customer context and financial-crime
-              intelligence together. See the connections. Ask the next question.
-              Follow the evidence.
+              SqAId builds financial compliance technology for banks, fintechs
+              and financial institutions. ARGUS brings AML, fraud, trade
+              surveillance and entity resolution into one unified platform,
+              powered by the UDM enterprise warehouse.
             </p>
             <div className={s.actions}>
               <Button to="/platform" size="lg">
-                Explore the platform
+                Explore ARGUS
                 <ArrowRight size={16} />
               </Button>
               <Link to="/contact" className={s.textLink}>
@@ -57,11 +58,11 @@ export default function Home() {
             <div className={s.meta}>
               <span>
                 <Database size={12} />
-                Shared data foundation
+                Powered by UDM warehouse
               </span>
               <span>
                 <Network size={12} />
-                Connected intelligence
+                One financial crime platform
               </span>
             </div>
           </div>
@@ -72,17 +73,14 @@ export default function Home() {
       </section>
       <div className={s.wrap}>
         <div className={s.ribbon}>
-          {[
-            "ENTERPRISE DATA",
-            "CUSTOMER CONTEXT",
-            "RISK & SURVEILLANCE",
-            "AGENTIC INTELLIGENCE",
-          ].map((v) => (
-            <span key={v}>
-              <i />
-              {v}
-            </span>
-          ))}
+          {["AML", "FRAUD", "TRADE SURVEILLANCE", "ENTITY RESOLUTION"].map(
+            (v) => (
+              <span key={v}>
+                <i />
+                {v}
+              </span>
+            ),
+          )}
         </div>
       </div>
       <section className={s.section}>
@@ -129,18 +127,21 @@ export default function Home() {
       <section id="platform" className={`${s.section} ${s.band}`}>
         <div className={`${s.wrap} ${s.split}`}>
           <div>
-            <span className={s.eyebrow}>Built to connect</span>
+            <span className={s.eyebrow}>
+              ARGUS / Unified financial crime platform
+            </span>
             <h2 className={s.heading}>
-              One foundation.
+              AML. Fraud. Trade.
               <br />
-              Specialist products.
+              Entity resolution.
               <br />
-              Shared intelligence.
+              One ARGUS.
             </h2>
             <p className={s.intro}>
-              UDM gives enterprise data a common structure. ARGUS, ABACUS and
-              KYC bring domain-specific workflows. Brain sits across the suite
-              to connect questions with evidence.
+              These are capabilities of one platform. UDM powers ARGUS with a
+              shared enterprise warehouse for customer, account, transaction and
+              market data. Brain adds multi-agent intelligence across the suite;
+              ABACUS and KYC extend screening and customer due diligence.
             </p>
             <div className={s.actions}>
               <Link to="/platform" className={s.textLink}>
@@ -155,15 +156,18 @@ export default function Home() {
       <section className={s.section}>
         <div className={`${s.wrap} ${s.split}`}>
           <div>
-            <span className={s.eyebrow}>Meet SqAId Brain</span>
+            <span className={s.eyebrow}>
+              SqAId Brain / Intelligence for financial compliance
+            </span>
             <h2 className={s.heading}>
               A better question.
               <br />A deeper view.
             </h2>
             <p className={s.intro}>
-              Move beyond a dashboard’s predefined answers. Connect sources,
-              configure specialist agents and explore findings through a
-              conversation that keeps the evidence close.
+              Bring multi-agent intelligence to financial crime investigations.
+              Brain sits above ARGUS, ABACUS, KYC and UDM, helping compliance
+              teams ask across their data and inspect the evidence behind the
+              answer.
             </p>
             <p className={s.intro}>
               Select a question in this illustration, then open a source. That
@@ -182,11 +186,11 @@ export default function Home() {
       </section>
       <section id="products" className={`${s.section} ${s.band}`}>
         <div className={s.wrap}>
-          <span className={s.eyebrow}>The product suite</span>
+          <span className={s.eyebrow}>Financial compliance products</span>
           <h2 className={s.heading}>
-            Purpose-built for the work.
+            One mission.
             <br />
-            Designed for the whole picture.
+            Fight financial crime.
           </h2>
           <ProductCards />
         </div>

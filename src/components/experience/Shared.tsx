@@ -22,54 +22,71 @@ export const productIcons = {
 };
 export function Architecture() {
   return (
-    <div className={s.architecture} aria-label="SqAId product architecture">
+    <div
+      className={s.architecture}
+      aria-label="ARGUS unified financial crime platform powered by UDM"
+    >
       <Link to="/products/brain" className={`theme-brain ${s.architectureTop}`}>
         <div>
           <strong>SqAId Brain</strong>
-          <small>ASK · EXPLORE · INVESTIGATE</small>
+          <small>MULTI-AGENT INTELLIGENCE ACROSS THE SUITE</small>
         </div>
         <BrainCircuit size={30} />
       </Link>
-      <div className={s.architectureMid}>
-        <Link to="/products/argus" className="theme-argus">
-          <strong>ARGUS</strong>
-          <small>
-            Fraud · AML · Trade
-            <br />
-            Entity resolution
-          </small>
+      <div className={`theme-argus ${s.argusPlatform}`}>
+        <Link to="/products/argus" className={s.argusPlatformTitle}>
+          <div>
+            <small>ONE UNIFIED FINANCIAL CRIME PLATFORM</small>
+            <strong>ARGUS</strong>
+          </div>
+          <Network size={30} />
         </Link>
-        <Link to="/products/abacus" className="theme-abacus">
-          <strong>ABACUS</strong>
-          <small>
-            Sanctions &<br />
-            payment screening
-          </small>
-        </Link>
-        <Link to="/products/kyc" className="theme-kyc">
-          <strong>KYC</strong>
-          <small>
-            Onboarding &<br />
-            ongoing review
-          </small>
+        <div className={s.argusModules}>
+          <Link to="/products/argus/aml">
+            AML<small>Transaction monitoring</small>
+          </Link>
+          <Link to="/products/argus/fraud">
+            Fraud<small>Event & rule evaluation</small>
+          </Link>
+          <Link to="/products/argus/trade-surveillance">
+            Trade surveillance<small>Market conduct</small>
+          </Link>
+          <Link to="/products/argus/entity-resolution">
+            Entity resolution<small>Identity & relationships</small>
+          </Link>
+        </div>
+        <Link to="/products/udm" className={`theme-udm ${s.architectureBase}`}>
+          <div>
+            <small>POWERED BY THE ENTERPRISE WAREHOUSE</small>
+            <strong>UDM</strong>
+            <small>SHARED DATA FOR EVERY ARGUS CAPABILITY</small>
+          </div>
+          <Database size={28} />
         </Link>
       </div>
-      <Link to="/products/udm" className={`theme-udm ${s.architectureBase}`}>
-        <div>
-          <strong>UDM</strong>
-          <small>ENTERPRISE DATA FOUNDATION</small>
-        </div>
-        <Database size={28} />
-      </Link>
+      <div className={s.complianceProducts}>
+        <Link to="/products/abacus" className="theme-abacus">
+          <strong>ABACUS</strong>
+          <small>Sanctions & payment screening</small>
+        </Link>
+        <Link to="/products/kyc" className="theme-kyc">
+          <strong>SqAId KYC</strong>
+          <small>Onboarding & ongoing due diligence</small>
+        </Link>
+      </div>
       <p className={s.architectureLabel}>
-        Product architecture · integration scope depends on configuration.
+        UDM is also a standalone enterprise warehouse product.
         <br />
-        Brain can also connect directly to supported source systems.
+        Integration scope is configured for your institution.
       </p>
     </div>
   );
 }
-export function ProductCards({ items = products }: { items?: Product[] }) {
+export function ProductCards({
+  items = [products[1], products[0], ...products.slice(2)],
+}: {
+  items?: Product[];
+}) {
   return (
     <div className={s.productCards}>
       {items.map((p) => {
@@ -134,8 +151,8 @@ export function Stories({ stories }: { stories: Story[] }) {
 }
 export function CTA({
   name = "SqAId",
-  title = "Bring your hardest question.",
-  copy = "Let’s explore the data, workflows and evidence your team needs.",
+  title = "Take on financial crime with SqAId.",
+  copy = "Explore a unified approach to AML, fraud, trade surveillance and entity resolution—powered by your enterprise data.",
   interest = "Platform",
 }: {
   name?: string;

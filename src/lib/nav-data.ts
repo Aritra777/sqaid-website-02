@@ -17,7 +17,7 @@ export type ProductLink = {
 
 export const PRODUCTS: ProductLink[] = [
   { slug: "brain", name: "SqAId Brain", tagline: "Connected data, agents and evidence", theme: "theme-brain", icon: "BrainCircuit", status: "live" },
-  { slug: "argus", name: "ARGUS", tagline: "Fraud, AML, trade and entity intelligence", theme: "theme-argus", icon: "Network", status: "live" },
+  { slug: "argus", name: "ARGUS", tagline: "Unified AML, fraud, trade surveillance and entity resolution", theme: "theme-argus", icon: "Network", status: "live" },
   { slug: "abacus", name: "ABACUS", tagline: "Sanctions and payment screening", theme: "theme-abacus", icon: "Search", status: "live" },
   { slug: "kyc", name: "SqAId KYC", tagline: "Customer onboarding and ongoing review", theme: "theme-kyc", icon: "Fingerprint", status: "live" },
   { slug: "udm", name: "UDM", tagline: "The enterprise data foundation", theme: "theme-udm", icon: "Database", status: "live" },

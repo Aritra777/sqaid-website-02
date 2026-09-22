@@ -21,13 +21,17 @@ No product APIs, source databases, secrets or customer records are connected to 
 
 ## Previous content
 
-The new router only publishes the rebuilt experience pages and the existing 404. Historical page/components remain in source for reference and potential reuse but are not linked into the new route graph. In particular, the retired ABACUS AI adjudication page, old placeholder company biographies/photos, unconfirmed job listings and application form with a fake success state are not published.
+The new router only publishes the rebuilt experience pages and the existing 404. Historical page/components remain in source for reference and potential reuse but are not linked into the new route graph. In particular, the retired ABACUS AI adjudication page, old application form with a fake success state is not published. Company history, founder biographies and all original job postings were restored at the owner’s explicit request, using the new styling. Founder portraits use initials rather than unrelated stock faces.
 
 CAIS retains a conservative availability/inquiry page. FARO points to ARGUS Fraud. Previously advertised solution slugs redirect individually to a relevant product or solution; industry routes lead to relevant buyer journeys.
 
 ## External content still needed before publication
 
 - Approved privacy/terms documents and legal/company identity details. No legal text or regulatory commitments were invented; a privacy-inquiry contact link is available.
-- Confirmed open roles before republishing a job list.
+- The owner has explicitly requested restoration of all existing job listings. Original role content and posting dates are retained.
 - Verified customer permissions and outcome evidence before adding testimonials, logos or measured results.
 - A submission provider if the owner wants server-delivered demo requests; the current flow openly prepares an email in the visitor's client.
+
+## Owner correction — 22 September 2026
+
+Positioning now leads with financial compliance and the global fight against financial crime. ARGUS is explicitly one unified platform for AML, fraud, trade surveillance and entity resolution, powered by UDM, the enterprise warehouse. Brain spans the compliance suite. Company history, founders, mission, principles, six original job postings, full role details and application pages are restored. Applications prepare an email and require the applicant to attach the resume in their email client; no fake submission success is shown.
