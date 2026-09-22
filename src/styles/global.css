@@ -222,8 +222,8 @@ h4 {
 
 /* Responsive site frame: broad layouts, readable copy, modest device gutters. */
 :root {
-  --site-width: 1680px;
-  --site-gutter: clamp(16px, 3vw, 64px);
+  --site-width: 1560px;
+  --site-gutter: clamp(24px, 4.5vw, 80px);
   --container: var(--site-width);
   --container-wide: var(--site-width);
   --gutter: var(--site-gutter);
@@ -262,4 +262,15 @@ canvas {
   --line: #1739581a;
   --line-2: #17395826;
   --nav-border: #17395814;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --site-gutter: 20px;
+  }
+}
+@media (max-width: 360px) {
+  :root {
+    --site-gutter: 16px;
+  }
 }

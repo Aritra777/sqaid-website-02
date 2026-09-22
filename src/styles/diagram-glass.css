@@ -1,12 +1,16 @@
 /* Shared optical materials for every interactive product illustration. */
 .glass-diagram {
   --glass-base: #ffffff;
-  --glass-card: linear-gradient(155deg, #fff, #fff);
+  --glass-card: linear-gradient(155deg, #fff 25%, #fcfeff 75%, #f5fafc);
   --glass-edge: #17395814;
   --glass-line: #1739581f;
   --glass-shadow:
-    0 12px 32px -18px #16395635, 0 2px 6px #16395604, inset 0 1px 0 #fff;
-  --glass-stage: linear-gradient(150deg, #fff, #fff);
+    0 18px 28px -18px #12375150, 0 5px 10px -5px #12375120, inset 0 2px 0 #fff,
+    inset 0 -1px 0 #1639560d;
+  --glass-stage: linear-gradient(155deg, #fff 20%, #f6fbfd);
+  --glass-elevation:
+    0 38px 65px -32px #143a5a40, 0 12px 20px -14px #143a5a30, 0 3px 0 #dce8ed,
+    inset 0 2px 0 #fff;
   --glass-ink: #142536;
   --glass-muted: #486176;
   --glass-highlight: #ffffffb3;
@@ -14,11 +18,16 @@
 }
 [data-theme="dark"] .glass-diagram {
   --glass-base: #171719;
-  --glass-card: linear-gradient(155deg, #28282b, #202023 65%, #1c1c1f);
+  --glass-card: linear-gradient(155deg, #2b2c30, #202125 60%, #18191d);
   --glass-edge: #3a3a40;
   --glass-line: #36363c;
-  --glass-shadow: 0 10px 24px -14px #0009, inset 0 1px 0 #ffffff0a;
+  --glass-shadow:
+    0 19px 28px -14px #000b, 0 5px 8px -4px #0008, inset 0 1px 0 #ffffff24,
+    inset 0 -1px 0 #0009;
   --glass-stage: linear-gradient(150deg, #1b1b1e, #111113);
+  --glass-elevation:
+    0 38px 70px -25px #000b, 0 12px 24px -10px #0009, 0 3px 0 #07090c,
+    inset 0 2px 0 #ffffff20;
   --glass-ink: #f5f5f7;
   --glass-muted: #b6b6c0;
   --glass-highlight: #ffffff12;
@@ -76,5 +85,21 @@
   }
   .glass-diagram::after {
     display: none;
+  }
+}
+
+/* Elevation is visible at rest; hover only adds a small physical lift. */
+.glass-diagram {
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform-origin: center;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .glass-diagram:hover {
+    transform: translateY(-4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-diagram {
+    transition: none;
   }
 }

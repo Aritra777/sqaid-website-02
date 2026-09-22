@@ -1100,3 +1100,14 @@
     min-height: 44px;
   }
 }
+
+.panel {
+  box-shadow: var(--glass-elevation);
+}
+.inspector,
+.candidate,
+.mapping,
+.reviewCard,
+.ruleCode {
+  border-top-color: var(--glass-highlight);
+}

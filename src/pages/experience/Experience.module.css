@@ -1174,3 +1174,15 @@
     --section-space: 64px;
   }
 }
+
+.architecture {
+  box-shadow: var(--glass-elevation);
+}
+.argusModules > a {
+  box-shadow: var(--glass-shadow);
+}
+.architectureTop,
+.architectureBase,
+.complianceProducts > a {
+  border-top-color: var(--glass-highlight);
+}
