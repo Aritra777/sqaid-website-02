@@ -50,7 +50,7 @@
   flex-direction: column;
   gap: 14px;
   color: var(--panel-muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 .bindings svg {
   box-sizing: content-box;
@@ -76,7 +76,7 @@
   min-height: 230px;
 }
 .detail small {
-  font: 9px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--ink);
   text-transform: uppercase;
 }
@@ -98,7 +98,7 @@
   align-items: center;
   margin-top: 25px;
   color: var(--ink);
-  font: 9px var(--font-mono);
+  font: 12px var(--font-mono);
 }
 .provenance {
   display: grid;
@@ -124,7 +124,7 @@
   background: var(--mark-soft);
 }
 .provenance small {
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--mark);
 }
 .provenance strong {
@@ -148,7 +148,7 @@
   min-height: 160px;
 }
 .trailDetail small {
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--mark);
 }
 .trailDetail h3 {
@@ -193,7 +193,7 @@
     min-height: 260px;
   }
   .tabs button {
-    font-size: 10px;
+    font-size: 12px;
     padding: 12px 15px;
   }
 }

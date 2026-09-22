@@ -2,17 +2,17 @@
 .glass-diagram {
   --glass-base: #ffffff;
   --glass-card: linear-gradient(155deg, #fff 25%, #fcfeff 75%, #f5fafc);
-  --glass-edge: #17395814;
+  --glass-edge: #17395824;
   --glass-line: #1739581f;
   --glass-shadow:
     0 18px 28px -18px #12375150, 0 5px 10px -5px #12375120, inset 0 2px 0 #fff,
     inset 0 -1px 0 #1639560d;
-  --glass-stage: linear-gradient(155deg, #fff 20%, #f6fbfd);
+  --glass-stage: linear-gradient(145deg, #edf8ff, #dceef8);
   --glass-elevation:
     0 38px 65px -32px #143a5a40, 0 12px 20px -14px #143a5a30, 0 3px 0 #dce8ed,
     inset 0 2px 0 #fff;
   --glass-ink: #142536;
-  --glass-muted: #486176;
+  --glass-muted: #354f64;
   --glass-highlight: #ffffffb3;
   --glass-blue: #315caa;
 }

@@ -76,7 +76,7 @@
   padding: 20px;
 }
 .menuIntro > small {
-  font: 9px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--text-3);
   letter-spacing: 0.08em;
 }
@@ -92,7 +92,7 @@
   display: flex;
   gap: 7px;
   align-items: center;
-  font-size: 11px;
+  font-size: 12px;
   margin-top: 30px;
   color: var(--accent);
 }
@@ -136,7 +136,7 @@
   font-weight: 500;
 }
 .productLink small {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
 }
 .productLink > svg {

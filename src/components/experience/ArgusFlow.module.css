@@ -28,7 +28,7 @@
 .foot > span,
 .kyc > small {
   font-family: var(--font-mono, monospace);
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 1.2px;
   color: var(--text-3);
 }
@@ -78,7 +78,7 @@
 }
 .chapters button span {
   font-family: monospace;
-  font-size: 10px;
+  font-size: 12px;
 }
 .chapters button.reached {
   color: var(--text);
@@ -96,7 +96,7 @@
 }
 .caption > span {
   color: var(--mark);
-  font: 11px monospace;
+  font: 12px monospace;
   white-space: nowrap;
   padding-top: 5px;
 }
@@ -124,7 +124,7 @@
   color: var(--mark);
 }
 .layerLabel small {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0;
 }
 .pipeline {
@@ -156,7 +156,7 @@
 .warehouse p,
 .consumer p,
 .kyc p {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-2);
   line-height: 1.65;
   margin: 8px 0 0;
@@ -178,7 +178,7 @@
   background: transparent;
   color: var(--text-2);
   font: inherit;
-  font-size: 10px;
+  font-size: 12px;
   padding: 5px;
   cursor: pointer;
 }
@@ -214,7 +214,7 @@
 }
 .tag {
   display: inline-block;
-  font: 8px monospace;
+  font: 12px monospace;
   letter-spacing: 0.6px;
   color: var(--mark);
   margin-top: 12px;
@@ -235,7 +235,7 @@
   gap: 12px;
 }
 .strategy b {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text);
 }
@@ -243,7 +243,7 @@
   color: var(--text-3);
 }
 .strategy > small {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-3);
 }
 .reveal {
@@ -271,7 +271,7 @@
   gap: 10px;
   padding: 17px 0;
   color: var(--text-3);
-  font: 9px monospace;
+  font: 12px monospace;
 }
 .down svg {
   color: var(--mark);
@@ -328,7 +328,7 @@
 }
 .kyc > small {
   display: block;
-  font-size: 8px;
+  font-size: 12px;
   margin-top: 10px;
 }
 .foot {
@@ -336,7 +336,7 @@
   border-top: 1px solid var(--line);
 }
 .foot p {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.6;
   color: var(--text-3);
   margin: 8px 0 0;
@@ -373,7 +373,7 @@
   }
   .chapters button {
     padding: 15px 10px;
-    font-size: 10px;
+    font-size: 12px;
     gap: 6px;
   }
   .caption {
@@ -395,7 +395,7 @@
     gap: 10px;
   }
   .identity small {
-    font-size: 7px;
+    font-size: 12px;
   }
   .identity h2 {
     font-size: 20px;
@@ -424,7 +424,7 @@
     font-size: 12px;
   }
   .node p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .scenarios {
     flex-wrap: wrap;
@@ -440,7 +440,7 @@
     grid-template-columns: 1fr;
   }
   .down {
-    font-size: 8px;
+    font-size: 12px;
     line-height: 1.6;
   }
   .warehouse {
@@ -709,4 +709,59 @@
 .consumer,
 .kyc {
   border-top-color: var(--glass-highlight);
+}
+
+.caption p,
+.node p,
+.warehouse p,
+.consumer p,
+.kyc p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.node strong,
+.consumer strong {
+  font-size: 15px;
+}
+.foot p {
+  font-size: 12px;
+}
+.strategy {
+  line-height: 1.7;
+}
+.warehouse {
+  flex-wrap: wrap;
+}
+.identity small {
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .pipeline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .connector {
+    min-height: 26px;
+    transform: rotate(90deg);
+  }
+  .pipeline > .connector:nth-child(4) {
+    display: flex;
+  }
+  .caption {
+    min-height: 0;
+  }
+  .node {
+    padding: 18px;
+  }
+  .node > svg {
+    float: right;
+  }
+  .identity > span {
+    display: none;
+  }
+  .layerLabel {
+    line-height: 1.6;
+  }
+  .shown {
+    max-height: 1200px;
+  }
 }
