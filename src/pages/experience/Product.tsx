@@ -14,6 +14,7 @@ import {
   ScreeningTrail,
 } from "@/components/experience/DeepDive";
 import Button from "@/components/ui/Button";
+import ProductLogo, { type ProductIdentity } from "@/components/ui/ProductLogo";
 import Reveal from "@/components/motion/Reveal";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import NotFound from "@/pages/NotFound";
@@ -35,7 +36,13 @@ export default function ProductPage() {
                 {p.name}
               </Link>
             )}
-            <span className={s.eyebrow}>{p.category}</span>
+            <div className={s.productIdentity}>
+              <ProductLogo product={p.theme as ProductIdentity} size={66} />
+              <div>
+                <strong>{p.name}</strong>
+                <span>{p.category}</span>
+              </div>
+            </div>
             <h1 className={s.title}>{p.headline}</h1>
             <p className={s.lead}>{p.lead}</p>
             <div className={s.actions}>

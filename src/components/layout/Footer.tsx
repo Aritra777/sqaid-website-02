@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Brand from "@/components/ui/Brand";
+import ProductLogo, { type ProductIdentity } from "@/components/ui/ProductLogo";
 import { products } from "@/content/products";
 import { solutions } from "@/content/solutions";
 import { SITE } from "@/lib/site";
@@ -25,8 +26,13 @@ export default function Footer() {
             <Link
               key={p.slug}
               to={`/products/${p.slug}`}
-              className={styles.link}
+              className={`${styles.link} ${styles.productLink}`}
             >
+              <ProductLogo
+                product={p.theme as ProductIdentity}
+                size={23}
+                decorative
+              />
               {p.name}
             </Link>
           ))}

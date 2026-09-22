@@ -99,3 +99,8 @@
     font-size: 9px;
   }
 }
+.productLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

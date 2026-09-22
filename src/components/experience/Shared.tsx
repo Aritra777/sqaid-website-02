@@ -1,25 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  BrainCircuit,
-  Database,
-  Fingerprint,
-  Network,
-  ScanLine,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import Button from "@/components/ui/Button";
+import ProductLogo, { type ProductIdentity } from "@/components/ui/ProductLogo";
 import type { Product, Story } from "@/content/products";
 import { products, productUrl } from "@/content/products";
 import s from "@/pages/experience/Experience.module.css";
-export const productIcons = {
-  brain: BrainCircuit,
-  argus: Network,
-  abacus: ScanLine,
-  kyc: Fingerprint,
-  udm: Database,
-};
 export function Architecture() {
   return (
     <div
@@ -31,7 +17,7 @@ export function Architecture() {
           <strong>SqAId Brain</strong>
           <small>MULTI-AGENT INTELLIGENCE ACROSS THE SUITE</small>
         </div>
-        <BrainCircuit size={30} />
+        <ProductLogo product="brain" size={48} decorative />
       </Link>
       <div className={`theme-argus ${s.argusPlatform}`}>
         <Link to="/products/argus" className={s.argusPlatformTitle}>
@@ -39,7 +25,7 @@ export function Architecture() {
             <small>ONE UNIFIED FINANCIAL CRIME PLATFORM</small>
             <strong>ARGUS</strong>
           </div>
-          <Network size={30} />
+          <ProductLogo product="argus" size={60} decorative />
         </Link>
         <div className={s.argusModules}>
           <Link to="/products/argus/aml">
@@ -61,15 +47,17 @@ export function Architecture() {
             <strong>UDM</strong>
             <small>SHARED DATA FOR EVERY ARGUS CAPABILITY</small>
           </div>
-          <Database size={28} />
+          <ProductLogo product="udm" size={48} decorative />
         </Link>
       </div>
       <div className={s.complianceProducts}>
         <Link to="/products/abacus" className="theme-abacus">
+          <ProductLogo product="abacus" size={36} decorative />
           <strong>ABACUS</strong>
           <small>Sanctions & payment screening</small>
         </Link>
         <Link to="/products/kyc" className="theme-kyc">
+          <ProductLogo product="kyc" size={36} decorative />
           <strong>SqAId KYC</strong>
           <small>Onboarding & ongoing due diligence</small>
         </Link>
@@ -90,15 +78,18 @@ export function ProductCards({
   return (
     <div className={s.productCards}>
       {items.map((p) => {
-        const Icon =
-          productIcons[p.theme as keyof typeof productIcons] || Network;
         return (
           <Link
             key={p.slug}
             to={productUrl(p.slug)}
             className={`theme-${p.theme} ${s.productCard}`}
           >
-            <Icon />
+            <ProductLogo
+              product={p.theme as ProductIdentity}
+              size={56}
+              decorative
+              className={s.cardLogo}
+            />
             <h3>{p.name}</h3>
             <p>{p.lead}</p>
             <span>

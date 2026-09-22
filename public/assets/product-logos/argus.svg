@@ -1,0 +1,23 @@
+<svg viewBox="0 0 320 340" role="img" aria-label="ARGUS" xmlns="http://www.w3.org/2000/svg">
+  <title>ARGUS</title>
+  <g fill="none" stroke="#172a6f" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M160 38 100 152 48 288" />
+    <path d="M160 38 220 152 272 288" />
+    <path d="M100 152 132 238 48 288" />
+    <path d="M220 152 188 238 272 288" />
+    <path d="M132 238h56" />
+    <path d="M100 152 160 178 220 152" />
+  </g>
+  <g stroke="#0f1f55" stroke-width="4">
+    <circle cx="160" cy="38" r="16" fill="#8b7cf6" />
+    <circle cx="160" cy="178" r="16" fill="#8b7cf6" />
+    <circle cx="48" cy="288" r="17" fill="#4f86ff" />
+    <circle cx="272" cy="288" r="17" fill="#2fd0c5" />
+  </g>
+  <g fill="#172a6f">
+    <circle cx="100" cy="152" r="14" />
+    <circle cx="220" cy="152" r="14" />
+    <circle cx="132" cy="238" r="14" />
+    <circle cx="188" cy="238" r="14" />
+  </g>
+</svg>

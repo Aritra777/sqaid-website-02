@@ -929,3 +929,55 @@
     font-size: 7px;
   }
 }
+.productIdentity {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-bottom: 30px;
+}
+.productIdentity strong {
+  display: block;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.productIdentity > div > span {
+  display: block;
+  margin-top: 7px;
+  font: 9px/1.5 var(--font-mono);
+  color: var(--mark);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.productCard .cardLogo {
+  margin-bottom: 28px;
+}
+.complianceProducts > a > span {
+  float: right;
+  margin-left: 8px;
+}
+.productCard > span.cardLogo {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 0;
+}
+.productCard > span.cardLogo img {
+  margin: 0;
+}
+@media (max-width: 520px) {
+  .productIdentity {
+    gap: 12px;
+  }
+  .productIdentity strong {
+    font-size: 17px;
+  }
+  .productIdentity > div > span {
+    font-size: 8px;
+  }
+  .complianceProducts > a > span {
+    float: none;
+    margin: 0 0 13px;
+  }
+}

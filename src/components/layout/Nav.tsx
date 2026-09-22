@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 import ThemeToggle from "./ThemeToggle";
 import type { ThemeMode } from "@/lib/use-theme";
 import { products } from "@/content/products";
-import { productIcons } from "@/components/experience/Shared";
+import ProductLogo, { type ProductIdentity } from "@/components/ui/ProductLogo";
 import styles from "./Nav.module.css";
 export default function Nav({
   theme,
@@ -110,7 +110,6 @@ export default function Nav({
           </div>
           <div className={styles.productGrid}>
             {[products[1], products[0], ...products.slice(2)].map((p) => {
-              const Icon = productIcons[p.theme as keyof typeof productIcons];
               return (
                 <Link
                   key={p.slug}
@@ -118,7 +117,11 @@ export default function Nav({
                   className={`theme-${p.theme} ${styles.productLink}`}
                 >
                   <span>
-                    <Icon size={19} />
+                    <ProductLogo
+                      product={p.theme as ProductIdentity}
+                      size={28}
+                      decorative
+                    />
                   </span>
                   <div>
                     <strong>{p.name}</strong>
@@ -139,7 +142,16 @@ export default function Nav({
         >
           <Link to="/platform">ARGUS platform</Link>
           {[products[1], products[0], ...products.slice(2)].map((p) => (
-            <Link key={p.slug} to={`/products/${p.slug}`}>
+            <Link
+              key={p.slug}
+              to={`/products/${p.slug}`}
+              className={styles.mobileProduct}
+            >
+              <ProductLogo
+                product={p.theme as ProductIdentity}
+                size={26}
+                decorative
+              />
               {p.name}
             </Link>
           ))}
